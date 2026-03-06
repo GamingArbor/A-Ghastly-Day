@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cnualho3uxo3q"]
+
+[node name="BigRoom" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(576, 324)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
