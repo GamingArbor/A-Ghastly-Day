@@ -29,11 +29,15 @@ func _physics_process(delta: float) -> void:
 	
 	# The Evil Gravity
 	if not is_on_floor():
-		velocity += get_gravity() * delta
+		# Check for Floating State to prevent gravity from applying while the player is floating
+		if state != States.FLOAT:
+			velocity += get_gravity() * delta
 
 	# Floating Mechanic (Evil): Press float button to start floating, then press direction to go that way.
+	# This part is for setting the floating state
 	if Input.is_action_just_pressed("Float"):
-		velocity.y = JUMP_VELOCITY
+		set_state(States.FLOAT)
+		print("Fish")
 
 	# The Movement (Basic Evil)
 	var direction := Input.get_axis("Left", "Right")
@@ -48,7 +52,17 @@ func idle():
 	pass
 
 func floating():
-	pass
+	if Input.is_action_just_released("Float"):
+		set_state(States.IDLE)
+		print("Bass")
+	
+	# Handle Floating Up and Down
+	if Input.is_action_pressed("Up"):
+		velocity.y = -SPEED
+	elif Input.is_action_pressed("Down"):
+		velocity.y = SPEED
+	elif Input.is_action_just_released("Up") or Input.is_action_just_released("Down"):
+		velocity.y = 0
 
 func possess():
 	pass
@@ -62,3 +76,6 @@ func dead():
 # When you want to change the player's current state, use this:
 # set_state(States.IDLE)
 # States.IDLE could also be a different state such as FLOAT or DEAD
+
+# For checking the player's state:
+# if state == States.IDLE
