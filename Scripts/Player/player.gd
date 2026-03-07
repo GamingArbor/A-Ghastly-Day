@@ -43,7 +43,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0
 		DirectionLock = 0
 		print("Fish")
-
+	
+	# Handles moving down semi-solid platforms
+	if Input.is_action_pressed("Down"):
+		set_collision_layer_value(2, false)
+		set_collision_mask_value(2, false)
+	if Input.is_action_just_released("Down"):
+		set_collision_layer_value(2, true)
+		set_collision_mask_value(2, true)
+	
 	# The Movement (Basic Evil)
 	var direction := Input.get_axis("Left", "Right")
 	if state != States.FLOAT and state != States.FLOATOVER:
@@ -73,6 +81,7 @@ func floating():
 	
 	var direction = 0
 	
+	# Handle moving in orthagonal directions while floating
 	if DirectionLock == 1:
 		if Input.is_action_pressed("Up"):
 			velocity.y = -SPEED
@@ -109,6 +118,7 @@ func dead():
 func floatover():
 	if is_on_floor():
 		set_state(States.IDLE)
+
 # When you want to change the player's current state, use this:
 # set_state(States.IDLE)
 # States.IDLE could also be a different state such as FLOAT or DEAD

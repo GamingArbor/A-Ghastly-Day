@@ -62,6 +62,11 @@ Down={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Ground"
+2d_physics/layer_2="Semi-Solid"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
