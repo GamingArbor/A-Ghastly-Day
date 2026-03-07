@@ -6,3 +6,5 @@
 offset = Vector2(576, 324)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
