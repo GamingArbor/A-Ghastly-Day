@@ -1,13 +1,19 @@
 extends CharacterBody2D
-var DirectionLock = 0
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 
 # State Machine
 # Sets state to IDLE upon entering game
-enum States {IDLE, FLOAT, POSSESS, AIR, DEAD, FLOATOVER}
+enum States {IDLE, FLOAT, POSSESS, AIR, DEAD, FLOATOVER, DRAG}
 var state = States.IDLE
+
+# For locking the axis the player floats in
+var DirectionLock = 0
+
+# For checking to see if the player can intact with various objects
+var InDeadBodyRange: bool = false
+
 
 # Function for changing the player state as per the state machine
 func set_state(newState):
@@ -28,6 +34,8 @@ func _physics_process(delta: float) -> void:
 			dead()
 		States.FLOATOVER:
 			floatover()
+		States.DRAG:
+			drag()
 		
 	
 	# The Evil Gravity
@@ -38,11 +46,11 @@ func _physics_process(delta: float) -> void:
 
 	# Floating Mechanic (Evil): Press float button to start floating, then press direction to go that way.
 	# This part is for setting the floating state
-	if Input.is_action_just_pressed("Float") and is_on_floor():
+	# Checks to make sure the player is on the floor and not dragging the body
+	if Input.is_action_just_pressed("Float") and is_on_floor() and state != States.DRAG:
 		set_state(States.FLOAT)
 		velocity.y = 0
 		DirectionLock = 0
-		print("Fish")
 	
 	# Handles moving down semi-solid platforms
 	if Input.is_action_pressed("Down"):
@@ -56,11 +64,26 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("Left", "Right")
 	if state != States.FLOAT and state != States.FLOATOVER:
 		if direction:
-			velocity.x = direction * SPEED
+			# Reduces speed of player if they are dargging the body
+			if state == States.DRAG:
+				velocity.x = direction * SPEED * 0.75
+			else:
+				velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 	move_and_slide()
+	
+	# Initiates the Dragging Body state if the player is in range of the body
+	if InDeadBodyRange == true and Input.is_action_just_pressed("Interact"):
+		set_state(States.DRAG)
+		print("Fish")
+
+
+# Responsible for the player end of picking up the body
+func pick_up_body(InsideBody: bool) -> void:
+	InDeadBodyRange = InsideBody
+
 
 func idle():
 	pass
@@ -68,8 +91,7 @@ func idle():
 func floating():
 	if Input.is_action_just_released("Float"):
 		set_state(States.FLOATOVER)
-		print("Bass")
-		
+	
 	# Locks Direction into vertical or horizontal; 1 = vertical, 2 = horizontal
 	
 	if DirectionLock == 0:
@@ -118,6 +140,11 @@ func dead():
 func floatover():
 	if is_on_floor():
 		set_state(States.IDLE)
+
+func drag():
+	if Input.is_action_just_released("Interact"):
+		set_state(States.IDLE)
+		print("Bass")
 
 # When you want to change the player's current state, use this:
 # set_state(States.IDLE)

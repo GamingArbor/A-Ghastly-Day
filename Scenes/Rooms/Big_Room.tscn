@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://cnualho3uxo3q"]
+[gd_scene load_steps=6 format=4 uid="uid://cnualho3uxo3q"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_7sk8b"]
 [ext_resource type="PackedScene" uid="uid://cpuoix83gss4l" path="res://Scenes/Player/player.tscn" id="1_kvefk"]
+[ext_resource type="PackedScene" uid="uid://b01kc7rc5bdbo" path="res://Scenes/Player/deadbody.tscn" id="3_1pg3o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ribh0"]
 resource_name = "CollisionTiles"
@@ -17,9 +18,10 @@ texture = ExtResource("1_7sk8b")
 3:0/0/physics_layer_1/polygon_0/one_way = true
 
 [sub_resource type="TileSet" id="TileSet_qi3bx"]
-physics_layer_0/collision_layer = 1
-physics_layer_1/collision_layer = 2
-physics_layer_1/collision_mask = 2
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 5
+physics_layer_1/collision_layer = 6
+physics_layer_1/collision_mask = 6
 sources/0 = SubResource("TileSetAtlasSource_ribh0")
 
 [node name="BigRoom" type="Node2D"]
@@ -32,4 +34,7 @@ tile_map_data = PackedByteArray("AAAAAAEAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAMAAAAAAAA
 tile_set = SubResource("TileSet_qi3bx")
 
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
-position = Vector2(75, 252)
+position = Vector2(75, 256)
+
+[node name="Deadbody" parent="." instance=ExtResource("3_1pg3o")]
+position = Vector2(40, 263)
