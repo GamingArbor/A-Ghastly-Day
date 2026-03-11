@@ -1,6 +1,7 @@
 extends RigidBody2D
 
-
+var PlayerInRange = false
+var IsBeingDragged = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -14,8 +15,10 @@ func _process(delta: float) -> void:
 func _on_detection_zone_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		body.pick_up_body(true)
+		PlayerInRange = true
 
 
 func _on_detection_zone_body_exited(body: Node2D) -> void:
 	if body is CharacterBody2D:
 		body.pick_up_body(false)
+		PlayerInRange = false
