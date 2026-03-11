@@ -37,6 +37,10 @@ func _physics_process(delta: float) -> void:
 		States.DRAG:
 			drag()
 		
+	# Update the Global Player_State, the Global Player_Position_X, & the Global Player_Position_Y
+	Global.PlayerState = state
+	Global.PlayerPositionX = position.x
+	Global.PlayerPositionY = position.y
 	
 	# The Evil Gravity
 	if not is_on_floor():
@@ -83,6 +87,9 @@ func _physics_process(delta: float) -> void:
 # Responsible for the player end of picking up the body
 func pick_up_body(InsideBody: bool) -> void:
 	InDeadBodyRange = InsideBody
+
+func snap_to_body(BodyPosition):
+	position.x = BodyPosition
 
 
 func idle():
