@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const SPEED = 300.0
+const DRAGSPEED = SPEED * 0.75
 const JUMP_VELOCITY = -400.0
 
 # State Machine
@@ -37,10 +38,8 @@ func _physics_process(delta: float) -> void:
 		States.DRAG:
 			drag()
 		
-	# Update the Global Player_State, the Global Player_Position_X, & the Global Player_Position_Y
+	# Update the Global Player_State
 	Global.PlayerState = state
-	Global.PlayerPositionX = position.x
-	Global.PlayerPositionY = position.y
 	
 	# The Evil Gravity
 	if not is_on_floor():
@@ -70,7 +69,7 @@ func _physics_process(delta: float) -> void:
 		if direction:
 			# Reduces speed of player if they are dargging the body
 			if state == States.DRAG:
-				velocity.x = direction * SPEED * 0.75
+				velocity.x = direction * DRAGSPEED
 			else:
 				velocity.x = direction * SPEED
 		else:

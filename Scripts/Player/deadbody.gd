@@ -1,7 +1,7 @@
 extends RigidBody2D
 # Storing the Player
 var Player = 0
-
+#Determining whether the player is dragging the body or not
 var PlayerDragging: bool = false
 
 # Called when the node enters the scene tree for the first time.
@@ -18,8 +18,7 @@ func _process(delta: float) -> void:
 	
 	# Handles movement of the body
 	if PlayerDragging == true:
-		position.x = Global.PlayerPositionX - 24
-		position.y = Global.PlayerPositionY + 7
+		pass
 	
 	if Global.PlayerState != 6:
 		PlayerDragging = false
