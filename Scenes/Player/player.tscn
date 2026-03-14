@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpuoix83gss4l"]
+[gd_scene load_steps=10 format=3 uid="uid://cpuoix83gss4l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_sjaus"]
 [ext_resource type="Texture2D" uid="uid://buhb13ci8l3i3" path="res://Graphics/Player/Player-Ghost.png" id="2_5cpct"]
@@ -7,6 +7,97 @@
 radius = 7.0
 height = 32.0
 
+[sub_resource type="Animation" id="Animation_sr7o6"]
+resource_name = "Idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_us4t4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vpesk"]
+resource_name = "Moving"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 10, 11, 12]
+}
+
+[sub_resource type="Animation" id="Animation_qac6j"]
+resource_name = "Dragging"
+length = 0.3
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [13, 14, 15]
+}
+
+[sub_resource type="Animation" id="Animation_3a45e"]
+resource_name = "Spawning"
+length = 1.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.65, 0.75, 0.85, 1.25, 1.3, 1.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ga4bh"]
+_data = {
+"Dragging": SubResource("Animation_qac6j"),
+"Idle": SubResource("Animation_sr7o6"),
+"Moving": SubResource("Animation_vpesk"),
+"RESET": SubResource("Animation_us4t4"),
+"Spawning": SubResource("Animation_3a45e")
+}
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 11
 collision_mask = 11
@@ -14,6 +105,8 @@ script = ExtResource("1_sjaus")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_5cpct")
+hframes = 10
+vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ff62x")
@@ -24,3 +117,8 @@ bias = 0.35
 angular_limit_enabled = true
 angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ga4bh")
+}
