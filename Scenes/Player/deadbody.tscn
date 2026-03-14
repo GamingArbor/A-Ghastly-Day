@@ -3,11 +3,12 @@
 [ext_resource type="Script" path="res://Scripts/Player/deadbody.gd" id="1_krm0g"]
 [ext_resource type="Texture2D" uid="uid://bd6ylw1x5ac7m" path="res://Graphics/Player/Player-Body.png" id="1_quoqs"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmwfi"]
-size = Vector2(22, 8)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jph3"]
+radius = 4.0
+height = 24.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ueg7b"]
-size = Vector2(28, 9)
+size = Vector2(32, 11)
 
 [node name="Deadbody" type="RigidBody2D"]
 collision_layer = 4
@@ -20,15 +21,19 @@ centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(12, 5)
-shape = SubResource("RectangleShape2D_nmwfi")
+rotation = -1.5708
+shape = SubResource("CapsuleShape2D_6jph3")
 
 [node name="Detection Zone" type="Area2D" parent="."]
 collision_layer = 8
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detection Zone"]
-position = Vector2(12, 4.5)
+position = Vector2(12, 3.5)
 shape = SubResource("RectangleShape2D_ueg7b")
+
+[node name="DragPoint" type="Node2D" parent="."]
+position = Vector2(24, 5)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

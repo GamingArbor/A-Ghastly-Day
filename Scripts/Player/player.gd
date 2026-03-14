@@ -1,12 +1,12 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const SPEED = 150.0
 const DRAGSPEED = SPEED * 0.75
 const JUMP_VELOCITY = -400.0
 
 # State Machine
 # Sets state to IDLE upon entering game
-enum States {IDLE, FLOAT, POSSESS, AIR, DEAD, FLOATOVER, DRAG}
+var States = Global.States
 var state = States.IDLE
 
 # For locking the axis the player floats in
@@ -79,16 +79,21 @@ func _physics_process(delta: float) -> void:
 	
 	# Initiates the Dragging Body state if the player is in range of the body
 	if InDeadBodyRange == true and Input.is_action_just_pressed("Interact"):
+		%Deadbody.reparent(self)
+		%Player.snap_to_body()
+		$DragJoint.node_a = self.get_path()
+		$DragJoint.node_b = %Deadbody.get_path()
 		set_state(States.DRAG)
-		print("Fish")
 
 
-# Responsible for the player end of picking up the body
+# Allows for player script to know if it can pick up the body
 func pick_up_body(InsideBody: bool) -> void:
 	InDeadBodyRange = InsideBody
 
-func snap_to_body(BodyPosition):
-	position.x = BodyPosition
+func snap_to_body():
+	var delta := %Deadbody.position + %Deadbody.find_child("DragPoint").position - $DragJoint.position as Vector2
+	position += delta
+	%Deadbody.position -= delta
 
 
 func idle():
@@ -150,7 +155,10 @@ func floatover():
 func drag():
 	if Input.is_action_just_released("Interact"):
 		set_state(States.IDLE)
-		print("Bass")
+		%Deadbody.reparent(self.get_parent())
+		$DragJoint.node_a = NodePath("")
+		$DragJoint.node_b = NodePath("")
+		
 
 # When you want to change the player's current state, use this:
 # set_state(States.IDLE)
