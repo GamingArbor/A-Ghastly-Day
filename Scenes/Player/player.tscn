@@ -7,8 +7,11 @@
 radius = 7.0
 height = 32.0
 
-[sub_resource type="Animation" id="Animation_sr7o6"]
-resource_name = "Idle"
+[sub_resource type="Animation" id="Animation_qac6j"]
+resource_name = "Dragging"
+length = 0.3
+loop_mode = 2
+step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -16,14 +19,14 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [0]
+"values": [13, 14, 15]
 }
 
-[sub_resource type="Animation" id="Animation_us4t4"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_sr7o6"]
+resource_name = "Idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -54,11 +57,8 @@ tracks/0/keys = {
 "values": [0, 10, 11, 12]
 }
 
-[sub_resource type="Animation" id="Animation_qac6j"]
-resource_name = "Dragging"
-length = 0.3
-loop_mode = 2
-step = 0.1
+[sub_resource type="Animation" id="Animation_us4t4"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,10 +66,10 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [13, 14, 15]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_3a45e"]
@@ -113,7 +113,7 @@ shape = SubResource("CapsuleShape2D_ff62x")
 
 [node name="DragJoint" type="PinJoint2D" parent="."]
 position = Vector2(-13, 12)
-bias = 0.35
+bias = 0.4
 angular_limit_enabled = true
 angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398

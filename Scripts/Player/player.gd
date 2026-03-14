@@ -80,9 +80,7 @@ func _physics_process(delta: float) -> void:
 	# Initiates the Dragging Body state if the player is in range of the body
 	if InDeadBodyRange == true and Input.is_action_just_pressed("Interact"):
 		%Deadbody.reparent(self)
-		%Player.snap_to_body()
-		$DragJoint.node_a = self.get_path()
-		$DragJoint.node_b = %Deadbody.get_path()
+		snap_to_body()
 		set_state(States.DRAG)
 
 
@@ -153,6 +151,8 @@ func floatover():
 		set_state(States.IDLE)
 
 func drag():
+	$DragJoint.node_a = self.get_path()
+	$DragJoint.node_b = %Deadbody.get_path()
 	if Input.is_action_just_released("Interact"):
 		set_state(States.IDLE)
 		%Deadbody.reparent(self.get_parent())
