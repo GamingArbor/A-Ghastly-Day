@@ -13,7 +13,6 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body == %Player:
-		print("Player has entered room " + str(RoomNumber))
 		%Player.room_transition_completed = false
 		PreviousRoomNumber = %Player.room_number
 		PreviousCameraPosition = %Camera.position
@@ -23,9 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _on_body_exited(body: Node2D) -> void:
 	if body == %Player:
-		print("Player has exited room " + str(RoomNumber))
 		if %Player.room_number == RoomNumber and %Player.room_transition_completed == false:
-			print("player has changed mind between rooms")
 			%Player.room_number = PreviousRoomNumber
 			%Camera.position = PreviousCameraPosition
 		elif %Player.room_number != RoomNumber:
