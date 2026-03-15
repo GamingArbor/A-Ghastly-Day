@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cpuoix83gss4l"]
+[gd_scene load_steps=12 format=3 uid="uid://cpuoix83gss4l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_sjaus"]
 [ext_resource type="Texture2D" uid="uid://buhb13ci8l3i3" path="res://Graphics/Player/Player-Ghost.png" id="2_5cpct"]
@@ -14,7 +14,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -31,7 +31,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -48,7 +48,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -63,7 +63,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -80,7 +80,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -97,7 +97,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("PlayerSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -117,12 +117,15 @@ _data = {
 "StopMoving": SubResource("Animation_5sb3j")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_j0voa"]
+radius = 24.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 11
 collision_mask = 11
 script = ExtResource("1_sjaus")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="PlayerSprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_5cpct")
 hframes = 10
 vframes = 3
@@ -132,7 +135,7 @@ position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_ff62x")
 
 [node name="DragJoint" type="PinJoint2D" parent="."]
-position = Vector2(-13, 12)
+position = Vector2(-13, 8)
 bias = 0.4
 angular_limit_enabled = true
 angular_limit_lower = -0.785398
@@ -142,3 +145,13 @@ angular_limit_upper = 0.785398
 libraries = {
 "": SubResource("AnimationLibrary_ga4bh")
 }
+
+[node name="DragZone" type="Area2D" parent="."]
+monitorable = false
+
+[node name="DragRadius" type="CollisionShape2D" parent="DragZone"]
+position = Vector2(0, 8)
+shape = SubResource("CircleShape2D_j0voa")
+
+[connection signal="body_entered" from="DragZone" to="." method="_on_drag_zone_body_entered"]
+[connection signal="body_exited" from="DragZone" to="." method="_on_drag_zone_body_exited"]
