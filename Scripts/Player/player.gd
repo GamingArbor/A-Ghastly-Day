@@ -11,20 +11,22 @@ var States = Global.States
 var state = States.IDLE
 
 # Room Number
-var room_number: int 
+var room_number: int
 var room_transition_completed = true
 
-# Animation variables
-var PlayedStopAnimation: bool = false # Evil Stop Moving Animation
 
 # Direction Variables (for different states)
 var direction: int # Direction the player is facing
 var float_direction = 0 # For locking the axis the player floats in (behaves diff but who  cares)
 var drag_direction: int # Direction the player is forced to face when dragging
 
-# Utility function for changing the player state as per the state machine
+# Utility function for changing the player state
 func set_state(newState):
 	state = newState
+
+# Utility function for checking the player state
+func state_is(queryState):
+	return state == queryState
 
 func _physics_process(delta: float) -> void:
 	## Run functions associated with states
@@ -75,48 +77,31 @@ func get_closest_drag_point() -> DragPoint:
 				best_drag_point_found = drag_point
 	return best_drag_point_found
 
-func snap_to_drag_point(drag_point: DragPoint):
+func grab_drag_point(drag_point: DragPoint):
 	# Account for the Deadbody flipping over
 	var rotation_multiplier: int
-	if abs(%Deadbody.global_rotation_degrees) <= 90:
-		rotation_multiplier = 1
-	else:
+	if %Deadbody.is_flipped():
 		rotation_multiplier = -1
-	# Set All The Directions
+	else:
+		rotation_multiplier = 1
+	# Determine drag direction and apply to drag joint
 	drag_direction = rotation_multiplier * drag_point.direction
-	direction = drag_direction
 	$DragJoint.position.x = -drag_direction * abs($DragJoint.position.x)
-	
-	# The actual snapping functionality
+	# Snapping the dead body to the player
 	var delta := $DragJoint.global_position - drag_point.global_position as Vector2
 	%Deadbody.position += delta
-
-func horizontal_movement_animation():
-	var current := $AnimationPlayer.assigned_animation as String
-	if direction == -1: $PlayerSprite.flip_h = true
-	elif direction == 1: $PlayerSprite.flip_h = false
-	if not $AnimationPlayer.is_playing() or current != "Idle":
-		if direction == 0:
-			if current != "Idle" and not PlayedStopAnimation:
-				PlayedStopAnimation = true
-				$AnimationPlayer.play("StopMoving")
-			elif not $AnimationPlayer.is_playing():
-				$AnimationPlayer.play("Idle")
-		else:
-			PlayedStopAnimation = false
-			if current == "Idle" or current == "StopMoving":
-				$AnimationPlayer.play("Moving")
+	# Officially start dragging
+	$DragJoint.node_a = self.get_path()
+	$DragJoint.node_b = %Deadbody.get_path()
+	drag_point.being_grabbed = true
 
 func idle():
 	## Idle movement (Basic Evil)
-	direction = Input.get_axis("Left", "Right")
+	direction = roundi(Input.get_axis("Left", "Right"))
 	if direction:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	# Animation
-	horizontal_movement_animation()
 	
 	## Moving to other states
 	# Initiates the Float state upon pressing the float button when grounded
@@ -130,7 +115,7 @@ func idle():
 		var closest_drag_point = get_closest_drag_point()
 		if closest_drag_point != null:
 			%Deadbody.reparent(self)
-			snap_to_drag_point(closest_drag_point)
+			grab_drag_point(closest_drag_point)
 			set_state(States.DRAG)
 
 		
@@ -146,7 +131,7 @@ func floating():
 			float_direction = 1
 		elif Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
 			float_direction = 2
-	var direction = 0
+	direction = 0
 	# Handle Floating Up and Down
 	if float_direction == 1:
 		if Input.is_action_pressed("Up"):
@@ -163,10 +148,6 @@ func floating():
 			direction = 1
 		elif Input.is_action_just_released("Left") or Input.is_action_just_released("Right"):
 			direction = 0
-			
-	# Animation
-	horizontal_movement_animation()
-
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -186,27 +167,35 @@ func floatover():
 		set_state(States.IDLE)
 
 func drag():
-	$AnimationPlayer.play("Dragging")
 	## Dragging movement (More Evil)
-	direction = Input.get_axis("Left", "Right")
+	direction = roundi(Input.get_axis("Left", "Right"))
+	if direction == -drag_direction: 
+		direction = 0 # Force correct dragging orientation
 	if direction:
-		if direction != drag_direction: direction = 0
 		velocity.x = direction * DRAGSPEED
 	if direction == 0:
 		velocity.x = move_toward(velocity.x, 0, DRAGSPEED)
 	
-	# Animation
-	horizontal_movement_animation()
-	
 	## Dragging mechanic
-	$DragJoint.node_a = self.get_path()
-	$DragJoint.node_b = %Deadbody.get_path()
+	var drag_points = %Deadbody.get_children().filter(func(body): return body is DragPoint) # Get drag points
+	## Stop dragging when button is released
 	if Input.is_action_just_released("Interact"):
 		set_state(States.IDLE)
+		for drag_point in drag_points:
+			drag_point.being_grabbed = false
 		%Deadbody.reparent(self.get_parent())
 		$DragJoint.node_a = NodePath("")
 		$DragJoint.node_b = NodePath("")
-		
+	var active_drag_point: DragPoint
+	for drag_point in drag_points:
+		if drag_point.being_grabbed == true: 
+			active_drag_point = drag_point
+	if active_drag_point != null: # This should never happen, but this prevents a crash if it does
+	# Reverse engineer to figure out whether or not the body is supposed to be flipped
+		var should_be_flipped: bool = (false if drag_direction / active_drag_point.direction == 1 else true)
+		var is_flipped: bool = %Deadbody.is_flipped()
+		if is_flipped != should_be_flipped:
+			%Deadbody.constrain_rotation(should_be_flipped)
 ## Development Notes
 # When you want to change the player's current state, use this:
 # set_state(States.IDLE)

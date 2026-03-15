@@ -1,14 +1,124 @@
-[gd_scene load_steps=18 format=3 uid="uid://cpuoix83gss4l"]
+[gd_scene load_steps=42 format=3 uid="uid://cpuoix83gss4l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_sjaus"]
 [ext_resource type="Texture2D" uid="uid://buhb13ci8l3i3" path="res://Graphics/Player/Player-Ghost.png" id="2_5cpct"]
-[ext_resource type="Script" path="res://Scripts/Player/animation_handler.gd" id="3_if45m"]
+[ext_resource type="Script" path="res://Scenes/Player/animation_tree.gd" id="3_trvdq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ff62x"]
 radius = 7.0
 
-[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_kjona"]
-graph_offset = Vector2(7.57907, 131.638)
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ti3h"]
+animation = &"Dragging"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tytq5"]
+animation = &"DraggingBegin"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kpcdg"]
+animation = &"DraggingBegin"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_moqql"]
+animation = &"DraggingStop"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vyj86"]
+animation = &"Grabbing"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1rp3i"]
+animation = &"Grabbing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_keu4p"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_al2gp"]
+animation = &"Moving"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c5p3d"]
+animation = &"StopMoving"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gqf3y"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ae0id"]
+break_loop_at_end = true
+advance_mode = 2
+advance_expression = "direction != 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ynwm0"]
+advance_mode = 2
+advance_expression = "direction == 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_b1mfc"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cwjta"]
+advance_mode = 2
+advance_expression = "state == States.DRAG"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4aspf"]
+advance_mode = 2
+advance_expression = "state == States.DRAG"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_01bwg"]
+advance_mode = 2
+advance_expression = "direction != 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qrl1g"]
+break_loop_at_end = true
+switch_mode = 2
+advance_mode = 2
+advance_expression = "state != States.DRAG"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dmgsr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ndno"]
+advance_mode = 2
+advance_expression = "direction == 0"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_idk84"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2jf0f"]
+advance_mode = 2
+advance_expression = "state != States.DRAG"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o8fma"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_riy0i"]
+advance_mode = 2
+advance_expression = "state != States.DRAG"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jhc7x"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0ekte"]
+states/Dragging/node = SubResource("AnimationNodeAnimation_2ti3h")
+states/Dragging/position = Vector2(866, 100)
+states/DraggingBegin/node = SubResource("AnimationNodeAnimation_kpcdg")
+states/DraggingBegin/position = Vector2(711, 64)
+"states/DraggingBegin 2/node" = SubResource("AnimationNodeAnimation_tytq5")
+"states/DraggingBegin 2/position" = Vector2(704, 170)
+states/DraggingStop/node = SubResource("AnimationNodeAnimation_moqql")
+states/DraggingStop/position = Vector2(779, 3)
+states/End/position = Vector2(1149, 100)
+states/Grabbing/node = SubResource("AnimationNodeAnimation_1rp3i")
+states/Grabbing/position = Vector2(557, 100)
+"states/Grabbing 2/node" = SubResource("AnimationNodeAnimation_vyj86")
+"states/Grabbing 2/position" = Vector2(547, 43)
+states/Idle/node = SubResource("AnimationNodeAnimation_keu4p")
+states/Idle/position = Vector2(358, 3)
+states/Moving/node = SubResource("AnimationNodeAnimation_al2gp")
+states/Moving/position = Vector2(200, 196)
+states/StopMoving/node = SubResource("AnimationNodeAnimation_c5p3d")
+states/StopMoving/position = Vector2(358, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gqf3y"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_ae0id"), "Moving", "StopMoving", SubResource("AnimationNodeStateMachineTransition_ynwm0"), "StopMoving", "Idle", SubResource("AnimationNodeStateMachineTransition_b1mfc"), "Idle", "Grabbing", SubResource("AnimationNodeStateMachineTransition_cwjta"), "Moving", "Grabbing", SubResource("AnimationNodeStateMachineTransition_4aspf"), "Grabbing", "DraggingBegin", SubResource("AnimationNodeStateMachineTransition_01bwg"), "Dragging", "DraggingStop", SubResource("AnimationNodeStateMachineTransition_qrl1g"), "DraggingStop", "Idle", SubResource("AnimationNodeStateMachineTransition_dmgsr"), "Dragging", "DraggingBegin 2", SubResource("AnimationNodeStateMachineTransition_3ndno"), "DraggingBegin 2", "Grabbing", SubResource("AnimationNodeStateMachineTransition_idk84"), "DraggingBegin", "DraggingStop", SubResource("AnimationNodeStateMachineTransition_2jf0f"), "DraggingBegin", "Dragging", SubResource("AnimationNodeStateMachineTransition_o8fma"), "Grabbing", "Grabbing 2", SubResource("AnimationNodeStateMachineTransition_riy0i"), "Grabbing 2", "Idle", SubResource("AnimationNodeStateMachineTransition_jhc7x")]
 
 [sub_resource type="Animation" id="Animation_qac6j"]
 resource_name = "Dragging"
@@ -18,7 +128,7 @@ step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -35,7 +145,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -52,7 +162,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -69,7 +179,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -86,7 +196,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -103,7 +213,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -120,7 +230,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -135,7 +245,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -152,7 +262,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -169,7 +279,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerSprite:frame")
+tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -201,21 +311,21 @@ collision_layer = 11
 collision_mask = 11
 script = ExtResource("1_sjaus")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_ff62x")
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("2_5cpct")
 hframes = 10
 vframes = 4
 
-[node name="AnimationHandler" type="Node" parent="."]
-script = ExtResource("3_if45m")
-
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeBlendTree_kjona")
+[node name="AnimationTree" type="AnimationTree" parent="." node_paths=PackedStringArray("animation_tree")]
+tree_root = SubResource("AnimationNodeStateMachine_0ekte")
+advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
+script = ExtResource("3_trvdq")
+animation_tree = NodePath(".")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -223,8 +333,8 @@ libraries = {
 }
 
 [node name="DragJoint" type="PinJoint2D" parent="."]
-position = Vector2(-13, 4)
-bias = 0.4
+position = Vector2(-14, 4)
+bias = 0.55
 angular_limit_enabled = true
 angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
