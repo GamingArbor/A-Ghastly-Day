@@ -11,6 +11,7 @@ var States = Global.States
 var state = States.IDLE
 
 var DirectionLock = 0 # For locking the axis the player floats in
+var PlayedStopAnimation: bool = false # Evil Stop Moving Animation
 var InDeadBodyRange: bool = false # For determining when the player can interact with the 
 
 # Utility function for changing the player state as per the state machine
@@ -39,14 +40,6 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor() and state != States.FLOAT:
 		velocity += get_gravity() * delta
 	
-	## Grounded movement (Basic Evil)
-	var direction := Input.get_axis("Left", "Right")
-	if state != States.FLOAT and state != States.FLOATOVER:
-		if direction:
-			# Player speed is reduced when dragging
-			velocity.x = direction * (DRAGSPEED if state == States.DRAG else SPEED)
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	# Floating Mechanic (Evil): Applies when grounded, not dragging, and pressing the float button
 	if is_on_floor() and state != States.DRAG and Input.is_action_pressed("Float") and state != States.FLOAT:
@@ -77,7 +70,29 @@ func snap_to_body():
 
 
 func idle():
-	$AnimationPlayer.play("Idle")
+	## Idle movement (Basic Evil)
+	var direction := Input.get_axis("Left", "Right")
+	if direction:
+		velocity.x = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	## Animation
+	if direction == -1: $Sprite2D.flip_h = true
+	elif direction == 1: $Sprite2D.flip_h = false
+	if not $AnimationPlayer.is_playing():
+		if direction == 0:
+			if $AnimationPlayer.assigned_animation == "Moving" and not PlayedStopAnimation:
+				PlayedStopAnimation = true
+				$AnimationPlayer.play("Stop Moving")
+			else:
+				$AnimationPlayer.play("Idle")
+		else:
+			PlayedStopAnimation = false
+			if not $AnimationPlayer.assigned_animation == "Moving":
+				$AnimationPlayer.play("Moving")
+	
+	
 	# Initiates the Dragging Body state if the player is in range of the body
 	if InDeadBodyRange == true and Input.is_action_just_pressed("Interact"):
 		%Deadbody.reparent(self)
@@ -136,6 +151,12 @@ func floatover():
 
 func drag():
 	$AnimationPlayer.play("Dragging")
+	## Dragging movement (More Evil)
+	var direction := Input.get_axis("Left", "Right")
+	if direction:
+		velocity.x = direction * DRAGSPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 	$DragJoint.node_a = self.get_path()
 	$DragJoint.node_b = %Deadbody.get_path()
 	if Input.is_action_just_released("Interact"):
