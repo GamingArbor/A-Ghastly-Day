@@ -68,6 +68,21 @@ func snap_to_body():
 	position += delta
 	%Deadbody.position -= delta
 
+func horizontal_movement_animation(direction: int):
+	var current := $AnimationPlayer.assigned_animation as String
+	if direction == -1: $Sprite2D.flip_h = true
+	elif direction == 1: $Sprite2D.flip_h = false
+	if not $AnimationPlayer.is_playing() or current != "Idle":
+		if direction == 0:
+			if current != "Idle" and not PlayedStopAnimation:
+				PlayedStopAnimation = true
+				$AnimationPlayer.play("StopMoving")
+			elif not $AnimationPlayer.is_playing():
+				$AnimationPlayer.play("Idle")
+		else:
+			PlayedStopAnimation = false
+			if current == "Idle" or current == "StopMoving":
+				$AnimationPlayer.play("Moving")
 
 func idle():
 	## Idle movement (Basic Evil)
@@ -77,21 +92,8 @@ func idle():
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
-	## Animation
-	if direction == -1: $Sprite2D.flip_h = true
-	elif direction == 1: $Sprite2D.flip_h = false
-	if not $AnimationPlayer.is_playing():
-		if direction == 0:
-			if $AnimationPlayer.assigned_animation == "Moving" and not PlayedStopAnimation:
-				PlayedStopAnimation = true
-				$AnimationPlayer.play("Stop Moving")
-			else:
-				$AnimationPlayer.play("Idle")
-		else:
-			PlayedStopAnimation = false
-			if not $AnimationPlayer.assigned_animation == "Moving":
-				$AnimationPlayer.play("Moving")
-	
+	# Animation
+	horizontal_movement_animation(direction)
 	
 	# Initiates the Dragging Body state if the player is in range of the body
 	if InDeadBodyRange == true and Input.is_action_just_pressed("Interact"):
@@ -100,9 +102,11 @@ func idle():
 		set_state(States.DRAG)
 
 func floating():
+	# Transition to Float Ended state
 	if Input.is_action_just_released("Float"):
 		set_state(States.FLOATOVER)
 	
+	## Floating mechanic
 	# Locks Direction into vertical or horizontal; 1 = vertical, 2 = horizontal
 	if DirectionLock == 0:
 		if Input.is_action_pressed("Up") or Input.is_action_pressed("Down"):
@@ -110,8 +114,7 @@ func floating():
 		elif Input.is_action_pressed("Left") or Input.is_action_pressed("Right"):
 			DirectionLock = 2
 	var direction = 0
-	
-	# Handle moving in orthogonal directions while floating
+	# Handle Floating Up and Down
 	if DirectionLock == 1:
 		if Input.is_action_pressed("Up"):
 			velocity.y = -SPEED
@@ -119,6 +122,7 @@ func floating():
 			velocity.y = SPEED
 		elif Input.is_action_just_released("Up") or Input.is_action_just_released("Down"):
 			velocity.y = 0
+	# Handle Floating Left and Right
 	elif DirectionLock == 2:
 		if Input.is_action_pressed("Left"):
 			direction = -1
@@ -126,10 +130,9 @@ func floating():
 			direction = 1
 		elif Input.is_action_just_released("Left") or Input.is_action_just_released("Right"):
 			direction = 0
-	# Handle Floating Up and Down
-
-	
-
+			
+	# Animation
+	horizontal_movement_animation(direction)
 
 	if direction:
 		velocity.x = direction * SPEED
@@ -157,6 +160,11 @@ func drag():
 		velocity.x = direction * DRAGSPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	# Animation
+	horizontal_movement_animation(direction)
+	
+	## Dragging mechanic
 	$DragJoint.node_a = self.get_path()
 	$DragJoint.node_b = %Deadbody.get_path()
 	if Input.is_action_just_released("Interact"):
