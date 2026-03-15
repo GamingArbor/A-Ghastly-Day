@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://ycjpbrqncnp1"]
+
+[ext_resource type="Texture2D" uid="uid://cqlwart62cw6w" path="res://Audio/Music/7f24201d61344a10bf28a9cca0e1e058tplv-jj85edgx6n-image-medium.png" id="1_lrjwn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuofp"]
+size = Vector2(23.125, 12.9531)
+
+[node name="KeyItem" type="RigidBody2D"]
+
+[node name="KeySP" type="Sprite2D" parent="."]
+scale = Vector2(0.0441177, 0.0190763)
+texture = ExtResource("1_lrjwn")
+
+[node name="KeyHB" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wuofp")

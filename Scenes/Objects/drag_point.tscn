@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://di6xkisjtscgl"]
+[gd_scene load_steps=4 format=3 uid="uid://di6xkisjtscgl"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/drag_point.gd" id="1_6dr3r"]
+[ext_resource type="Texture2D" uid="uid://dvyor78xr3gui" path="res://Graphics/Player/Player-Hand.png" id="2_aooh8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y5esu"]
 radius = 0.01
@@ -11,3 +12,14 @@ script = ExtResource("1_6dr3r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y5esu")
+
+[node name="HandsBackground" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(2, 1)
+texture = ExtResource("2_aooh8")
+hframes = 2
+
+[node name="HandsForeground" type="Sprite2D" parent="."]
+texture = ExtResource("2_aooh8")
+hframes = 2
+frame = 1
