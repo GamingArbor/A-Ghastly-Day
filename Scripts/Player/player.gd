@@ -76,17 +76,20 @@ func get_closest_drag_point() -> DragPoint:
 	return best_drag_point_found
 
 func snap_to_drag_point(drag_point: DragPoint):
+	# Account for the Deadbody flipping over
 	var rotation_multiplier: int
 	if abs(%Deadbody.global_rotation_degrees) <= 90:
 		rotation_multiplier = 1
 	else:
 		rotation_multiplier = -1
+	# Set All The Directions
 	drag_direction = rotation_multiplier * drag_point.direction
 	direction = drag_direction
 	$DragJoint.position.x = -drag_direction * abs($DragJoint.position.x)
-	var delta := drag_point.global_position - $DragJoint.global_position as Vector2
-	position.x += delta.x
-	%Deadbody.position.x -= delta.x
+	
+	# The actual snapping functionality
+	var delta := $DragJoint.global_position - drag_point.global_position as Vector2
+	%Deadbody.position += delta
 
 func horizontal_movement_animation():
 	var current := $AnimationPlayer.assigned_animation as String
