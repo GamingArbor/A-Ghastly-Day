@@ -10,6 +10,10 @@ const JUMP_VELOCITY = -400.0
 var States = Global.States
 var state = States.IDLE
 
+# Room Number
+var room_number: int 
+var room_transition_completed = true
+
 var DirectionLock = 0 # For locking the axis the player floats in
 var PlayedStopAnimation: bool = false # Evil Stop Moving Animation
 var InDeadBodyRange: bool = false # For determining when the player can interact with the 
