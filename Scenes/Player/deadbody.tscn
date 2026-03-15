@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://b01kc7rc5bdbo"]
 
-[ext_resource type="Script" path="res://Scripts/Player/deadbody.gd" id="1_krm0g"]
 [ext_resource type="Texture2D" uid="uid://bd6ylw1x5ac7m" path="res://Graphics/Player/Player-Body.png" id="1_quoqs"]
+[ext_resource type="PackedScene" uid="uid://di6xkisjtscgl" path="res://Scenes/Objects/drag_point.tscn" id="3_28k5k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jph3"]
 radius = 4.0
@@ -13,7 +13,6 @@ size = Vector2(32, 11)
 [node name="Deadbody" type="RigidBody2D"]
 collision_layer = 4
 collision_mask = 4
-script = ExtResource("1_krm0g")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_quoqs")
@@ -32,8 +31,13 @@ collision_mask = 8
 position = Vector2(12, 3.5)
 shape = SubResource("RectangleShape2D_ueg7b")
 
-[node name="DragPoint" type="Node2D" parent="."]
-position = Vector2(24, 5)
+[node name="DragPointHead" parent="." instance=ExtResource("3_28k5k")]
+position = Vector2(2, 5)
+direction = -1
+
+[node name="DragPointFeet" parent="." instance=ExtResource("3_28k5k")]
+position = Vector2(24, 1)
+direction = 1
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
