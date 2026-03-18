@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brie4a57d5eqs"
-path="res://.godot/imported/7f24201d61344a10bf28a9cca0e1e058tplv-jj85edgx6n-image-medium.png-86a755e7d2120efd1c8fec0a9f46c5bf.ctex"
+uid="uid://xbmm01r5ej6i"
+path="res://.godot/imported/Logos-GameJam.png-c2eea203ba4d7ce5fcf059f1edb29197.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Graphics/Misc/7f24201d61344a10bf28a9cca0e1e058tplv-jj85edgx6n-image-medium.png"
-dest_files=["res://.godot/imported/7f24201d61344a10bf28a9cca0e1e058tplv-jj85edgx6n-image-medium.png-86a755e7d2120efd1c8fec0a9f46c5bf.ctex"]
+source_file="res://Graphics/Misc/Logos-GameJam.png"
+dest_files=["res://.godot/imported/Logos-GameJam.png-c2eea203ba4d7ce5fcf059f1edb29197.ctex"]
 
 [params]
 
