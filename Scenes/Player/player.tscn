@@ -339,13 +339,11 @@ angular_limit_enabled = true
 angular_limit_lower = -0.785398
 angular_limit_upper = 0.785398
 
-[node name="IntZone" type="Area2D" parent="."]
+[node name="InteractionZone" type="Area2D" parent="."]
+collision_layer = 4
 collision_mask = 4
 monitorable = false
 
-[node name="IntRadius" type="CollisionShape2D" parent="IntZone"]
+[node name="InteractionRadius" type="CollisionShape2D" parent="InteractionZone"]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_j0voa")
-
-[connection signal="body_entered" from="IntZone" to="." method="_on_drag_zone_body_entered"]
-[connection signal="body_exited" from="IntZone" to="." method="_on_drag_zone_body_exited"]

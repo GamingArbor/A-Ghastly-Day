@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://chgq6ajmoph16"]
-
-[ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_2l6ti"]
-
-[node name="PossessableObject" type="RigidBody2D"]
-script = ExtResource("1_2l6ti")

@@ -20,8 +20,9 @@ var direction: int # Direction the player is facing
 var float_direction = 0 # For locking the axis the player floats in (behaves diff but who  cares)
 var drag_direction: int # Direction the player is forced to face when dragging
 
-# Specific Possession Item
-var PossessionItem: PossessableObject
+# Possession Variables (for easy use)
+var PossessedObject: Node2D
+var PossessionComponent: PossessableComponent
 
 # Utility function for changing the player state
 func set_state(newState):
@@ -63,30 +64,25 @@ func _physics_process(delta: float) -> void:
 	
 	
 	move_and_slide()
-	
-# get the best possessable object / give none if there aren't any
-func get_best_possess() -> PossessableObject:
-	var PossessableList = $IntZone.get_overlapping_bodies().filter(func(body): return body is PossessableObject)
-	if PossessableList.is_empty(): return null
-	return PossessableList[0]
 
-func get_closest_drag_point() -> DragPoint:
-	var drag_points_in_range = $IntZone.get_overlapping_areas().filter(func(body): return body is DragPoint)
-	if drag_points_in_range.is_empty(): return null
-	var best_priority_found = drag_points_in_range[0].priority
-	var best_distance_found = 150
-	var best_drag_point_found
-	for drag_point in drag_points_in_range:
-		var priority = drag_point.priority
-		var distance = abs(global_position.x - drag_point.global_position.x)
+func get_interactable_component() -> InteractableComponent:
+	var interactable_components = $InteractionZone.get_overlapping_areas().map(func(area): return area.get_parent()).filter(func(body): return body is InteractableComponent)
+	if interactable_components.is_empty(): return null
+	var best_priority_found = interactable_components[0].priority
+	var best_distance_found = abs(global_position.x -  interactable_components[0].global_position.x)
+	var best_interactable_component = interactable_components[0]
+	for interactable_component in interactable_components:
+		var priority = interactable_component.priority
+		var distance = abs(global_position.x -  interactable_component.global_position.x)
 		if priority <= best_priority_found:
 			best_priority_found = priority
 			if distance <= best_distance_found:
 				best_distance_found = distance
-				best_drag_point_found = drag_point
-	return best_drag_point_found
+				best_interactable_component = interactable_component
+	
+	return best_interactable_component
 
-func grab_drag_point(drag_point: DragPoint):
+func grab_drag_point(drag_point: DraggableComponent):
 	# Account for the Deadbody flipping over
 	var rotation_multiplier: int
 	if %Deadbody.is_flipped():
@@ -119,24 +115,24 @@ func idle():
 		float_direction = 0
 		set_state(States.FLOAT)
 	
-	# Initiates the Drag state upon pressing the interact button (when in range of an object)
+	## Interaction with Objects
 	if Input.is_action_just_pressed("Interact"):
-		var closest_drag_point = get_closest_drag_point()
-		if closest_drag_point != null:
-			%Deadbody.reparent(self)
-			grab_drag_point(closest_drag_point)
-			set_state(States.DRAG)
-			
-	# Evil Enter Possesion Code
-	if Input.is_action_just_pressed("Interact"):
-		var BestPossess = get_best_possess()
-		if BestPossess != null:
-			BestPossess.position = $Hitbox.global_position
-			BestPossess.reparent(self)
-			$Sprite.visible = false
-			$Hitbox.shape = BestPossess.find_child("CollisionShape2D").shape
-			PossessionItem = BestPossess
-			set_state(States.POSSESS)
+		var interactable_component = get_interactable_component()
+		if interactable_component != null:
+			var parent_component = interactable_component.get_parent()
+			var interactable_object = interactable_component.get_actual_parent()
+			if parent_component is DraggableComponent:
+				interactable_object.reparent(self)
+				grab_drag_point(parent_component)
+				set_state(States.DRAG)
+			elif parent_component is PossessableComponent:
+				interactable_object.reparent(self)
+				interactable_object.position = Vector2(0,0)
+				$Sprite.visible = false
+				$Hitbox.shape = interactable_object.find_child("CollisionShape2D").shape
+				PossessedObject = interactable_object
+				PossessionComponent = parent_component
+				set_state(States.POSSESS)
 
 		
 func floating():
@@ -174,7 +170,13 @@ func floating():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 func possess():
-	if PossessionItem.PossessNumber == 1:
+	if PossessionComponent.PossessType == Global.PossessTypes.SLIDE:
+		direction = roundi(Input.get_axis("Left", "Right"))
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+	elif PossessionComponent.PossessType == Global.PossessTypes.HOPPING:
 		direction = roundi(Input.get_axis("Left", "Right"))
 		if direction:
 			velocity.x = direction * SPEED
@@ -202,7 +204,7 @@ func drag():
 		velocity.x = move_toward(velocity.x, 0, DRAGSPEED)
 	
 	## Dragging mechanic
-	var drag_points = %Deadbody.get_children().filter(func(body): return body is DragPoint) # Get drag points
+	var drag_points = %Deadbody.get_children().filter(func(body): return body is DraggableComponent) # Get drag points
 	## Stop dragging when button is released
 	if Input.is_action_just_released("Interact"):
 		set_state(States.IDLE)
@@ -211,7 +213,7 @@ func drag():
 		%Deadbody.reparent(self.get_parent())
 		$DragJoint.node_a = NodePath("")
 		$DragJoint.node_b = NodePath("")
-	var active_drag_point: DragPoint
+	var active_drag_point: DraggableComponent
 	for drag_point in drag_points:
 		if drag_point.being_grabbed == true: 
 			active_drag_point = drag_point

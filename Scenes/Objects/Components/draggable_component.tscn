@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://di6xkisjtscgl"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Components/draggable_component.gd" id="1_3niyn"]
+[ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="2_opebe"]
+[ext_resource type="Texture2D" uid="uid://dvyor78xr3gui" path="res://Graphics/Player/Player-Hand.png" id="3_ifuod"]
+
+[node name="DraggableComponent" type="Node2D"]
+script = ExtResource("1_3niyn")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_opebe")]
+priority = -1
+
+[node name="HandsBackground" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(2, 1)
+texture = ExtResource("3_ifuod")
+hframes = 2
+
+[node name="HandsForeground" type="Sprite2D" parent="."]
+texture = ExtResource("3_ifuod")
+hframes = 2
+frame = 1

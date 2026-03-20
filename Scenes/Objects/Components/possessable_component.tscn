@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://br4fc0kgt7xxa"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/Components/possessable_component.gd" id="1_2l6ti"]
+[ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="2_taubd"]
+
+[node name="PossessableComponent" type="Node2D"]
+script = ExtResource("1_2l6ti")
+
+[node name="InteractableComponent" parent="." instance=ExtResource("2_taubd")]
+priority = 1

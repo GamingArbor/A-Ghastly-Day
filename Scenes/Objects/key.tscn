@@ -1,13 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://dpse33vr6o368"]
+[gd_scene load_steps=4 format=3 uid="uid://b0vhfo0q00ktt"]
 
+[ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="1_2xmke"]
 [ext_resource type="Texture2D" uid="uid://b1h73qng2i1so" path="res://Graphics/Objects/Key.png" id="1_8adwp"]
-[ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_nvxhy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noabi"]
 size = Vector2(14, 8)
 
-[node name="KeyItem" type="RigidBody2D"]
-script = ExtResource("1_nvxhy")
+[node name="Key" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="PossessableComponent" parent="." instance=ExtResource("1_2xmke")]
+PossessType = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_8adwp")

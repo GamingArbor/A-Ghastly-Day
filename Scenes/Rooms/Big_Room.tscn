@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cnpgwbocd0bbt" path="res://Graphics/Misc/Background-Hills2.png" id="6_j2ytj"]
 [ext_resource type="Texture2D" uid="uid://nf5jdk7sxicr" path="res://Graphics/Misc/Background-Hills1.png" id="7_3cw5n"]
 [ext_resource type="PackedScene" uid="uid://cj7futhiicybd" path="res://Scenes/Objects/door.tscn" id="7_ekvh7"]
-[ext_resource type="PackedScene" uid="uid://dpse33vr6o368" path="res://Scenes/Objects/key_item.tscn" id="8_m5y52"]
+[ext_resource type="PackedScene" uid="uid://b0vhfo0q00ktt" path="res://Scenes/Objects/key.tscn" id="8_m5y52"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ribh0"]
 resource_name = "CollisionTiles"
@@ -455,11 +455,11 @@ tile_set = SubResource("TileSet_qi3bx")
 
 [node name="Deadbody" parent="." instance=ExtResource("3_1pg3o")]
 unique_name_in_owner = true
-position = Vector2(436, 407)
+position = Vector2(189, 551)
 
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
 unique_name_in_owner = true
-position = Vector2(46, 185)
+position = Vector2(232, 544)
 
 [node name="Rooms" type="Node" parent="."]
 
@@ -469,29 +469,24 @@ visible = false
 [node name="Starting Room" parent="Rooms/Test" instance=ExtResource("6_g3e87")]
 position = Vector2(0, 336)
 RoomNumber = -1
-disabled = true
 
 [node name="Second Room" parent="Rooms/Test" instance=ExtResource("6_g3e87")]
 position = Vector2(512, 336)
 RoomNumber = -2
-disabled = true
 
 [node name="Outskirts" type="Node2D" parent="Rooms"]
 visible = false
 
 [node name="Room1" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 RoomNumber = 1
-disabled = true
 
 [node name="Room2" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 position = Vector2(512, 0)
 RoomNumber = 2
-disabled = true
 
 [node name="Room3" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 position = Vector2(1024, 0)
 RoomNumber = 3
-disabled = true
 
 [node name="Room4" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 position = Vector2(1536, 0)
@@ -525,7 +520,4 @@ RoomNumber = 10
 position = Vector2(645, 448)
 
 [node name="KeyItem" parent="." instance=ExtResource("8_m5y52")]
-position = Vector2(84, 183)
-collision_layer = 4
-collision_mask = 4
-PossessNumber = 1
+position = Vector2(270, 556)
