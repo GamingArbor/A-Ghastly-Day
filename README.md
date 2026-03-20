@@ -56,3 +56,13 @@ Wii-Bowler - AnImpossibility
 
 
 
+###### Play Testers
+
+Snicklefritz - PandaArbor
+
+
+
+###### Special Thanks
+
+Jonny Razer \& Bad Ideas Productions for hosting the 2026 Bad Ideas Game Jam
+
