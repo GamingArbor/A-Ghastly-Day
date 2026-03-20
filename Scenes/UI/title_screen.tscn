@@ -1,0 +1,699 @@
+[gd_scene load_steps=31 format=4 uid="uid://d3mbpy50mfe20"]
+
+[ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_nd78d"]
+[ext_resource type="Script" path="res://Scripts/UI/title_screen.gd" id="1_q6y5e"]
+[ext_resource type="Texture2D" uid="uid://lyf5nyqsnky0" path="res://Graphics/Tiles/Tileset-Castle.png" id="2_8unnh"]
+[ext_resource type="Texture2D" uid="uid://cflpckxt1iuu3" path="res://Graphics/Misc/Background-Sky.png" id="2_fsi1y"]
+[ext_resource type="Texture2D" uid="uid://cop5xiam8owxt" path="res://Graphics/Tiles/Tileset-Outside.png" id="3_h1nn5"]
+[ext_resource type="Texture2D" uid="uid://bsa2l5quhvika" path="res://Graphics/Misc/Background-Clouds3.png" id="3_prn8y"]
+[ext_resource type="Texture2D" uid="uid://cybtvxgob0mcj" path="res://Graphics/UI/TitleMenu-Button-StartGame.png" id="4_5kgkq"]
+[ext_resource type="Texture2D" uid="uid://c85jklxnr8q0d" path="res://Graphics/Misc/Background-Clouds2.png" id="4_gqq5c"]
+[ext_resource type="Texture2D" uid="uid://4rdligq5luk2" path="res://Graphics/UI/TitleMenu-Button-StartGame-Pressed.png" id="5_s70dv"]
+[ext_resource type="Texture2D" uid="uid://bsghen8bifkcl" path="res://Graphics/Misc/Background-Clouds1.png" id="5_v4qgu"]
+[ext_resource type="Texture2D" uid="uid://cnpgwbocd0bbt" path="res://Graphics/Misc/Background-Hills2.png" id="6_gfbcv"]
+[ext_resource type="Texture2D" uid="uid://bjvll8kgto6ga" path="res://Graphics/UI/TitleMenu-Button-StartGame-Select.png" id="6_nmlg3"]
+[ext_resource type="Texture2D" uid="uid://nf5jdk7sxicr" path="res://Graphics/Misc/Background-Hills1.png" id="7_2wfqk"]
+[ext_resource type="Texture2D" uid="uid://dl0g0ahvwbdlf" path="res://Graphics/UI/TitleMenu-Button-Options.png" id="7_augn4"]
+[ext_resource type="Texture2D" uid="uid://qdg7wwgcu0o" path="res://Graphics/UI/TitleMenu-Button-Options-Pressed.png" id="8_hankk"]
+[ext_resource type="Texture2D" uid="uid://b87cmr22sd1r1" path="res://Graphics/UI/TitleMenu-Button-Options-Select.png" id="9_r52o0"]
+[ext_resource type="Texture2D" uid="uid://3v1v81a0usk" path="res://Graphics/UI/TitleMenu-Button-Exit.png" id="10_h6xvv"]
+[ext_resource type="Texture2D" uid="uid://bdv6ac8wm2gva" path="res://Graphics/UI/TitleMenu-Button-Exit-Pressed.png" id="11_l5f75"]
+[ext_resource type="Texture2D" uid="uid://gvkhif4n2ivn" path="res://Graphics/UI/TitleMenu-Button-Exit-Select.png" id="12_ukis3"]
+[ext_resource type="Texture2D" uid="uid://2nb4dxp5dhv7" path="res://Graphics/Misc/Logos-ArborGames.png" id="20_ip4dq"]
+[ext_resource type="Texture2D" uid="uid://xbmm01r5ej6i" path="res://Graphics/Misc/Logos-GameJam.png" id="21_ujdv1"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qyo6d"]
+resource_name = "CollisionTiles"
+texture = ExtResource("1_nd78d")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 8, 0, 0, 8, 0, 8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 0, 0, 0, 0, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, 0, 8, 0, 8, 8, 0, 8)
+3:0/0/physics_layer_1/polygon_0/one_way = true
+0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, 8, 0, -8, 8, -8, 8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, 0, 0, 0, -8, 8, -8)
+1:2/0 = 0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 0, -8, 0, -8, -8, 8, -8)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 0, 0, -8, 0, -8, -8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -8, 0, 8, -8, 8, -8, -8)
+3:2/0 = 0
+3:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, 0, 0, -8, 8, -8, 8, 0)
+3:2/0/physics_layer_1/polygon_0/one_way = true
+3:1/0 = 0
+3:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, 8, 0, -8, 8, -8, 8, 8)
+3:1/0/physics_layer_1/polygon_0/one_way = true
+4:2/0 = 0
+4:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(8, 0, -8, 0, -8, -8, 8, -8)
+4:2/0/physics_layer_1/polygon_0/one_way = true
+4:1/0 = 0
+4:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+4:1/0/physics_layer_1/polygon_0/one_way = true
+4:0/0 = 0
+4:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, 0, 8, 0, 8, 8, -8, 8)
+4:0/0/physics_layer_1/polygon_0/one_way = true
+5:0/0 = 0
+5:0/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, 0, 0, 8, -8, 8, -8, 0)
+5:0/0/physics_layer_1/polygon_0/one_way = true
+5:1/0 = 0
+5:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, -8, 0, 8, -8, 8, -8, -8)
+5:1/0/physics_layer_1/polygon_0/one_way = true
+5:2/0 = 0
+5:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(0, 0, -8, 0, -8, -8, 0, -8)
+5:2/0/physics_layer_1/polygon_0/one_way = true
+6:2/0 = 0
+6:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 8, -8, -8, 8, -8)
+6:1/0 = 0
+6:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 8, 8, -8, 8, 8)
+7:1/0 = 0
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, 8, -8, 8)
+8:1/0 = 0
+8:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8)
+8:1/0/physics_layer_1/polygon_0/one_way = true
+8:2/0 = 0
+8:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8)
+8:2/0/physics_layer_1/polygon_0/one_way = true
+9:2/0 = 0
+9:2/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, 8, -8, -8, 8, -8)
+9:2/0/physics_layer_1/polygon_0/one_way = true
+9:1/0 = 0
+9:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(8, 8, -8, 8, -8, -8)
+9:1/0/physics_layer_1/polygon_0/one_way = true
+7:2/0 = 0
+7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, 8, -8, -8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x7imo"]
+texture = ExtResource("2_8unnh")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+10:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+10:15/0 = 0
+11:15/0 = 0
+12:15/0 = 0
+13:15/0 = 0
+14:15/0 = 0
+10:16/0 = 0
+11:16/0 = 0
+13:16/0 = 0
+14:16/0 = 0
+10:17/0 = 0
+11:17/0 = 0
+12:17/0 = 0
+13:17/0 = 0
+14:17/0 = 0
+2:15/0 = 0
+3:15/0 = 0
+1:15/0 = 0
+0:15/0 = 0
+0:14/0 = 0
+0:13/0 = 0
+4:15/animation_frame_0/duration = 0.1
+4:15/animation_frame_1/duration = 0.1
+4:15/animation_frame_2/duration = 0.1
+4:15/0 = 0
+8:15/size_in_atlas = Vector2i(2, 3)
+8:15/0 = 0
+0:18/size_in_atlas = Vector2i(3, 3)
+0:18/0 = 0
+3:18/0 = 0
+4:18/0 = 0
+5:18/0 = 0
+6:18/0 = 0
+7:18/0 = 0
+8:18/size_in_atlas = Vector2i(2, 1)
+8:18/0 = 0
+9:19/size_in_atlas = Vector2i(1, 2)
+9:19/0 = 0
+6:19/size_in_atlas = Vector2i(3, 2)
+6:19/0 = 0
+5:19/size_in_atlas = Vector2i(1, 2)
+5:19/0 = 0
+3:19/size_in_atlas = Vector2i(2, 2)
+3:19/0 = 0
+10:19/size_in_atlas = Vector2i(2, 2)
+10:19/0 = 0
+0:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+2:4/0 = 0
+12:19/size_in_atlas = Vector2i(2, 2)
+12:19/0 = 0
+14:18/size_in_atlas = Vector2i(2, 3)
+14:18/0 = 0
+10:18/size_in_atlas = Vector2i(2, 1)
+10:18/0 = 0
+12:18/size_in_atlas = Vector2i(2, 1)
+12:18/0 = 0
+15:16/0 = 0
+15:17/0 = 0
+4:14/0 = 0
+3:14/0 = 0
+2:14/0 = 0
+1:14/0 = 0
+0:7/0 = 0
+0:6/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+2:6/0 = 0
+1:6/0 = 0
+1:7/0 = 0
+2:7/0 = 0
+5:7/0 = 0
+6:7/0 = 0
+7:7/0 = 0
+8:7/0 = 0
+9:7/0 = 0
+10:7/0 = 0
+11:7/0 = 0
+11:6/0 = 0
+10:6/0 = 0
+9:6/0 = 0
+8:6/0 = 0
+7:6/0 = 0
+6:6/0 = 0
+5:6/0 = 0
+5:14/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0hgb8"]
+texture = ExtResource("3_h1nn5")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+9:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+0:4/0 = 0
+1:4/0 = 0
+2:4/0 = 0
+3:4/0 = 0
+4:4/0 = 0
+5:4/0 = 0
+8:4/0 = 0
+9:4/0 = 0
+10:4/0 = 0
+11:4/0 = 0
+0:5/0 = 0
+1:5/0 = 0
+2:5/0 = 0
+3:5/0 = 0
+4:5/0 = 0
+5:5/0 = 0
+7:5/0 = 0
+8:5/0 = 0
+11:5/0 = 0
+12:5/0 = 0
+0:6/0 = 0
+1:6/0 = 0
+2:6/0 = 0
+3:6/0 = 0
+4:6/0 = 0
+5:6/0 = 0
+6:6/0 = 0
+7:6/0 = 0
+12:6/0 = 0
+13:6/0 = 0
+12:9/0 = 0
+13:9/0 = 0
+14:9/0 = 0
+12:10/0 = 0
+13:10/0 = 0
+14:10/0 = 0
+0:11/animation_frame_0/duration = 0.4
+0:11/animation_frame_1/duration = 0.4
+0:11/0 = 0
+13:11/0 = 0
+14:11/0 = 0
+0:12/animation_frame_0/duration = 0.4
+0:12/animation_frame_1/duration = 0.4
+0:12/0 = 0
+13:12/0 = 0
+14:12/0 = 0
+0:13/0 = 0
+1:13/0 = 0
+2:13/0 = 0
+3:13/0 = 0
+4:13/0 = 0
+9:13/0 = 0
+10:13/0 = 0
+11:13/0 = 0
+12:13/0 = 0
+13:13/0 = 0
+14:13/0 = 0
+0:14/0 = 0
+1:14/0 = 0
+2:14/0 = 0
+3:14/0 = 0
+4:14/0 = 0
+9:14/0 = 0
+10:14/0 = 0
+11:14/0 = 0
+12:14/0 = 0
+13:14/0 = 0
+14:14/0 = 0
+1:7/0 = 0
+0:7/0 = 0
+14:3/0 = 0
+13:3/0 = 0
+12:3/0 = 0
+11:3/0 = 0
+10:3/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+11:1/0 = 0
+10:1/0 = 0
+12:1/0 = 0
+8:2/0 = 0
+7:2/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+13:1/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+14:1/0 = 0
+14:7/0 = 0
+14:8/0 = 0
+13:8/0 = 0
+13:7/0 = 0
+12:12/0 = 0
+12:11/0 = 0
+0:8/animation_frame_0/duration = 0.15
+0:8/animation_frame_1/duration = 0.15
+0:8/animation_frame_2/duration = 0.15
+0:8/0 = 0
+5:14/0 = 0
+5:13/0 = 0
+6:13/0 = 0
+6:14/0 = 0
+11:11/0 = 0
+10:11/0 = 0
+9:11/0 = 0
+9:12/0 = 0
+10:12/0 = 0
+11:12/0 = 0
+0:9/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vqhtx"]
+physics_layer_0/collision_layer = 5
+physics_layer_0/collision_mask = 5
+physics_layer_1/collision_layer = 6
+physics_layer_1/collision_mask = 6
+sources/0 = SubResource("TileSetAtlasSource_qyo6d")
+sources/1 = SubResource("TileSetAtlasSource_x7imo")
+sources/2 = SubResource("TileSetAtlasSource_0hgb8")
+
+[sub_resource type="Animation" id="Animation_2rgx7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlockLogos:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Logos:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlockMenu:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Buttons/ExitButton:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 176)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Buttons/OptionsButton:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 128)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Buttons/StartGameButton:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(48, 80)]
+}
+
+[sub_resource type="Animation" id="Animation_wd5nm"]
+resource_name = "TitleSequence"
+length = 4.5
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlockLogos:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 2.5, 3, 3.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0), Color(0, 0, 0, 0), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Logos:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.5, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BlockMenu:color")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 3.5, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 1), Color(0, 0, 0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"AllowInput"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_m6vfi"]
+resource_name = "ExitGame"
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BlockMenu:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"QuitingGame"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_aware"]
+resource_name = "StartGame"
+length = 1.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buttons/ExitButton:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(48, 176), Vector2(48, 171), Vector2(48, 171), Vector2(48, 391)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons/OptionsButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(48, 128), Vector2(48, 128), Vector2(48, 123), Vector2(48, 123), Vector2(48, 343)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons/StartGameButton:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(48, 80), Vector2(48, 80), Vector2(48, 75), Vector2(48, 75), Vector2(48, 295)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartGame"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ibk6"]
+_data = {
+"ExitGame": SubResource("Animation_m6vfi"),
+"RESET": SubResource("Animation_2rgx7"),
+"StartGame": SubResource("Animation_aware"),
+"TitleSequence": SubResource("Animation_wd5nm")
+}
+
+[node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_q6y5e")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Sky" type="Sprite2D" parent="Background"]
+texture = ExtResource("2_fsi1y")
+centered = false
+
+[node name="Clouds3" type="Sprite2D" parent="Background"]
+texture = ExtResource("3_prn8y")
+centered = false
+
+[node name="Clouds2" type="Sprite2D" parent="Background"]
+position = Vector2(0, 48)
+texture = ExtResource("4_gqq5c")
+centered = false
+
+[node name="Clouds1" type="Sprite2D" parent="Background"]
+position = Vector2(0, 80)
+texture = ExtResource("5_v4qgu")
+centered = false
+
+[node name="Hills2" type="Sprite2D" parent="Background"]
+position = Vector2(0, 192)
+texture = ExtResource("6_gfbcv")
+centered = false
+
+[node name="Hills1" type="Sprite2D" parent="Background"]
+position = Vector2(0, 208)
+texture = ExtResource("7_2wfqk")
+centered = false
+
+[node name="TileMap" type="Node2D" parent="."]
+
+[node name="Background" type="TileMapLayer" parent="TileMap"]
+tile_map_data = PackedByteArray("AAAUAA4AAgAAAAcAAAAUAA0AAgAAAAcAAAAVAA4AAgAEAAUAAAAVAA0AAgAEAAUAAAAWAA0AAgAEAAUAAAAWAA4AAgAEAAUAAAAXAA4AAgAEAAUAAAAXAA0AAgAEAAUAAAAYAA0AAgAEAAUAAAAYAA4AAgAEAAUAAAAZAA4AAgAEAAUAAAAZAA0AAgAEAAUAAAAaAA0AAgAEAAUAAAAaAA4AAgAEAAUAAAAVAAwAAgAEAAUAAAAWAAwAAgAEAAUAAAAXAAwAAgAEAAUAAAAYAAwAAgAEAAUAAAAZAAwAAgAEAAUAAAAaAAwAAgAEAAUAAAAaAAsAAgAEAAUAAAAZAAsAAgAEAAUAAAAYAAsAAgAEAAUAAAAXAAsAAgAEAAUAAAAWAAsAAgAEAAUAAAAVAAsAAgAEAAUAAAAbAA0AAgABAAcAAAAbAA4AAgABAAcAAAA=")
+tile_set = SubResource("TileSet_vqhtx")
+
+[node name="BG Objects" type="TileMapLayer" parent="TileMap"]
+tile_map_data = PackedByteArray("AAAHAA4AAgAAAAwAAAAIAA4AAgAAAAwAAAAJAA4AAgAAAAwAAAAKAA4AAgAAAAwAAAAHAA0AAgAAAAsAAAAIAA0AAgAAAAsAAAAJAA0AAgAAAAsAAAAKAA0AAgAAAAsAAAALAA0AAgAAAAsAAAALAA4AAgAAAAwAAAAMAA0AAgAAAAsAAAAMAA4AAgAAAAwAAAANAA0AAgAAAAsAAAANAA4AAgAAAAwAAAAEAA0AAgAAAAsAAAAEAA4AAgAAAAwAAAADAA0AAgAAAAsAAAADAA4AAgAAAAwAAAACAA0AAgAAAAsAAAACAA4AAgAAAAwAAAAAAA0AAgAEAA0AAAAAAA4AAgAEAA4AAAAOAA4AAgAAAA0AAAAPAA0AAgABAA0AAAAPAA4AAgABAA4AAAAQAA0AAgACAA0AAAAQAA4AAgACAA4AAAAcAA4AAgAFAA0AAAAdAA4AAgAGAA0AAAAfAA4AAgANAA0AAAAUAA0AAgAMAAkAAAAUAA4AAgAMAAoAAAAbAA0AAgAMAAkAAAAbAA4AAgAMAAoAAAA=")
+tile_set = SubResource("TileSet_vqhtx")
+
+[node name="Terrain" type="TileMapLayer" parent="TileMap"]
+tile_map_data = PackedByteArray("AAACAA8AAgAIAAEAAAACABAAAgABAAIAAAACABEAAgABAAIAAAADAA8AAgAIAAEAAAADABAAAgABAAIAAAADABEAAgABAAIAAAAEAA8AAgAIAAIAAAAEABAAAgAIAAMAAAAEABEAAgABAAIAAAAFABAAAgAIAAEAAAAFABEAAgABAAIAAAAGABAAAgAIAAEAAAAGABEAAgABAAIAAAAHABAAAgAHAAMAAAAHABEAAgABAAIAAAAIAA8AAgAIAAEAAAAIABAAAgABAAIAAAAIABEAAgABAAIAAAAJAA8AAgAIAAEAAAAJABAAAgABAAIAAAAJABEAAgABAAIAAAAKAA8AAgAIAAEAAAAKABAAAgABAAIAAAAKABEAAgABAAIAAAALAA8AAgAIAAEAAAALABAAAgABAAIAAAALABEAAgABAAIAAAAMAA8AAgAIAAEAAAAMABAAAgABAAIAAAAMABEAAgABAAIAAAANAA8AAgAIAAEAAAANABAAAgABAAIAAAANABEAAgABAAIAAAAOAA8AAgAJAAEAAAAOABAAAgABAAIAAAAOABEAAgABAAIAAAAPAA4AAgAJAA0AAAAPAA8AAgABAAEAAAAPABAAAgABAAIAAAAPABEAAgABAAIAAAAQAA4AAgABAAAAAAAQAA8AAgABAAEAAAAQABAAAgABAAIAAAAQABEAAgABAAIAAAARAA4AAgAMAA4AAAARAA8AAgABAAEAAAARABAAAgABAAIAAAARABEAAgABAAIAAAASAA4AAgABAAAAAAASAA8AAgABAAEAAAASABAAAgABAAIAAAASABEAAgABAAIAAAATAA4AAgAHAAAAAAATAA8AAgAHAAEAAAATABAAAgABAAIAAAATABEAAgABAAIAAAAUAA8AAgAIAAEAAAAUABAAAgABAAIAAAAUABEAAgABAAIAAAAVAA8AAgAIAAEAAAAVABAAAgABAAIAAAAVABEAAgABAAIAAAAWAA8AAgAIAAEAAAAWABAAAgABAAIAAAAWABEAAgABAAIAAAAXAA8AAgAIAAEAAAAXABAAAgABAAIAAAAXABEAAgABAAIAAAAYAA8AAgAIAAEAAAAYABAAAgABAAIAAAAYABEAAgABAAIAAAAZAA8AAgAIAAEAAAAZABAAAgABAAIAAAAZABEAAgABAAIAAAAaAA8AAgAIAAEAAAAaABAAAgABAAIAAAAaABEAAgABAAIAAAAbAA4AAgAJAAAAAAAbAA8AAgAJAAEAAAAbABAAAgABAAIAAAAbABEAAgABAAIAAAAcAA4AAgAJAA0AAAAcAA8AAgABAAEAAAAcABAAAgABAAIAAAAcABEAAgABAAIAAAAdAA4AAgAMAA0AAAAdAA8AAgABAAEAAAAdABAAAgABAAIAAAAdABEAAgABAAIAAAAeAA4AAgABAAAAAAAeAA8AAgABAAEAAAAeABAAAgABAAIAAAAeABEAAgABAAIAAAAfAA4AAgABAAAAAAAfAA8AAgABAAEAAAAfABAAAgABAAIAAAAfABEAAgABAAIAAAABAA4AAgAKAA0AAAABAA8AAgAHAAEAAAABABAAAgABAAIAAAABABEAAgABAAIAAAAHAA8AAgAHAAIAAAAOAA4AAgAJAAAAAAAAAA4AAgAAAAAAAAAAAA8AAgAAAAEAAAAAABAAAgABAAIAAAAAABEAAgABAAIAAAAFAA8AAgAAAAgAAAAGAA8AAgAAAAgAAAAUAAwAAgAAAAYAAAAUAAsAAgAAAAUAAAAVAAoAAgABAAYAAAAWAAoAAgABAAYAAAAXAAoAAgABAAYAAAAYAAoAAgABAAYAAAAWAAkAAgABAAUAAAAXAAkAAgABAAUAAAAYAAkAAgABAAUAAAAZAAkAAgABAAUAAAAZAAoAAgABAAYAAAAaAAoAAgACAAYAAAAbAAsAAgAAAAUAAAAbAAwAAgAAAAYAAAA=")
+tile_set = SubResource("TileSet_vqhtx")
+
+[node name="Terrain2" type="TileMapLayer" parent="TileMap"]
+tile_map_data = PackedByteArray("AAAUAAoAAgAHAAUAAAAVAAkAAgAHAAUAAAAVAAoAAgAIAAUAAAAWAAgAAgAIAAQAAAAWAAkAAgAIAAUAAAAXAAgAAgAJAAQAAAAYAAgAAgAKAAQAAAAZAAgAAgALAAQAAAAZAAkAAgALAAUAAAAaAAkAAgAMAAUAAAAaAAoAAgALAAUAAAAbAAoAAgAMAAUAAAAbAAsAAgALAAUAAAAcAAsAAgAMAAUAAAATAAsAAgAHAAUAAAAUAAsAAgAIAAUAAAASAAwAAgAGAAYAAAATAAwAAgAHAAYAAAAcAAwAAgAMAAYAAAAdAAwAAgANAAYAAAA=")
+tile_set = SubResource("TileSet_vqhtx")
+
+[node name="Buttons" type="Node2D" parent="."]
+
+[node name="StartGameButton" type="TextureButton" parent="Buttons"]
+offset_left = 48.0
+offset_top = 80.0
+offset_right = 212.0
+offset_bottom = 114.0
+texture_normal = ExtResource("4_5kgkq")
+texture_pressed = ExtResource("5_s70dv")
+texture_hover = ExtResource("6_nmlg3")
+
+[node name="OptionsButton" type="TextureButton" parent="Buttons"]
+offset_left = 48.0
+offset_top = 128.0
+offset_right = 162.0
+offset_bottom = 162.0
+texture_normal = ExtResource("7_augn4")
+texture_pressed = ExtResource("8_hankk")
+texture_hover = ExtResource("9_r52o0")
+
+[node name="ExitButton" type="TextureButton" parent="Buttons"]
+offset_left = 48.0
+offset_top = 176.0
+offset_right = 108.0
+offset_bottom = 210.0
+texture_normal = ExtResource("10_h6xvv")
+texture_pressed = ExtResource("11_l5f75")
+texture_hover = ExtResource("12_ukis3")
+
+[node name="BlockMenu" type="ColorRect" parent="."]
+offset_right = 512.0
+offset_bottom = 288.0
+color = Color(0, 0, 0, 1)
+
+[node name="Logos" type="Node2D" parent="."]
+
+[node name="ArborGames" type="Sprite2D" parent="Logos"]
+position = Vector2(160, 16)
+texture = ExtResource("20_ip4dq")
+centered = false
+
+[node name="GameJam" type="Sprite2D" parent="Logos"]
+position = Vector2(144, 176)
+texture = ExtResource("21_ujdv1")
+centered = false
+
+[node name="BlockLogos" type="ColorRect" parent="."]
+offset_right = 512.0
+offset_bottom = 288.0
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6ibk6")
+}
+autoplay = "TitleSequence"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
