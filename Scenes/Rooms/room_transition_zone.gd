@@ -2,6 +2,7 @@ extends Area2D
 var PreviousRoomNumber: int
 var PreviousCameraPosition: Vector2
 @export var RoomNumber: int
+@export var disabled: bool
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -12,7 +13,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_body_entered(body: Node2D) -> void:
-	if body == %Player:
+	if body == %Player and !disabled:
 		%Player.room_transition_completed = false
 		PreviousRoomNumber = %Player.room_number
 		PreviousCameraPosition = %Camera.position
@@ -21,7 +22,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_body_exited(body: Node2D) -> void:
-	if body == %Player:
+	if body == %Player and !disabled:
 		if %Player.room_number == RoomNumber and %Player.room_transition_completed == false:
 			%Player.room_number = PreviousRoomNumber
 			%Camera.position = PreviousCameraPosition

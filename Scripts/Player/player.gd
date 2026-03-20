@@ -11,7 +11,7 @@ var States = Global.States
 var state = States.IDLE
 
 # Room Number
-var room_number: int
+var room_number: int = -2
 var room_transition_completed = true
 
 
@@ -19,6 +19,9 @@ var room_transition_completed = true
 var direction: int # Direction the player is facing
 var float_direction = 0 # For locking the axis the player floats in (behaves diff but who  cares)
 var drag_direction: int # Direction the player is forced to face when dragging
+
+# Specific Possession Item
+var PossessionItem: PossessableObject
 
 # Utility function for changing the player state
 func set_state(newState):
@@ -60,9 +63,15 @@ func _physics_process(delta: float) -> void:
 	
 	
 	move_and_slide()
+	
+# get the best possessable object / give none if there aren't any
+func get_best_possess() -> PossessableObject:
+	var PossessableList = $IntZone.get_overlapping_bodies().filter(func(body): return body is PossessableObject)
+	if PossessableList.is_empty(): return null
+	return PossessableList[0]
 
 func get_closest_drag_point() -> DragPoint:
-	var drag_points_in_range = $DragZone.get_overlapping_areas().filter(func(body): return body is DragPoint)
+	var drag_points_in_range = $IntZone.get_overlapping_areas().filter(func(body): return body is DragPoint)
 	if drag_points_in_range.is_empty(): return null
 	var best_priority_found = drag_points_in_range[0].priority
 	var best_distance_found = 150
@@ -117,6 +126,17 @@ func idle():
 			%Deadbody.reparent(self)
 			grab_drag_point(closest_drag_point)
 			set_state(States.DRAG)
+			
+	# Evil Enter Possesion Code
+	if Input.is_action_just_pressed("Interact"):
+		var BestPossess = get_best_possess()
+		if BestPossess != null:
+			BestPossess.position = $Hitbox.global_position
+			BestPossess.reparent(self)
+			$Sprite.visible = false
+			$Hitbox.shape = BestPossess.find_child("CollisionShape2D").shape
+			PossessionItem = BestPossess
+			set_state(States.POSSESS)
 
 		
 func floating():
@@ -154,7 +174,12 @@ func floating():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 func possess():
-	pass
+	if PossessionItem.PossessNumber == 1:
+		direction = roundi(Input.get_axis("Left", "Right"))
+		if direction:
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 func air():
 	pass
