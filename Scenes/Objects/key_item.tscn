@@ -1,14 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://ycjpbrqncnp1"]
+[gd_scene load_steps=4 format=3 uid="uid://dpse33vr6o368"]
 
 [ext_resource type="Texture2D" uid="uid://b1h73qng2i1so" path="res://Graphics/Objects/Key.png" id="1_8adwp"]
+[ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_nvxhy"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wuofp"]
-size = Vector2(11, 6)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_noabi"]
+size = Vector2(14, 8)
 
 [node name="KeyItem" type="RigidBody2D"]
+script = ExtResource("1_nvxhy")
 
-[node name="KeySP" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_8adwp")
 
-[node name="KeyHB" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wuofp")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_noabi")
