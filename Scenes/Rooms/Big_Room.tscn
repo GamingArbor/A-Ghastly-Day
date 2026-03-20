@@ -455,11 +455,11 @@ tile_set = SubResource("TileSet_qi3bx")
 
 [node name="Deadbody" parent="." instance=ExtResource("3_1pg3o")]
 unique_name_in_owner = true
-position = Vector2(551, 447)
+position = Vector2(532, 471)
 
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
 unique_name_in_owner = true
-position = Vector2(586, 450)
+position = Vector2(594, 450)
 
 [node name="Rooms" type="Node" parent="."]
 
@@ -475,7 +475,6 @@ position = Vector2(512, 336)
 RoomNumber = 2
 
 [node name="Outskirts" type="Node2D" parent="Rooms"]
-visible = false
 
 [node name="Room1" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 RoomNumber = 1
@@ -502,19 +501,19 @@ RoomNumber = 6
 
 [node name="Room7" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 position = Vector2(3072, 0)
-RoomNumber = 6
+RoomNumber = 7
 
 [node name="Room8" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 position = Vector2(3584, 0)
-RoomNumber = 6
+RoomNumber = 8
 
 [node name="Room9" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 position = Vector2(4096, 0)
-RoomNumber = 6
+RoomNumber = 9
 
 [node name="Room10" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 position = Vector2(4608, 0)
-RoomNumber = 6
+RoomNumber = 10
 
 [node name="Door" parent="." instance=ExtResource("7_ekvh7")]
 position = Vector2(645, 448)
