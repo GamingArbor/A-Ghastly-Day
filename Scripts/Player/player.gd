@@ -10,30 +10,38 @@ const JUMP_VELOCITY = -400.0
 var States = Global.States
 var state = States.IDLE
 
-# Room Number
-var room_number: int = -2
-var room_transition_completed = true
-
+## Room the player is in, indexed as an integer.
+## Should be set to the room the player starts in.
+@export var room_number: int
+var room_transition_completed: bool = true
 
 # Direction Variables (for different states)
 var direction: int # Direction the player is facing
-var float_direction = 0 # For locking the axis the player floats in (behaves diff but who  cares)
+var float_direction: int # For locking the axis the player floats in (behaves diff but who  cares)
 var drag_direction: int # Direction the player is forced to face when dragging
 
-# Possession Variables (for easy use)
-var PossessedObject: Node2D
-var PossessionComponent: PossessableComponent
+# Interaction Variables (see bottom for info on components)
+var InteractedComponent: InteractableComponent # The component that was chosen to interact with
+var InteractedComponentParent: Node2D # Typically, this is a PossessableComponent or a DraggableComponent
+var InteractedObject: Node2D # The object that was interacted with. See component.gd
 
 # Utility function for changing the player state
 func set_state(newState):
 	state = newState
 
 # Utility function for checking the player state
-func state_is(queryState):
+func state_is(queryState) -> bool:
 	return state == queryState
 
+# Utility function to reset variables when no longer interacting with an object
+func reset_interaction_variables():
+	InteractedComponent = null
+	InteractedComponentParent = null
+	InteractedObject = null
+
+
 func _physics_process(delta: float) -> void:
-	## Run functions associated with states
+	# Run functions associated with states
 	match state:
 		States.IDLE:
 			idle()
@@ -50,7 +58,7 @@ func _physics_process(delta: float) -> void:
 		States.DRAG:
 			drag()
 		
-	## Gravity (does not apply when floating)
+	# Gravity (applies in all states except the FLOAT state)
 	if not is_on_floor() and state != States.FLOAT:
 		velocity += get_gravity() * delta
 	
@@ -62,10 +70,11 @@ func _physics_process(delta: float) -> void:
 		set_collision_layer_value(2, true)
 		set_collision_mask_value(2, true)
 	
-	
+	# Apply movement for this frame
 	move_and_slide()
 
-func get_interactable_component() -> InteractableComponent:
+# Search through InteractableComponents in range to find object to interact with
+func choose_interactable_component() -> InteractableComponent:
 	var interactable_components = $InteractionZone.get_overlapping_areas().map(func(area): return area.get_parent()).filter(func(body): return body is InteractableComponent)
 	if interactable_components.is_empty(): return null
 	var best_priority_found = interactable_components[0].priority
@@ -82,6 +91,7 @@ func get_interactable_component() -> InteractableComponent:
 	
 	return best_interactable_component
 
+# Function used to begin dragging. Really complicated
 func grab_drag_point(drag_point: DraggableComponent):
 	# Account for the Deadbody flipping over
 	var rotation_multiplier: int
@@ -114,24 +124,31 @@ func idle():
 		velocity.y = 0
 		float_direction = 0
 		set_state(States.FLOAT)
-	
-	## Interaction with Objects
+	# Interaction with Objects
 	if Input.is_action_just_pressed("Interact"):
-		var interactable_component = get_interactable_component()
-		if interactable_component != null:
-			var parent_component = interactable_component.get_parent()
-			var interactable_object = interactable_component.get_actual_parent()
-			if parent_component is DraggableComponent:
-				interactable_object.reparent(self)
-				grab_drag_point(parent_component)
+		# Search for what to interact with
+		InteractedComponent = choose_interactable_component() 
+		if InteractedComponent != null:
+			InteractedComponentParent = InteractedComponent.get_parent()
+			InteractedObject = InteractedComponent.get_parent_object()
+			if InteractedComponentParent is not Component: # If we want to add interaction that isn't possession or dragging
+				pass # When the InteractedComponent is a direct child of the object
+			elif InteractedComponentParent is DraggableComponent: # Transition to DRAG state
+				InteractedObject.reparent(self) # Make interacted object child of self
+				
+				# Starting to drag is really complicated; separated into its own function
+				grab_drag_point(InteractedComponentParent)
+				
 				set_state(States.DRAG)
-			elif parent_component is PossessableComponent:
-				interactable_object.reparent(self)
-				interactable_object.position = Vector2(0,0)
-				$Sprite.visible = false
-				$Hitbox.shape = interactable_object.find_child("CollisionShape2D").shape
-				PossessedObject = interactable_object
-				PossessionComponent = parent_component
+			elif InteractedComponentParent is PossessableComponent: # Transition to POSSESS state
+				InteractedObject.reparent(self) # Make interacted object child of self
+				
+				## Start to possess
+				InteractedObject.position = Vector2(0,0) # Ensure object alignment
+				$Sprite.visible = false # Hide player sprite (object sprite will show)
+				$Hitbox.disabled = true # Disable old player hitbox
+				InteractedComponentParent.Hitbox.reparent(self) # Add new object hitbox
+				
 				set_state(States.POSSESS)
 
 		
@@ -170,19 +187,29 @@ func floating():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 func possess():
-	if PossessionComponent.PossessType == Global.PossessTypes.SLIDE:
+	## Movement while possessed
+	if InteractedComponentParent.PossessType == Global.PossessTypes.SLIDE:
 		direction = roundi(Input.get_axis("Left", "Right"))
 		if direction:
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-	elif PossessionComponent.PossessType == Global.PossessTypes.HOPPING:
+	elif InteractedComponentParent.PossessType == Global.PossessTypes.HOPPING:
+		# Temporarily equivalent to slide movement
 		direction = roundi(Input.get_axis("Left", "Right"))
 		if direction:
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	if Input.is_action_just_pressed("Interact"):
+		InteractedObject.reparent(self.get_parent()) # Put the possessed object back
+		
+		$Sprite.visible = true
+		$Hitbox.disabled = false
+		InteractedComponentParent.Hitbox.reparent(InteractedObject)
+		
+		reset_interaction_variables()
+		set_state(States.IDLE)
 func air():
 	pass
 
@@ -203,30 +230,38 @@ func drag():
 	if direction == 0:
 		velocity.x = move_toward(velocity.x, 0, DRAGSPEED)
 	
-	## Dragging mechanic
-	var drag_points = %Deadbody.get_children().filter(func(body): return body is DraggableComponent) # Get drag points
-	## Stop dragging when button is released
+	# Dragging failsafe: reverse engineer to figure out whether or not the body is supposed to be flipped
+	var should_be_flipped: bool = (false if drag_direction / InteractedComponentParent.direction == 1 else true)
+	var is_flipped: bool = %Deadbody.is_flipped()
+	if is_flipped != should_be_flipped:
+		%Deadbody.constrain_rotation(should_be_flipped)
+	
+	# Stop dragging when button is released
 	if Input.is_action_just_released("Interact"):
-		set_state(States.IDLE)
-		for drag_point in drag_points:
-			drag_point.being_grabbed = false
-		%Deadbody.reparent(self.get_parent())
+		InteractedObject.reparent(self.get_parent()) # Put the deadbody back
+		
+		InteractedComponentParent.being_grabbed = false
 		$DragJoint.node_a = NodePath("")
 		$DragJoint.node_b = NodePath("")
-	var active_drag_point: DraggableComponent
-	for drag_point in drag_points:
-		if drag_point.being_grabbed == true: 
-			active_drag_point = drag_point
-	if active_drag_point != null: # This should never happen, but this prevents a crash if it does
-	# Reverse engineer to figure out whether or not the body is supposed to be flipped
-		var should_be_flipped: bool = (false if drag_direction / active_drag_point.direction == 1 else true)
-		var is_flipped: bool = %Deadbody.is_flipped()
-		if is_flipped != should_be_flipped:
-			%Deadbody.constrain_rotation(should_be_flipped)
-## Development Notes
+		reset_interaction_variables()
+		set_state(States.IDLE)
+
+### Implementation Notes
+
+## States:
 # When you want to change the player's current state, use this:
 # set_state(States.IDLE)
 # States.IDLE could also be a different state such as FLOAT or DEAD
 
 # For checking the player's state:
-# if state == States.IDLE
+# if state_is(States.IDLE)
+
+## Components:
+# Because the player can interact with the body to drag, or an item to possess,
+# there are DraggableComponent and PossessableComponent nodes (composition!).
+
+# Each takes a child InteractableComponent. InteractableComponents are searched
+# for when the player presses the Interact button by priority and distance.
+
+# All of these nodes, fittingly, extend the Component class (helpful). Look at
+# possessable items and the deadbody to get a sense for how this is implemented.

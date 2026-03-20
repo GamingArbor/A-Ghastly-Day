@@ -1,6 +1,5 @@
 extends AnimationTree
 @onready var Player : CharacterBody2D = get_owner()
-@export var animation_tree : AnimationTree
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_sjaus"]
 [ext_resource type="Texture2D" uid="uid://buhb13ci8l3i3" path="res://Graphics/Player/Player-Ghost.png" id="2_5cpct"]
-[ext_resource type="Script" path="res://Scenes/Player/animation_tree.gd" id="3_trvdq"]
+[ext_resource type="Script" path="res://Scripts/Player/animation_tree.gd" id="3_trvdq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ff62x"]
 radius = 7.0
@@ -320,12 +320,11 @@ texture = ExtResource("2_5cpct")
 hframes = 10
 vframes = 4
 
-[node name="AnimationTree" type="AnimationTree" parent="." node_paths=PackedStringArray("animation_tree")]
+[node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_0ekte")
 advance_expression_base_node = NodePath("..")
 anim_player = NodePath("../AnimationPlayer")
 script = ExtResource("3_trvdq")
-animation_tree = NodePath(".")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
