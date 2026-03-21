@@ -455,11 +455,11 @@ tile_set = SubResource("TileSet_qi3bx")
 
 [node name="Deadbody" parent="." instance=ExtResource("3_1pg3o")]
 unique_name_in_owner = true
-position = Vector2(189, 551)
+position = Vector2(330, 459)
 
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
 unique_name_in_owner = true
-position = Vector2(232, 544)
+position = Vector2(397, 435)
 
 [node name="Rooms" type="Node" parent="."]
 
@@ -520,4 +520,4 @@ RoomNumber = 10
 position = Vector2(645, 448)
 
 [node name="KeyItem" parent="." instance=ExtResource("8_m5y52")]
-position = Vector2(270, 556)
+position = Vector2(447, 465)

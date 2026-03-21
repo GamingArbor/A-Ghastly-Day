@@ -8,11 +8,12 @@
 size = Vector2(14, 8)
 
 [node name="Key" type="StaticBody2D"]
-collision_layer = 4
-collision_mask = 4
+collision_layer = 16
+collision_mask = 16
 
 [node name="PossessableComponent" parent="." node_paths=PackedStringArray("Hitbox") instance=ExtResource("1_2xmke")]
 PossessType = 2
+ObjectType = "Key"
 Hitbox = NodePath("../CollisionShape2D")
 
 [node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("2_m1xqf")]
