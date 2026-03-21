@@ -1,7 +1,10 @@
 class_name PossessableComponent
 extends Component
-# Determines the type of movement the player should have access to when possessing this object
+## Determines how the player moves when possessing this object.
 @export var PossessType: Global.PossessTypes
+## The hitbox of the object this PossessableComponent is a child of.
+## Used when overriding the player's hitbox while possessed.
+@export var Hitbox: CollisionShape2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass

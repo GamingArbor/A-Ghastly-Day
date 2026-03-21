@@ -1,6 +1,7 @@
 class_name InteractableComponent
 extends Component
-# Priority value (lower is higher priority)
+## Priority value for interact with this component. 
+## The lower this value, the more this component is prioritized.
 @export var priority: int
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

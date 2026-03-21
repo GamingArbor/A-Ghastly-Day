@@ -1,7 +1,9 @@
 extends Area2D
 var PreviousRoomNumber: int
 var PreviousCameraPosition: Vector2
+## This room's index. Should be unique.
 @export var RoomNumber: int
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

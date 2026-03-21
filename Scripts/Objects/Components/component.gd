@@ -1,10 +1,12 @@
 class_name Component
 extends Node2D
 
-func get_actual_parent() -> Node:
+# Components may be nested within other components.
+# This function returns the actual parent object w/ recursion.
+func get_parent_object() -> Node:
 	var parent = get_parent()
 	if parent is Component:
-		return parent.get_actual_parent()
+		return parent.get_parent_object()
 	else:
 		return parent
 
