@@ -13,12 +13,12 @@
 [ext_resource type="Texture2D" uid="uid://cnpgwbocd0bbt" path="res://Graphics/Misc/Background-Hills2.png" id="6_gfbcv"]
 [ext_resource type="Texture2D" uid="uid://bjvll8kgto6ga" path="res://Graphics/UI/TitleMenu-Button-StartGame-Select.png" id="6_nmlg3"]
 [ext_resource type="Texture2D" uid="uid://nf5jdk7sxicr" path="res://Graphics/Misc/Background-Hills1.png" id="7_2wfqk"]
-[ext_resource type="Texture2D" uid="uid://dl0g0ahvwbdlf" path="res://Graphics/UI/TitleMenu-Button-Options.png" id="7_augn4"]
-[ext_resource type="Texture2D" uid="uid://qdg7wwgcu0o" path="res://Graphics/UI/TitleMenu-Button-Options-Pressed.png" id="8_hankk"]
-[ext_resource type="Texture2D" uid="uid://b87cmr22sd1r1" path="res://Graphics/UI/TitleMenu-Button-Options-Select.png" id="9_r52o0"]
 [ext_resource type="Texture2D" uid="uid://3v1v81a0usk" path="res://Graphics/UI/TitleMenu-Button-Exit.png" id="10_h6xvv"]
 [ext_resource type="Texture2D" uid="uid://bdv6ac8wm2gva" path="res://Graphics/UI/TitleMenu-Button-Exit-Pressed.png" id="11_l5f75"]
 [ext_resource type="Texture2D" uid="uid://gvkhif4n2ivn" path="res://Graphics/UI/TitleMenu-Button-Exit-Select.png" id="12_ukis3"]
+[ext_resource type="Texture2D" uid="uid://c5ip2d8vmp74a" path="res://Graphics/UI/TitleMenu-Button-Info.png" id="14_fo2uj"]
+[ext_resource type="Texture2D" uid="uid://c7ugt1187b0ou" path="res://Graphics/UI/TitleMenu-Button-Info-Pressed.png" id="15_kiju0"]
+[ext_resource type="Texture2D" uid="uid://xqaqcgqq3jnh" path="res://Graphics/UI/TitleMenu-Button-Info-Select.png" id="16_yme3t"]
 [ext_resource type="Texture2D" uid="uid://2nb4dxp5dhv7" path="res://Graphics/Misc/Logos-ArborGames.png" id="20_ip4dq"]
 [ext_resource type="Texture2D" uid="uid://xbmm01r5ej6i" path="res://Graphics/Misc/Logos-GameJam.png" id="21_ujdv1"]
 
@@ -653,11 +653,11 @@ texture_hover = ExtResource("6_nmlg3")
 [node name="OptionsButton" type="TextureButton" parent="Buttons"]
 offset_left = 48.0
 offset_top = 128.0
-offset_right = 162.0
+offset_right = 120.0
 offset_bottom = 162.0
-texture_normal = ExtResource("7_augn4")
-texture_pressed = ExtResource("8_hankk")
-texture_hover = ExtResource("9_r52o0")
+texture_normal = ExtResource("14_fo2uj")
+texture_pressed = ExtResource("15_kiju0")
+texture_hover = ExtResource("16_yme3t")
 
 [node name="ExitButton" type="TextureButton" parent="Buttons"]
 offset_left = 48.0
@@ -669,6 +669,7 @@ texture_pressed = ExtResource("11_l5f75")
 texture_hover = ExtResource("12_ukis3")
 
 [node name="BlockMenu" type="ColorRect" parent="."]
+visible = false
 offset_right = 512.0
 offset_bottom = 288.0
 color = Color(0, 0, 0, 1)
@@ -686,6 +687,7 @@ texture = ExtResource("21_ujdv1")
 centered = false
 
 [node name="BlockLogos" type="ColorRect" parent="."]
+visible = false
 offset_right = 512.0
 offset_bottom = 288.0
 color = Color(0, 0, 0, 1)

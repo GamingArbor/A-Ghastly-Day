@@ -23,9 +23,9 @@ func _process(delta: float) -> void:
 			$Buttons/StartGameButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-StartGame.png")
 		
 		if MenuPosition == 1:
-			$Buttons/OptionsButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Options-Select.png")
+			$Buttons/OptionsButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Info-Select.png")
 		else:
-			$Buttons/OptionsButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Options.png")
+			$Buttons/OptionsButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Info.png")
 		
 		if MenuPosition == 2:
 			$Buttons/ExitButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Exit-Select.png")
@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 				DenyPlayerInput = true
 			# Functionality for Options Button
 			1:
-				$Buttons/OptionsButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Options-Pressed.png")
+				$Buttons/OptionsButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Info-Pressed.png")
 			# Functionality for Exit Button
 			2:
 				$Buttons/ExitButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Exit-Pressed.png")
