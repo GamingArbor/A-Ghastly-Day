@@ -361,7 +361,7 @@ sources/2 = SubResource("TileSetAtlasSource_bjvls")
 
 [sub_resource type="Animation" id="Animation_xuxn4"]
 resource_name = "Intro"
-length = 17.25
+length = 18.9
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -383,7 +383,7 @@ tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "clips": PackedStringArray("Idle", "GotPunchedImpact", "FallDown"),
-"times": PackedFloat32Array(0.9, 7.3, 13.25)
+"times": PackedFloat32Array(0.9, 7.3, 14.9)
 }
 tracks/2/type = "animation"
 tracks/2/imported = false
@@ -393,7 +393,7 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "clips": PackedStringArray("Idle", "Point", "PointSpeak", "UnPoint", "Mad", "Punch", "UnPunch", "StompAway"),
-"times": PackedFloat32Array(0.9, 1.85, 2.05, 4.5, 6.45, 7.05, 8.15, 8.6)
+"times": PackedFloat32Array(0.9, 1.85, 2.05, 4.5, 6.45, 7.05, 9.1, 10.25)
 }
 tracks/3/type = "animation"
 tracks/3/imported = false
@@ -412,7 +412,7 @@ tracks/4/path = NodePath("GreenShirtGuy:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(8.6, 8.75, 8.9, 9.05, 10.7, 10.85, 11, 11.15, 11.6, 12.65),
+"times": PackedFloat32Array(10.25, 10.4, 10.55, 10.7, 12.35, 12.5, 12.65, 12.8, 13.25, 14.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(825, 224), Vector2(835, 224), Vector2(845, 234), Vector2(855, 240), Vector2(965, 240), Vector2(975, 237), Vector2(985, 227), Vector2(995, 224), Vector2(1025, 224), Vector2(1095, 224)]
@@ -424,7 +424,7 @@ tracks/5/path = NodePath("GreenShirtGuy:flip_h")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 8.6),
+"times": PackedFloat32Array(0, 10.25),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -437,7 +437,7 @@ tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "clips": PackedStringArray("Spawning"),
-"times": PackedFloat32Array(15.7)
+"times": PackedFloat32Array(17.35)
 }
 tracks/7/type = "method"
 tracks/7/imported = false
@@ -446,7 +446,7 @@ tracks/7/path = NodePath(".")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(17.25),
+"times": PackedFloat32Array(18.9),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
