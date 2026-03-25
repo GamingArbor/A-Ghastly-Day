@@ -6,7 +6,7 @@ extends Component
 @export var ObjectType: String
 ## The hitbox of the object this PossessableComponent is a child of.
 ## Used when overriding the player's hitbox while possessed.
-@export var Hitbox: CollisionShape2D
+@export var Hitbox: Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
