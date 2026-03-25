@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://d3mbpy50mfe20"]
+[gd_scene load_steps=35 format=4 uid="uid://d3mbpy50mfe20"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_nd78d"]
 [ext_resource type="Script" path="res://Scripts/UI/title_screen.gd" id="1_q6y5e"]
@@ -19,7 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://c5ip2d8vmp74a" path="res://Graphics/UI/TitleMenu-Button-Info.png" id="14_fo2uj"]
 [ext_resource type="Texture2D" uid="uid://c7ugt1187b0ou" path="res://Graphics/UI/TitleMenu-Button-Info-Pressed.png" id="15_kiju0"]
 [ext_resource type="Texture2D" uid="uid://xqaqcgqq3jnh" path="res://Graphics/UI/TitleMenu-Button-Info-Select.png" id="16_yme3t"]
+[ext_resource type="Texture2D" uid="uid://bfxt12u30e8l" path="res://Graphics/Misc/Controls-Visuals.png" id="20_a2ac2"]
 [ext_resource type="Texture2D" uid="uid://2nb4dxp5dhv7" path="res://Graphics/Misc/Logos-ArborGames.png" id="20_ip4dq"]
+[ext_resource type="Texture2D" uid="uid://csauyd7m8yexn" path="res://Graphics/Misc/Controls-Text.png" id="21_fa4rw"]
 [ext_resource type="Texture2D" uid="uid://xbmm01r5ej6i" path="res://Graphics/Misc/Logos-GameJam.png" id="21_ujdv1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqdxw"]
@@ -469,6 +471,42 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(48, 80)]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("InfoMenu/Devices:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-512, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("InfoMenu/Labels:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -240)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Buttons:position")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_aware"]
 resource_name = "StartGame"
@@ -580,9 +618,121 @@ tracks/3/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_xmtbt"]
+resource_name = "InfoMenuEnter"
+length = 1.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoMenu/Devices:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-512, 0), Vector2(-512, 0), Vector2(5, 0), Vector2(5, 0), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InfoMenu/Labels:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -240), Vector2(0, -240), Vector2(0, 21), Vector2(0, 21), Vector2(0, 16)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(5, 0), Vector2(-512, 0), Vector2(-512, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"AllowInput"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_otqp4"]
+resource_name = "InfoMenuExit"
+length = 1.6
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("InfoMenu/Devices:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(5, 0), Vector2(-512, 0), Vector2(-512, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("InfoMenu/Labels:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 16), Vector2(0, 21), Vector2(0, 21), Vector2(0, -240), Vector2(0, -240)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.2, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-512, 0), Vector2(-512, 0), Vector2(5, 0), Vector2(5, 0), Vector2(0, 0)]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"AllowInput"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ibk6"]
 _data = {
 "ExitGame": SubResource("Animation_m6vfi"),
+"InfoMenuEnter": SubResource("Animation_xmtbt"),
+"InfoMenuExit": SubResource("Animation_otqp4"),
 "RESET": SubResource("Animation_2rgx7"),
 "StartGame": SubResource("Animation_aware"),
 "TitleSequence": SubResource("Animation_wd5nm")
@@ -667,6 +817,19 @@ offset_bottom = 210.0
 texture_normal = ExtResource("10_h6xvv")
 texture_pressed = ExtResource("11_l5f75")
 texture_hover = ExtResource("12_ukis3")
+
+[node name="InfoMenu" type="Node2D" parent="."]
+
+[node name="Devices" type="Sprite2D" parent="InfoMenu"]
+position = Vector2(-512, 0)
+texture = ExtResource("20_a2ac2")
+centered = false
+offset = Vector2(32, 32)
+
+[node name="Labels" type="Sprite2D" parent="InfoMenu"]
+position = Vector2(0, -240)
+texture = ExtResource("21_fa4rw")
+centered = false
 
 [node name="BlockMenu" type="ColorRect" parent="."]
 offset_right = 512.0
