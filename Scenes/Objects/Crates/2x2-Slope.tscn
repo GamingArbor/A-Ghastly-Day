@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://bxd8o67jqjthv"]
+
+[ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="1_f0nrg"]
+[ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="2_4cvh8"]
+[ext_resource type="Texture2D" uid="uid://pfqvms6mtjjp" path="res://Graphics/Objects/Crate-2x2-Slope.png" id="3_14166"]
+
+[sub_resource type="Animation" id="Animation_q1tmb"]
+resource_name = "Idle"
+length = 0.05
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_hk3tq"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_lsr16"]
+resource_name = "Shake"
+length = 0.35
+loop_mode = 1
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8wsof"]
+_data = {
+"Idle": SubResource("Animation_q1tmb"),
+"RESET": SubResource("Animation_hk3tq"),
+"Shake": SubResource("Animation_lsr16")
+}
+
+[node name="Crate-2x2-Slope" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="PossessableComponent" parent="." node_paths=PackedStringArray("Hitbox") instance=ExtResource("1_f0nrg")]
+PossessType = 2
+ObjectType = "Crate"
+Hitbox = NodePath("../CollisionPolygon2D")
+
+[node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("2_4cvh8")]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(16, 16, 16, -14, 14, -14, -16, 16)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8wsof")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_14166")
