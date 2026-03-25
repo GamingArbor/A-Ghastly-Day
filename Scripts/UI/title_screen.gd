@@ -66,4 +66,5 @@ func QuitingGame() -> void:
 	get_tree().quit()
 
 func StartGame() -> void:
-	get_tree().change_scene_to_file("res://Scenes/Rooms/Big_Room.tscn")
+	Global.Cutscene = 1
+	get_tree().change_scene_to_file("res://Scenes/Misc/cutscene_handler.tscn")
