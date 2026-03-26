@@ -26,6 +26,37 @@
 [ext_resource type="Texture2D" uid="uid://7234wxltgp4u" path="res://Graphics/UI/PauseMenu-Button-Exit-Select.png" id="10_82xek"]
 [ext_resource type="Texture2D" uid="uid://c1mu4sn14pfej" path="res://Graphics/Tiles/Tileset-Village.png" id="11_3v4bd"]
 
+[sub_resource type="Animation" id="Animation_g4w7w"]
+resource_name = "Exit"
+length = 0.4
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ScreenBlock:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Camera/..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ExitToTitle"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_tf13s"]
 resource_name = "PauseMenuEntered"
 length = 1.8
@@ -81,10 +112,8 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_0xw0k"]
-resource_name = "Resume"
-length = 1.6
-step = 0.2
+[sub_resource type="Animation" id="Animation_3ccr2"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -92,10 +121,10 @@ tracks/0/path = NodePath("ExitButton:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(226, 463), Vector2(226, 463), Vector2(226, 468), Vector2(226, 468), Vector2(226, 175)]
+"values": [Vector2(226, 175)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -104,10 +133,10 @@ tracks/1/path = NodePath("RestartButton:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(196, 415), Vector2(196, 415), Vector2(196, 420), Vector2(196, 420), Vector2(196, 127)]
+"values": [Vector2(196, 127)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -116,24 +145,22 @@ tracks/2/path = NodePath("ResumeButton:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(203, 367), Vector2(203, 372), Vector2(203, 372), Vector2(203, 79)]
+"values": [Vector2(203, 79)]
 }
-tracks/3/type = "method"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("%Camera/..")
+tracks/3/path = NodePath("../ScreenBlock:color")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1.6),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"ResumeGame"
-}]
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_c8ssw"]
@@ -205,39 +232,10 @@ tracks/4/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_g4w7w"]
-resource_name = "Exit"
-length = 0.4
+[sub_resource type="Animation" id="Animation_0xw0k"]
+resource_name = "Resume"
+length = 1.6
 step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../ScreenBlock:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("%Camera/..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"ExitToTitle"
-}]
-}
-
-[sub_resource type="Animation" id="Animation_3ccr2"]
-length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -245,10 +243,10 @@ tracks/0/path = NodePath("ExitButton:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(226, 175)]
+"values": [Vector2(226, 463), Vector2(226, 463), Vector2(226, 468), Vector2(226, 468), Vector2(226, 175)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -257,10 +255,10 @@ tracks/1/path = NodePath("RestartButton:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(196, 127)]
+"values": [Vector2(196, 415), Vector2(196, 415), Vector2(196, 420), Vector2(196, 420), Vector2(196, 127)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -269,22 +267,24 @@ tracks/2/path = NodePath("ResumeButton:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(203, 79)]
+"values": [Vector2(203, 367), Vector2(203, 372), Vector2(203, 372), Vector2(203, 79)]
 }
-tracks/3/type = "value"
+tracks/3/type = "method"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../ScreenBlock:color")
+tracks/3/path = NodePath("%Camera/..")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(1.6),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0, 0, 0)]
+"values": [{
+"args": [],
+"method": &"ResumeGame"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hgc3u"]
