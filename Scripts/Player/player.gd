@@ -63,7 +63,8 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 	
 	# Moving down semi-solid platforms
-	if Input.is_action_pressed("Down"):
+	# Checks if the player is dragging the body to prevent weird interactions with the player going down a semi-solid and the body not following
+	if Input.is_action_pressed("Down") and state != States.DRAG:
 		set_collision_layer_value(2, false)
 		set_collision_mask_value(2, false)
 	if Input.is_action_just_released("Down"):
