@@ -1,3 +1,4 @@
+class_name Player
 extends CharacterBody2D
 
 # Movement Constants
@@ -17,7 +18,7 @@ var room_transition_completed: bool = true
 
 # Direction Variables (for different states)
 var direction: int # Direction the player is facing
-var float_direction: int # For locking the axis the player floats in (behaves diff but who  cares)
+var float_direction: int # For locking the axis the player floats in (behaves diff but who cares)
 var drag_direction: int # Direction the player is forced to face when dragging
 
 # Interaction Variables (see bottom for info on components)
@@ -111,6 +112,12 @@ func grab_drag_point(drag_point: DraggableComponent):
 	$DragJoint.node_b = %Deadbody.get_path()
 	drag_point.being_grabbed = true
 
+func unpossess():
+	InteractedObject.reparent(self.get_parent()) # Put the possessed object back
+	$Sprite.visible = true
+	$Hitbox.disabled = false
+	InteractedComponentParent.Hitbox.reparent(InteractedObject)
+
 func idle():
 	## Idle movement (Basic Evil)
 	direction = roundi(Input.get_axis("Left", "Right"))
@@ -203,12 +210,7 @@ func possess():
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	if Input.is_action_just_pressed("Interact"):
-		InteractedObject.reparent(self.get_parent()) # Put the possessed object back
-		
-		$Sprite.visible = true
-		$Hitbox.disabled = false
-		InteractedComponentParent.Hitbox.reparent(InteractedObject)
-		
+		unpossess()
 		reset_interaction_variables()
 		set_state(States.IDLE)
 func air():

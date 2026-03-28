@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://cnualho3uxo3q"]
+[gd_scene load_steps=38 format=4 uid="uid://cnualho3uxo3q"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_7sk8b"]
 [ext_resource type="Script" path="res://Scripts/Rooms/big_room.gd" id="1_exy3w"]
@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://bsghen8bifkcl" path="res://Graphics/Misc/Background-Clouds1.png" id="5_c52qg"]
 [ext_resource type="Texture2D" uid="uid://bix1mxbiyhtbj" path="res://Graphics/UI/PauseMenu-Button-Restart.png" id="5_hgspe"]
 [ext_resource type="Texture2D" uid="uid://bhanl505og2ga" path="res://Graphics/UI/PauseMenu-Button-Restart-Pressed.png" id="6_ctemm"]
-[ext_resource type="PackedScene" uid="uid://dkb4p6pit5l6x" path="res://Scenes/Rooms/room_transition_zone.tscn" id="6_g3e87"]
+[ext_resource type="PackedScene" uid="uid://dkb4p6pit5l6x" path="res://Scenes/Rooms/room.tscn" id="6_g3e87"]
 [ext_resource type="Texture2D" uid="uid://cnpgwbocd0bbt" path="res://Graphics/Misc/Background-Hills2.png" id="6_j2ytj"]
 [ext_resource type="Texture2D" uid="uid://nf5jdk7sxicr" path="res://Graphics/Misc/Background-Hills1.png" id="7_3cw5n"]
 [ext_resource type="PackedScene" uid="uid://cj7futhiicybd" path="res://Scenes/Objects/door.tscn" id="7_ekvh7"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://clno8qu50oy5e" path="res://Graphics/UI/PauseMenu-Button-Exit-Pressed.png" id="9_5uviy"]
 [ext_resource type="Texture2D" uid="uid://7234wxltgp4u" path="res://Graphics/UI/PauseMenu-Button-Exit-Select.png" id="10_82xek"]
 [ext_resource type="Texture2D" uid="uid://c1mu4sn14pfej" path="res://Graphics/Tiles/Tileset-Village.png" id="11_3v4bd"]
+[ext_resource type="PackedScene" uid="uid://b6qy4bgx3as3d" path="res://Scenes/Objects/Crates/2x2-Slope.tscn" id="26_yoykl"]
 
 [sub_resource type="Animation" id="Animation_g4w7w"]
 resource_name = "Exit"
@@ -875,27 +876,27 @@ position = Vector2(0, -288)
 
 [node name="ResumeButton" type="TextureButton" parent="Camera/PauseMenu"]
 offset_left = 203.0
-offset_top = 79.0
+offset_top = 367.0
 offset_right = 309.0
-offset_bottom = 113.0
+offset_bottom = 401.0
 texture_normal = ExtResource("2_hcm7d")
 texture_pressed = ExtResource("3_egowq")
 texture_hover = ExtResource("4_45ppt")
 
 [node name="RestartButton" type="TextureButton" parent="Camera/PauseMenu"]
 offset_left = 196.0
-offset_top = 127.0
+offset_top = 415.0
 offset_right = 316.0
-offset_bottom = 161.0
+offset_bottom = 449.0
 texture_normal = ExtResource("5_hgspe")
 texture_pressed = ExtResource("6_ctemm")
 texture_hover = ExtResource("7_w677j")
 
 [node name="ExitButton" type="TextureButton" parent="Camera/PauseMenu"]
 offset_left = 226.0
-offset_top = 175.0
+offset_top = 463.0
 offset_right = 286.0
-offset_bottom = 209.0
+offset_bottom = 497.0
 texture_normal = ExtResource("8_ay6tq")
 texture_pressed = ExtResource("9_5uviy")
 texture_hover = ExtResource("10_82xek")
@@ -1005,17 +1006,33 @@ unique_name_in_owner = true
 position = Vector2(397, 435)
 
 [node name="Rooms" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="Test" type="Node2D" parent="Rooms"]
-visible = false
 
-[node name="Starting Room" parent="Rooms/Test" instance=ExtResource("6_g3e87")]
+[node name="Starting Room" parent="Rooms/Test" node_paths=PackedStringArray("PlayerResetPos", "DeadbodyResetPos") instance=ExtResource("6_g3e87")]
 position = Vector2(0, 336)
 RoomNumber = -1
+PlayerResetPos = NodePath("PlayerResetPos")
+DeadbodyResetPos = NodePath("DeadbodyResetPos")
 
-[node name="Second Room" parent="Rooms/Test" instance=ExtResource("6_g3e87")]
+[node name="PlayerResetPos" type="Node2D" parent="Rooms/Test/Starting Room"]
+position = Vector2(559, 121)
+
+[node name="DeadbodyResetPos" type="Node2D" parent="Rooms/Test/Starting Room"]
+position = Vector2(532, 133)
+
+[node name="Second Room" parent="Rooms/Test" node_paths=PackedStringArray("PlayerResetPos", "DeadbodyResetPos") instance=ExtResource("6_g3e87")]
 position = Vector2(512, 336)
 RoomNumber = -2
+PlayerResetPos = NodePath("PlayerResetPos")
+DeadbodyResetPos = NodePath("DeadbodyResetPos")
+
+[node name="PlayerResetPos" type="Node2D" parent="Rooms/Test/Second Room"]
+position = Vector2(397, 99)
+
+[node name="DeadbodyResetPos" type="Node2D" parent="Rooms/Test/Second Room"]
+position = Vector2(330, 123)
 
 [node name="Outskirts" type="Node2D" parent="Rooms"]
 visible = false
@@ -1095,3 +1112,6 @@ position = Vector2(645, 448)
 
 [node name="KeyItem" parent="." instance=ExtResource("8_m5y52")]
 position = Vector2(447, 465)
+
+[node name="Crate-2x2-Slope" parent="." instance=ExtResource("26_yoykl")]
+position = Vector2(914, 562)

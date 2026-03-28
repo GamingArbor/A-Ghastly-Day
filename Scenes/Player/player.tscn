@@ -1,7 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://cpuoix83gss4l"]
+[gd_scene load_steps=44 format=3 uid="uid://cpuoix83gss4l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_sjaus"]
 [ext_resource type="Texture2D" uid="uid://buhb13ci8l3i3" path="res://Graphics/Player/Player-Ghost.png" id="2_5cpct"]
+[ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="2_xt22h"]
+[ext_resource type="Script" path="res://Scripts/Player/player_reset.gd" id="3_p7mv7"]
 [ext_resource type="Script" path="res://Scripts/Player/animation_tree.gd" id="3_trvdq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ff62x"]
@@ -310,6 +312,9 @@ radius = 24.0
 collision_layer = 11
 collision_mask = 11
 script = ExtResource("1_sjaus")
+
+[node name="ResettableComponent" parent="." instance=ExtResource("2_xt22h")]
+script = ExtResource("3_p7mv7")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
