@@ -297,7 +297,7 @@ _data = {
 "Resume": SubResource("Animation_0xw0k")
 }
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ribh0"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_n5rh5"]
 resource_name = "CollisionTiles"
 texture = ExtResource("1_7sk8b")
 0:0/0 = 0
@@ -366,7 +366,7 @@ texture = ExtResource("1_7sk8b")
 7:2/0 = 0
 7:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, -8, 8, -8, -8)
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6k45i"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yuvhk"]
 texture = ExtResource("2_oooce")
 0:0/0 = 0
 1:0/0 = 0
@@ -568,7 +568,7 @@ texture = ExtResource("2_oooce")
 7:10/0 = 0
 8:10/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_btvwk"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8p403"]
 texture = ExtResource("4_p1ono")
 0:0/0 = 0
 1:0/0 = 0
@@ -716,7 +716,7 @@ texture = ExtResource("4_p1ono")
 11:12/0 = 0
 0:9/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7t5e4"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r2yf1"]
 texture = ExtResource("11_3v4bd")
 0:0/0 = 0
 1:0/0 = 0
@@ -895,10 +895,10 @@ physics_layer_1/collision_layer = 6
 physics_layer_1/collision_mask = 6
 physics_layer_2/collision_layer = 4
 physics_layer_2/collision_mask = 4
-sources/0 = SubResource("TileSetAtlasSource_ribh0")
-sources/1 = SubResource("TileSetAtlasSource_6k45i")
-sources/2 = SubResource("TileSetAtlasSource_btvwk")
-sources/3 = SubResource("TileSetAtlasSource_7t5e4")
+sources/0 = SubResource("TileSetAtlasSource_n5rh5")
+sources/1 = SubResource("TileSetAtlasSource_yuvhk")
+sources/2 = SubResource("TileSetAtlasSource_8p403")
+sources/3 = SubResource("TileSetAtlasSource_r2yf1")
 
 [node name="BigRoom" type="Node2D"]
 script = ExtResource("1_exy3w")
@@ -1058,6 +1058,7 @@ position = Vector2(397, 435)
 unique_name_in_owner = true
 
 [node name="Test" type="Node2D" parent="Rooms"]
+visible = false
 
 [node name="Starting Room" parent="Rooms/Test" node_paths=PackedStringArray("PlayerResetPos", "DeadbodyResetPos") instance=ExtResource("6_g3e87")]
 position = Vector2(0, 336)
@@ -1189,5 +1190,5 @@ position = Vector2(645, 448)
 [node name="KeyItem" parent="." instance=ExtResource("8_m5y52")]
 position = Vector2(447, 465)
 
-[node name="Crate-2x2-Slope" parent="." instance=ExtResource("26_yoykl")]
-position = Vector2(914, 562)
+[node name="Crate-2x2-Slope2" parent="." instance=ExtResource("26_yoykl")]
+position = Vector2(578, 456)
