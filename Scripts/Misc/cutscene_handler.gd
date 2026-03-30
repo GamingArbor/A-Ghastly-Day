@@ -13,4 +13,4 @@ func intro_end() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Rooms/Big_Room.tscn")
 
 func ending_end() -> void:
-	pass
+	get_tree().change_scene_to_file("res://Scenes/UI/title_screen.tscn")
