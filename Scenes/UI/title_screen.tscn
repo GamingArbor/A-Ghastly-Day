@@ -1057,7 +1057,6 @@ texture = ExtResource("21_fa4rw")
 centered = false
 
 [node name="BlockMenu" type="ColorRect" parent="."]
-visible = false
 offset_right = 512.0
 offset_bottom = 288.0
 color = Color(0, 0, 0, 1)
@@ -1075,7 +1074,6 @@ texture = ExtResource("21_ujdv1")
 centered = false
 
 [node name="BlockLogos" type="ColorRect" parent="."]
-visible = false
 offset_right = 512.0
 offset_bottom = 288.0
 color = Color(0, 0, 0, 1)

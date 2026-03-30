@@ -7,7 +7,7 @@ func _ready() -> void:
 		1:
 			$CutscenePlayer.play("Intro")
 		2:
-			pass
+			$CutscenePlayer.play("Ending")
 
 func intro_end() -> void:
 	get_tree().change_scene_to_file("res://Scenes/Rooms/Big_Room.tscn")
