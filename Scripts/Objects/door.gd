@@ -15,8 +15,8 @@ func PlayerIsKey() -> bool:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if $DoorArea.overlaps_body(%Player) and PlayerIsKey():
-		$Hitbox.disabled = true
-		$Sprite.frame = 1
+		$DoorHB.disabled = true
+		$DoorSP.frame = 1
 		return
 	if %Player.state_is(Global.States.IDLE) or PlayerIsKey():
 		self.set_collision_layer_value(1,false)

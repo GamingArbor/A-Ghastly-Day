@@ -11,5 +11,6 @@ var Cutscene: int = 0
 
 signal restart
 
+
 func _ready() -> void:
 	add_user_signal("restart")

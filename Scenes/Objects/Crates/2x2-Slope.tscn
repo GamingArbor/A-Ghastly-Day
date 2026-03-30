@@ -27,16 +27,17 @@ _data = {
 "Shake": SubResource("Animation_lsr16")
 }
 
-[node name="Crate-2x2-Slope" type="StaticBody2D"]
+[node name="Crate-2x2-Slope" type="RigidBody2D"]
 collision_layer = 52
 collision_mask = 52
 
 [node name="ResettableComponent" parent="." instance=ExtResource("1_qt88i")]
 script = ExtResource("2_e864h")
 
-[node name="PossessableComponent" parent="." instance=ExtResource("1_f0nrg")]
+[node name="PossessableComponent" parent="." node_paths=PackedStringArray("Hitbox") instance=ExtResource("1_f0nrg")]
 PossessType = 2
 ObjectType = "Crate"
+Hitbox = NodePath("../CollisionPolygon2D")
 
 [node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("2_4cvh8")]
 
@@ -49,5 +50,12 @@ libraries = {
 texture = ExtResource("3_14166")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-16, 16, 16, 16, 16, -16)
+polygon = PackedVector2Array(-16, 16, 16, 16, 16, -15, 15, -15)
 one_way_collision = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(-16, 16, 16, 16, 16, -15, 15, -15)

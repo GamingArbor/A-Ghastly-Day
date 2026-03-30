@@ -890,10 +890,10 @@ texture = ExtResource("11_3v4bd")
 15:12/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_qi3bx"]
-physics_layer_0/collision_layer = 5
-physics_layer_0/collision_mask = 5
-physics_layer_1/collision_layer = 6
-physics_layer_1/collision_mask = 6
+physics_layer_0/collision_layer = 37
+physics_layer_0/collision_mask = 37
+physics_layer_1/collision_layer = 38
+physics_layer_1/collision_mask = 38
 physics_layer_2/collision_layer = 4
 physics_layer_2/collision_mask = 4
 sources/0 = SubResource("TileSetAtlasSource_n5rh5")
@@ -1047,16 +1047,15 @@ z_index = 1
 tile_map_data = PackedByteArray("AAAzAQ0AAQAEAAkAAAAzAQ4AAQAEAAoAAAAzAQ8AAQAEAAsAAAA0AQ0AAQAFAAkAAAA0AQ4AAQAFAAoAAAA0AQ8AAQAFAAsAAAA1AQ0AAQAGAAkAAAA1AQ4AAQAGAAoAAAA1AQ8AAQAGAAsAAAAzAQwAAQAHAAsAAAA0AQwAAQAIAAsAAAA1AQwAAQAJAAsAAAAzAQsAAQAHAAsAAAA0AQsAAQAIAAsAAAA1AQsAAQAJAAsAAAAzAQoAAQAHAAsAAAA0AQoAAQAIAAsAAAA1AQoAAQAJAAsAAAAzAQkAAQAHAAsAAAA0AQkAAQAIAAsAAAA1AQkAAQAJAAsAAAAzAQgAAQAHAAsAAAA0AQgAAQAIAAsAAAA1AQgAAQAJAAsAAAAzAQcAAQAHAAsAAAA0AQcAAQAIAAsAAAA1AQcAAQAJAAsAAAAzAQYAAQAHAAsAAAA0AQYAAQAIAAsAAAA1AQYAAQAJAAsAAAAzAQUAAQAHAAsAAAA0AQUAAQAIAAsAAAA1AQUAAQAJAAsAAAAzAQQAAQAHAAsAAAA0AQQAAQAIAAsAAAA1AQQAAQAJAAsAAAAzAQMAAQAHAAsAAAA0AQMAAQAIAAsAAAA1AQMAAQAJAAsAAAAzAQIAAQAHAAsAAAA0AQIAAQAIAAsAAAA1AQIAAQAJAAsAAAAzAQEAAQAHAAsAAAA0AQEAAQAIAAsAAAA1AQEAAQAJAAsAAAAzAQAAAQAHAAsAAAA0AQAAAQAIAAsAAAA1AQAAAQAJAAsAAAARAggAAQAEAAkAAAARAgkAAQAEAAoAAAARAgoAAQAEAAsAAAASAggAAQAFAAkAAAASAgkAAQAFAAoAAAASAgoAAQAFAAsAAAATAggAAQAGAAkAAAATAgkAAQAGAAoAAAATAgoAAQAGAAsAAAARAgcAAQAHAAsAAAASAgcAAQAIAAsAAAATAgcAAQAJAAsAAAARAgYAAQAHAAsAAAASAgYAAQAIAAsAAAATAgYAAQAJAAsAAAARAgUAAQAHAAsAAAASAgUAAQAIAAsAAAATAgUAAQAJAAsAAAARAgQAAQAHAAsAAAASAgQAAQAIAAsAAAATAgQAAQAJAAsAAAARAgMAAQAHAAsAAAASAgMAAQAIAAsAAAATAgMAAQAJAAsAAAARAgIAAQAHAAsAAAASAgIAAQAIAAsAAAATAgIAAQAJAAsAAAARAgEAAQAHAAsAAAASAgEAAQAIAAsAAAATAgEAAQAJAAsAAAARAgAAAQAHAAsAAAASAgAAAQAIAAsAAAATAgAAAQAJAAsAAAA=")
 tile_set = SubResource("TileSet_qi3bx")
 
-[node name="PressurePlate" parent="TileMap Layers" instance=ExtResource("21_81pd2")]
-position = Vector2(544, 480)
-
 [node name="Deadbody" parent="." instance=ExtResource("3_1pg3o")]
 unique_name_in_owner = true
 position = Vector2(330, 459)
 
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
 unique_name_in_owner = true
-position = Vector2(397, 435)
+position = Vector2(551, 455)
+collision_layer = 11
+collision_mask = 11
 
 [node name="Rooms" type="Node" parent="."]
 unique_name_in_owner = true
@@ -1195,5 +1194,9 @@ position = Vector2(645, 448)
 position = Vector2(447, 465)
 
 [node name="Crate-2x2-Slope2" parent="." instance=ExtResource("26_yoykl")]
-position = Vector2(579, 456)
+position = Vector2(603, 448)
 collision_layer = 33
+collision_mask = 32
+
+[node name="PressurePlate" parent="." instance=ExtResource("21_81pd2")]
+position = Vector2(802, 608)
