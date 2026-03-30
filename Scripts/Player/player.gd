@@ -25,6 +25,9 @@ var InteractedComponent: InteractableComponent # The component that was chosen t
 var InteractedComponentParent: Node2D # Typically, this is a PossessableComponent or a DraggableComponent
 var InteractedObject: Node2D # The object that was interacted with. See component.gd
 
+# Variables used for floating stamina
+var StartingX
+var StartingY
 # Utility function for changing the player state
 func set_state(newState):
 	state = newState
@@ -123,6 +126,8 @@ func idle():
 	if is_on_floor() and Input.is_action_pressed("Float"):
 		velocity.y = 0
 		float_direction = 0
+		StartingX = self.position.x
+		StartingY = self.position.y
 		set_state(States.FLOAT)
 	# Interaction with Objects
 	if Input.is_action_just_pressed("Interact"):
@@ -153,6 +158,8 @@ func idle():
 
 		
 func floating():
+	
+
 	# Transition to Float Ended state
 	if Input.is_action_just_released("Float"):
 		set_state(States.FLOATOVER)
@@ -167,20 +174,26 @@ func floating():
 	direction = 0
 	# Handle Floating Up and Down
 	if float_direction == 1:
-		if Input.is_action_pressed("Up"):
-			velocity.y = -SPEED
-		elif Input.is_action_pressed("Down"):
-			velocity.y = SPEED
-		elif Input.is_action_just_released("Up") or Input.is_action_just_released("Down"):
-			velocity.y = 0
+		if abs(self.position.y - StartingY) <= 72:
+			if Input.is_action_pressed("Up"):
+				velocity.y = -SPEED
+			elif Input.is_action_pressed("Down"):
+				velocity.y = SPEED
+			elif Input.is_action_just_released("Up") or Input.is_action_just_released("Down"):
+				velocity.y = 0
+		else:
+			set_state(States.FLOATOVER)
 	# Handle Floating Left and Right
 	elif float_direction == 2:
-		if Input.is_action_pressed("Left"):
-			direction = -1
-		elif Input.is_action_pressed("Right"):
-			direction = 1
-		elif Input.is_action_just_released("Left") or Input.is_action_just_released("Right"):
-			direction = 0
+		if abs(self.position.x - StartingX) <= 192:
+			if Input.is_action_pressed("Left"):
+				direction = -1
+			elif Input.is_action_pressed("Right"):
+				direction = 1
+			elif Input.is_action_just_released("Left") or Input.is_action_just_released("Right"):
+				direction = 0
+		else:
+			set_state(States.FLOATOVER)
 	if direction:
 		velocity.x = direction * SPEED
 	else:
