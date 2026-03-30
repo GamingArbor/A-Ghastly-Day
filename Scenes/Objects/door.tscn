@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cj7futhiicybd"]
+[gd_scene load_steps=7 format=3 uid="uid://cj7futhiicybd"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/door.gd" id="1_kg6r3"]
 [ext_resource type="Texture2D" uid="uid://dpre2ekoqqwk3" path="res://Graphics/Objects/Door.png" id="2_al4jx"]
+[ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="2_moeba"]
+[ext_resource type="Script" path="res://Scripts/Objects/door_reset.gd" id="3_wnoqx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wrom"]
 size = Vector2(6, 32)
@@ -13,6 +15,9 @@ size = Vector2(14, 32)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("1_kg6r3")
+
+[node name="ResettableComponent" parent="." instance=ExtResource("2_moeba")]
+script = ExtResource("3_wnoqx")
 
 [node name="DoorSP" type="Sprite2D" parent="."]
 position = Vector2(3, 16)

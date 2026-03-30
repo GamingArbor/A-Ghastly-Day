@@ -1,0 +1,73 @@
+[gd_scene load_steps=13 format=3 uid="uid://wg68hd02j0h4"]
+
+[ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="1_cp45x"]
+[ext_resource type="Script" path="res://Scripts/Objects/Components/basic_reset.gd" id="2_26uj4"]
+[ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="3_ufryg"]
+[ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="4_opa67"]
+[ext_resource type="Texture2D" uid="uid://cubb7nvh5xtxs" path="res://Graphics/Objects/Crate-1x1.png" id="5_gl4vx"]
+[ext_resource type="Texture2D" uid="uid://c6now36wbgx6j" path="res://Graphics/Tiles/Tileset-Collision-Creates.png" id="6_uk27e"]
+
+[sub_resource type="Animation" id="Animation_q1tmb"]
+resource_name = "Idle"
+length = 0.05
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_hk3tq"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_lsr16"]
+resource_name = "Shake"
+length = 0.35
+loop_mode = 1
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8wsof"]
+_data = {
+"Idle": SubResource("Animation_q1tmb"),
+"RESET": SubResource("Animation_hk3tq"),
+"Shake": SubResource("Animation_lsr16")
+}
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r6r6f"]
+texture = ExtResource("6_uk27e")
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:0/0/physics_layer_0/polygon_0/one_way = true
+1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8)
+1:0/0/physics_layer_0/polygon_0/one_way = true
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -7, 8, 8, -8, 8, 7, -7)
+2:0/0/physics_layer_0/polygon_0/one_way = true
+
+[sub_resource type="TileSet" id="TileSet_rfx43"]
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
+sources/0 = SubResource("TileSetAtlasSource_r6r6f")
+
+[node name="Crate-1x1" type="StaticBody2D"]
+collision_layer = 16
+collision_mask = 16
+
+[node name="ResettableComponent" parent="." instance=ExtResource("1_cp45x")]
+script = ExtResource("2_26uj4")
+
+[node name="PossessableComponent" parent="." instance=ExtResource("3_ufryg")]
+PossessType = 2
+ObjectType = "Crate"
+
+[node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("4_opa67")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8wsof")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_gl4vx")
+
+[node name="CollisionTiles" type="TileMapLayer" parent="."]
+z_index = -5
+position = Vector2(-8, -8)
+tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+tile_set = SubResource("TileSet_rfx43")

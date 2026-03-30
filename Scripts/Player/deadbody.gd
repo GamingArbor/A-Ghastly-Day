@@ -1,4 +1,8 @@
+class_name Deadbody
 extends RigidBody2D
+
+func get_player() -> Player:
+	return %Player
 
 # Utility function; self-explanatory
 func is_flipped() -> bool:

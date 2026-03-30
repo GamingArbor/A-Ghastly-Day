@@ -36,24 +36,25 @@ func _process(delta: float) -> void:
 	
 	# Handles pressing buttons
 	# Checks to see if input is accepted
-	if Input.is_action_just_pressed("Float") and DenyPlayerInput == false and InInfoMenu == false:
-		match MenuPosition:
-			# Functionality for Start Button
-			0:
-				$Buttons/StartGameButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-StartGame-Pressed.png")
-				$AnimationPlayer.play("StartGame")
-				DenyPlayerInput = true
-			# Functionality for Options Button
-			1:
-				$Buttons/OptionsButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Info-Pressed.png")
-				$AnimationPlayer.play("InfoMenuEnter")
-				DenyPlayerInput = true
-				InInfoMenu = true
-			# Functionality for Exit Button
-			2:
-				$Buttons/ExitButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Exit-Pressed.png")
-				$AnimationPlayer.play("ExitGame")
-				DenyPlayerInput = true
+	if DenyPlayerInput == false and InInfoMenu == false:
+		if Input.is_action_just_pressed("Float") or Input.is_action_just_pressed("Pause"):
+			match MenuPosition:
+				# Functionality for Start Button
+				0:
+					$Buttons/StartGameButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-StartGame-Pressed.png")
+					$AnimationPlayer.play("StartGame")
+					DenyPlayerInput = true
+				# Functionality for Options Button
+				1:
+					$Buttons/OptionsButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Info-Pressed.png")
+					$AnimationPlayer.play("InfoMenuEnter")
+					DenyPlayerInput = true
+					InInfoMenu = true
+				# Functionality for Exit Button
+				2:
+					$Buttons/ExitButton.texture_normal = preload("res://Graphics/UI/TitleMenu-Button-Exit-Pressed.png")
+					$AnimationPlayer.play("ExitGame")
+					DenyPlayerInput = true
 	
 	# Handles leaving the info menu
 	if InInfoMenu == true and DenyPlayerInput == false and Input.is_action_just_pressed("Interact"):

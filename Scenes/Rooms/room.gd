@@ -1,17 +1,18 @@
+class_name Room
 extends Area2D
 var PreviousRoomNumber: int
 var PreviousCameraPosition: Vector2
 ## This room's index. Should be unique.
 @export var RoomNumber: int
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+@export var PlayerResetPos: Node2D
+@export var DeadbodyResetPos: Node2D
+func reset_transform(body: Node2D):
+	if body == %Player:
+		if PlayerResetPos != null:
+			body.transform = PlayerResetPos.transform
+	if body == %Deadbody:
+		if DeadbodyResetPos != null:
+			body.transform = DeadbodyResetPos.transform
 
 func _on_body_entered(body: Node2D) -> void:
 	if body == %Player:
