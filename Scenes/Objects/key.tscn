@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://b0vhfo0q00ktt"]
+[gd_scene load_steps=12 format=3 uid="uid://b0vhfo0q00ktt"]
 
 [ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="1_2xmke"]
+[ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_4b26g"]
 [ext_resource type="Texture2D" uid="uid://b1h73qng2i1so" path="res://Graphics/Objects/Key.png" id="1_8adwp"]
 [ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="1_knn3b"]
 [ext_resource type="Script" path="res://Scripts/Objects/Components/basic_reset.gd" id="2_jy65d"]
@@ -66,9 +67,11 @@ _data = {
 "Shake": SubResource("Animation_lsr16")
 }
 
-[node name="Key" type="CharacterBody2D"]
+[node name="Key" type="CharacterBody2D" node_paths=PackedStringArray("possessable_component")]
 collision_layer = 16
-collision_mask = 16
+collision_mask = 3
+script = ExtResource("1_4b26g")
+possessable_component = NodePath("PossessableComponent")
 
 [node name="ResettableComponent" parent="." instance=ExtResource("1_knn3b")]
 script = ExtResource("2_jy65d")

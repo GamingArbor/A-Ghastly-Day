@@ -44,6 +44,10 @@ func reset_interaction_variables():
 	InteractedObject = null
 
 
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	Global.Character = %Player
+
 func _physics_process(delta: float) -> void:
 	# Run functions associated with states
 	match state:
@@ -70,20 +74,12 @@ func _physics_process(delta: float) -> void:
 	
 	# Moving down semi-solid platforms
 	# Checks if the player is dragging the body to prevent weird interactions with the player going down a semi-solid and the body not following
-	if Input.is_action_pressed("Down") and state != States.DRAG:
-		# Semi-Solid Tiles
+	if Input.is_action_pressed("Down"):
 		set_collision_layer_value(2, false)
 		set_collision_mask_value(2, false)
-		# Crates
-		set_collision_layer_value(6, false)
-		set_collision_mask_value(6, false)
 	if Input.is_action_just_released("Down"):
-		# Semi-Solid Tiles
 		set_collision_layer_value(2, true)
 		set_collision_mask_value(2, true)
-		# Crates
-		set_collision_layer_value(6, true)
-		set_collision_mask_value(6, true)
 	
 	# Apply movement for this frame
 	move_and_slide()
@@ -128,6 +124,7 @@ func grab_drag_point(drag_point: DraggableComponent):
 func unpossess():
 	$Sprite.visible = true
 	$Hitbox.disabled = false
+	Global.Character = self
 	InteractedComponentParent.being_possessed = false
 
 func idle():
@@ -167,7 +164,7 @@ func idle():
 				## Start to possess
 				$Sprite.visible = false # Hide player sprite
 				$Hitbox.disabled = true # Disable player hitbox
-				print(InteractedComponentParent)
+				Global.Character = InteractedObject
 				InteractedComponentParent.being_possessed = true # Initiate possession officially
 				
 				set_state(States.POSSESS)

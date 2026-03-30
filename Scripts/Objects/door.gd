@@ -3,7 +3,6 @@ extends StaticBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$DoorSP.frame = 0
-	pass
 
 func OverlapsKey() -> bool:
 	var Keys = Global.get_bodies_of_type($DoorArea,"Key")
