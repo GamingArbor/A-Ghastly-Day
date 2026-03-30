@@ -27,7 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://c1mu4sn14pfej" path="res://Graphics/Tiles/Tileset-Village.png" id="11_3v4bd"]
 [ext_resource type="PackedScene" uid="uid://0cmemik02wi3" path="res://Scenes/Objects/pressure_plate.tscn" id="21_81pd2"]
 [ext_resource type="PackedScene" uid="uid://b6qy4bgx3as3d" path="res://Scenes/Objects/Crates/2x2-Slope.tscn" id="26_yoykl"]
-[ext_resource type="PackedScene" uid="uid://b4y70n4m2y3ev" path="res://Scenes/Objects/pressure_plate_elevator.tscn" id="28_h7pbs"]
+[ext_resource type="PackedScene" path="res://Scenes/Objects/pressure_plate_elevator.tscn" id="28_h7pbs"]
 
 [sub_resource type="Animation" id="Animation_g4w7w"]
 resource_name = "Exit"
@@ -1050,13 +1050,14 @@ tile_set = SubResource("TileSet_qi3bx")
 
 [node name="Deadbody" parent="." instance=ExtResource("3_1pg3o")]
 unique_name_in_owner = true
-position = Vector2(401, 594)
+position = Vector2(404, 468)
 
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
 unique_name_in_owner = true
-position = Vector2(333, 589)
+position = Vector2(355, 452)
 collision_layer = 11
 collision_mask = 11
+room_number = -1
 
 [node name="Rooms" type="Node" parent="."]
 unique_name_in_owner = true
@@ -1192,15 +1193,15 @@ RoomNumber = 17
 position = Vector2(645, 448)
 
 [node name="KeyItem" parent="." instance=ExtResource("8_m5y52")]
-position = Vector2(483, 472)
+position = Vector2(439, 447)
 
 [node name="Crate-2x2-Slope2" parent="." instance=ExtResource("26_yoykl")]
-position = Vector2(603, 448)
+position = Vector2(826, 592)
 collision_layer = 33
 collision_mask = 32
 
 [node name="PressurePlate" parent="." instance=ExtResource("21_81pd2")]
-position = Vector2(802, 608)
+position = Vector2(890, 608)
 
 [node name="Elevator" parent="." instance=ExtResource("28_h7pbs")]
 position = Vector2(356, 608)

@@ -6,8 +6,9 @@ var PreviousCameraPosition: Vector2
 @export var RoomNumber: int
 @export var PlayerResetPos: Node2D
 @export var DeadbodyResetPos: Node2D
+
 func reset_transform(body: Node2D):
-	if body == %Player:
+	if body == Global.Character:
 		if PlayerResetPos != null:
 			body.transform = PlayerResetPos.transform
 	if body == %Deadbody:
@@ -15,7 +16,7 @@ func reset_transform(body: Node2D):
 			body.transform = DeadbodyResetPos.transform
 
 func _on_body_entered(body: Node2D) -> void:
-	if body == %Player:
+	if body == Global.Character:
 		%Player.room_transition_completed = false
 		PreviousRoomNumber = %Player.room_number
 		PreviousCameraPosition = %Camera.position
@@ -24,7 +25,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func _on_body_exited(body: Node2D) -> void:
-	if body == %Player:
+	if body == Global.Character:
 		if %Player.room_number == RoomNumber and %Player.room_transition_completed == false:
 			%Player.room_number = PreviousRoomNumber
 			%Camera.position = PreviousCameraPosition
