@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=4 uid="uid://cnualho3uxo3q"]
+[gd_scene load_steps=42 format=4 uid="uid://cnualho3uxo3q"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_7sk8b"]
 [ext_resource type="Script" path="res://Scripts/Rooms/big_room.gd" id="1_exy3w"]
@@ -26,9 +26,10 @@
 [ext_resource type="Texture2D" uid="uid://7234wxltgp4u" path="res://Graphics/UI/PauseMenu-Button-Exit-Select.png" id="10_82xek"]
 [ext_resource type="Texture2D" uid="uid://c1mu4sn14pfej" path="res://Graphics/Tiles/Tileset-Village.png" id="11_3v4bd"]
 [ext_resource type="PackedScene" uid="uid://0cmemik02wi3" path="res://Scenes/Objects/pressure_plate.tscn" id="21_81pd2"]
-[ext_resource type="PackedScene" uid="uid://b6qy4bgx3as3d" path="res://Scenes/Objects/Crates/2x2-Slope.tscn" id="26_yoykl"]
-[ext_resource type="PackedScene" uid="uid://b4y70n4m2y3ev" path="res://Scenes/Objects/pressure_plate_elevator.tscn" id="28_h7pbs"]
-[ext_resource type="PackedScene" uid="uid://bw2nil7ru8lt6" path="res://Scenes/Objects/pressure_plate_trapdoor.tscn" id="29_4roy7"]
+[ext_resource type="PackedScene" path="res://Scenes/Objects/pressure_plate_elevator.tscn" id="28_h7pbs"]
+[ext_resource type="PackedScene" path="res://Scenes/Objects/pressure_plate_trapdoor.tscn" id="29_4roy7"]
+[ext_resource type="PackedScene" uid="uid://d18ep6ga4bjs0" path="res://Scenes/Objects/Crates/2x2.tscn" id="29_efihf"]
+[ext_resource type="PackedScene" uid="uid://wg68hd02j0h4" path="res://Scenes/Objects/Crates/1x1.tscn" id="30_jxhpl"]
 
 [sub_resource type="Animation" id="Animation_g4w7w"]
 resource_name = "Exit"
@@ -1195,11 +1196,6 @@ position = Vector2(645, 448)
 [node name="KeyItem" parent="." instance=ExtResource("8_m5y52")]
 position = Vector2(483, 472)
 
-[node name="Crate-2x2-Slope2" parent="." instance=ExtResource("26_yoykl")]
-position = Vector2(584, 456)
-collision_layer = 33
-collision_mask = 32
-
 [node name="PressurePlate" parent="." instance=ExtResource("21_81pd2")]
 position = Vector2(802, 608)
 
@@ -1209,17 +1205,11 @@ position = Vector2(356, 608)
 [node name="PressurePlateTrapdoor" parent="." instance=ExtResource("29_4roy7")]
 position = Vector2(137, 480)
 
-[node name="Crate-2x2-Slope3" parent="." instance=ExtResource("26_yoykl")]
-position = Vector2(59, 458)
-collision_layer = 33
-collision_mask = 32
+[node name="Crate-2x2" parent="." instance=ExtResource("29_efihf")]
+position = Vector2(226, 544)
 
-[node name="Crate-2x2-Slope4" parent="." instance=ExtResource("26_yoykl")]
-position = Vector2(380, 592)
-collision_layer = 33
-collision_mask = 32
+[node name="Crate-2x3" parent="." instance=ExtResource("29_efihf")]
+position = Vector2(361, 409)
 
-[node name="Crate-2x2-Slope5" parent="." instance=ExtResource("26_yoykl")]
-position = Vector2(380, 561)
-collision_layer = 33
-collision_mask = 32
+[node name="Crate-1x1" parent="." instance=ExtResource("30_jxhpl")]
+position = Vector2(223, 480)

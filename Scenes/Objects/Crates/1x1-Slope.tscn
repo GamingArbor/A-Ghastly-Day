@@ -29,8 +29,9 @@ _data = {
 }
 
 [node name="Crate-1x1-Slope" type="CharacterBody2D" node_paths=PackedStringArray("possessable_component")]
+z_index = -1
 collision_layer = 55
-collision_mask = 55
+collision_mask = 48
 script = ExtResource("1_mj57a")
 possessable_component = NodePath("PossessableComponent")
 
