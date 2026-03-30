@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6qy4bgx3as3d"]
+[gd_scene load_steps=10 format=3 uid="uid://b6qy4bgx3as3d"]
 
 [ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="1_f0nrg"]
 [ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="1_qt88i"]
 [ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="2_4cvh8"]
 [ext_resource type="Script" path="res://Scripts/Objects/Components/basic_reset.gd" id="2_e864h"]
 [ext_resource type="Texture2D" uid="uid://pfqvms6mtjjp" path="res://Graphics/Objects/Crate-2x2-Slope.png" id="3_14166"]
-[ext_resource type="Texture2D" uid="uid://c6now36wbgx6j" path="res://Graphics/Tiles/Tileset-Collision-Creates.png" id="6_7qni4"]
 
 [sub_resource type="Animation" id="Animation_q1tmb"]
 resource_name = "Idle"
@@ -28,34 +27,16 @@ _data = {
 "Shake": SubResource("Animation_lsr16")
 }
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ripjh"]
-texture = ExtResource("6_7qni4")
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
-0:0/0/physics_layer_0/polygon_0/one_way = true
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8)
-1:0/0/physics_layer_0/polygon_0/one_way = true
-2:0/0 = 0
-2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -7, 8, 8, -8, 8, 7, -7)
-2:0/0/physics_layer_0/polygon_0/one_way = true
-
-[sub_resource type="TileSet" id="TileSet_43203"]
-physics_layer_0/collision_layer = 2
-physics_layer_0/collision_mask = 2
-sources/0 = SubResource("TileSetAtlasSource_ripjh")
-
 [node name="Crate-2x2-Slope" type="StaticBody2D"]
-collision_layer = 16
-collision_mask = 16
+collision_layer = 52
+collision_mask = 52
 
 [node name="ResettableComponent" parent="." instance=ExtResource("1_qt88i")]
 script = ExtResource("2_e864h")
 
-[node name="PossessableComponent" parent="." node_paths=PackedStringArray("Hitbox") instance=ExtResource("1_f0nrg")]
+[node name="PossessableComponent" parent="." instance=ExtResource("1_f0nrg")]
 PossessType = 2
 ObjectType = "Crate"
-Hitbox = NodePath("")
 
 [node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("2_4cvh8")]
 
@@ -67,7 +48,6 @@ libraries = {
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("3_14166")
 
-[node name="CollisionTiles" type="TileMapLayer" parent="."]
-z_index = -5
-tile_map_data = PackedByteArray(0, 0, 255, 255, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 2, 0, 0, 0, 0, 0)
-tile_set = SubResource("TileSet_43203")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-16, 16, 16, 16, 16, -16)
+one_way_collision = true
