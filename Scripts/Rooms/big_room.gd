@@ -12,18 +12,13 @@ var PauseMenuPosition : int = 0
 func _ready() -> void:
 	pass
 
-# For some reason, %Player doesn't work sometimes, even within the Big Room. This is a workaround.
-func set_global_vars():
-	Global.player = %Player
-	Global.room_number = %Player.room_number
-	Global.room = %Rooms.find_children("*","Room").filter(has_player)[0]
 
 func has_player(room: Room):
 	return room.RoomNumber == Global.room_number
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	set_global_vars()
+	%Camera.position.y = 336
 	# Handles movement in the menu
 	if Input.is_action_just_pressed("Up") and PauseMenuPosition > 0:
 		PauseMenuPosition -= 1

@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 # Movement Constants
 const SPEED = 150.0
-const DRAGSPEED = SPEED * 0.75
+const DRAG_SPEED = SPEED * 0.75
 const JUMP_VELOCITY = -400.0
 
 # State Machine
@@ -61,8 +61,10 @@ func _physics_process(delta: float) -> void:
 			floatover()
 		States.DRAG:
 			drag()
-		
-	# Gravity (applies in all states except the FLOAT state)
+	
+	if state == States.POSSESS:
+		return # Player movement is not processed when possessing
+	# Gravity (applies in all states except the FLOAT and POSSESS states)
 	if not is_on_floor() and state != States.FLOAT:
 		velocity += get_gravity() * delta
 	
@@ -124,10 +126,9 @@ func grab_drag_point(drag_point: DraggableComponent):
 	drag_point.being_grabbed = true
 
 func unpossess():
-	InteractedObject.reparent(self.get_parent()) # Put the possessed object back
 	$Sprite.visible = true
 	$Hitbox.disabled = false
-	InteractedComponentParent.Hitbox.reparent(InteractedObject)
+	InteractedComponentParent.being_possessed = false
 
 func idle():
 	## Idle movement (Basic Evil)
@@ -162,20 +163,17 @@ func idle():
 				
 				set_state(States.DRAG)
 			elif InteractedComponentParent is PossessableComponent: # Transition to POSSESS state
-				InteractedObject.reparent(self) # Make interacted object child of self
 				
 				## Start to possess
-				InteractedObject.position = Vector2(0,0) # Ensure object alignment
-				$Sprite.visible = false # Hide player sprite (object sprite will show)
-				$Hitbox.disabled = true # Disable old player hitbox
-				InteractedComponentParent.Hitbox.reparent(self) # Add new object hitbox
+				$Sprite.visible = false # Hide player sprite
+				$Hitbox.disabled = true # Disable player hitbox
+				print(InteractedComponentParent)
+				InteractedComponentParent.being_possessed = true # Initiate possession officially
 				
 				set_state(States.POSSESS)
 
 		
 func floating():
-	
-
 	# Transition to Float Ended state
 	if Input.is_action_just_released("Float"):
 		set_state(States.FLOATOVER)
@@ -216,20 +214,7 @@ func floating():
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	
 func possess():
-	## Movement while possessed
-	if InteractedComponentParent.PossessType == Global.PossessTypes.SLIDE:
-		direction = roundi(Input.get_axis("Left", "Right"))
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
-	elif InteractedComponentParent.PossessType == Global.PossessTypes.HOPPING:
-		# Temporarily equivalent to slide movement
-		direction = roundi(Input.get_axis("Left", "Right"))
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+	# Stop possessing
 	if Input.is_action_just_pressed("Interact"):
 		unpossess()
 		reset_interaction_variables()
@@ -250,9 +235,9 @@ func drag():
 	if direction == -drag_direction: 
 		direction = 0 # Force correct dragging orientation
 	if direction:
-		velocity.x = direction * DRAGSPEED
+		velocity.x = direction * DRAG_SPEED
 	if direction == 0:
-		velocity.x = move_toward(velocity.x, 0, DRAGSPEED)
+		velocity.x = move_toward(velocity.x, 0, DRAG_SPEED)
 	
 	# Dragging failsafe: reverse engineer to figure out whether or not the body is supposed to be flipped
 	var should_be_flipped: bool = (false if drag_direction / InteractedComponentParent.direction == 1 else true)

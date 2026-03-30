@@ -1,6 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://wg68hd02j0h4"]
+[gd_scene load_steps=12 format=3 uid="uid://wg68hd02j0h4"]
 
 [ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="1_cp45x"]
+[ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_yksmy"]
 [ext_resource type="Script" path="res://Scripts/Objects/Components/basic_reset.gd" id="2_26uj4"]
 [ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="3_ufryg"]
 [ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="4_opa67"]
@@ -30,9 +31,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4vdd5"]
 size = Vector2(16, 16)
 
-[node name="Crate-1x1" type="RigidBody2D"]
+[node name="Crate-1x1" type="CharacterBody2D" node_paths=PackedStringArray("possessable_component")]
 collision_layer = 52
 collision_mask = 52
+script = ExtResource("1_yksmy")
+possessable_component = NodePath("PossessableComponent")
 
 [node name="ResettableComponent" parent="." instance=ExtResource("1_cp45x")]
 script = ExtResource("2_26uj4")

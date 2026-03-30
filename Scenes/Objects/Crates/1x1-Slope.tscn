@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://co1tnrdouyyvg"]
+[gd_scene load_steps=11 format=3 uid="uid://co1tnrdouyyvg"]
 
+[ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_mj57a"]
 [ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="1_mjlps"]
 [ext_resource type="Script" path="res://Scripts/Objects/Components/basic_reset.gd" id="2_eyruu"]
 [ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="3_lh64a"]
@@ -27,9 +28,11 @@ _data = {
 "Shake": SubResource("Animation_lsr16")
 }
 
-[node name="Crate-1x1-Slope" type="RigidBody2D"]
+[node name="Crate-1x1-Slope" type="CharacterBody2D" node_paths=PackedStringArray("possessable_component")]
 collision_layer = 52
 collision_mask = 52
+script = ExtResource("1_mj57a")
+possessable_component = NodePath("PossessableComponent")
 
 [node name="ResettableComponent" parent="." instance=ExtResource("1_mjlps")]
 script = ExtResource("2_eyruu")
