@@ -9,10 +9,9 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if $Plate1/Area2D.overlaps_body(%Player):
-		print($ElevatorPlatform.position.y)
 		while $ElevatorPlatform.position.y > EndPoint:
 			tween.tween_property($ElevatorPlatform , "position" , Vector2(100,100), 1)
 	else:
-		print($ElevatorPlatform.position.y)
+		pass
 		#while $ElevatorPlatform.position.y < self.position.y:
 			#pass
