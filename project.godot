@@ -87,6 +87,7 @@ Pause={
 2d_physics/layer_3="Body"
 2d_physics/layer_4="Player"
 2d_physics/layer_5="Key"
+2d_physics/layer_6="Crate"
 
 [rendering]
 
