@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://cpuoix83gss4l"]
+[gd_scene load_steps=48 format=3 uid="uid://cpuoix83gss4l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_sjaus"]
 [ext_resource type="Texture2D" uid="uid://buhb13ci8l3i3" path="res://Graphics/Player/Player-Ghost.png" id="2_5cpct"]
@@ -34,6 +34,9 @@ animation = &"Idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_al2gp"]
 animation = &"Moving"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d6j2o"]
+animation = &"Possessing"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c5p3d"]
 animation = &"StopMoving"
@@ -100,6 +103,14 @@ advance_expression = "state != States.DRAG"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ofnag"]
+advance_mode = 2
+advance_expression = "state == States.POSSESS"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nlcng"]
+advance_mode = 2
+advance_expression = "state == States.IDLE"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_0ekte"]
 states/Dragging/node = SubResource("AnimationNodeAnimation_2ti3h")
 states/Dragging/position = Vector2(866, 100)
@@ -118,10 +129,12 @@ states/Idle/node = SubResource("AnimationNodeAnimation_keu4p")
 states/Idle/position = Vector2(358, 3)
 states/Moving/node = SubResource("AnimationNodeAnimation_al2gp")
 states/Moving/position = Vector2(200, 196)
+states/Possessing/node = SubResource("AnimationNodeAnimation_d6j2o")
+states/Possessing/position = Vector2(116, -45)
 states/StopMoving/node = SubResource("AnimationNodeAnimation_c5p3d")
 states/StopMoving/position = Vector2(358, 100)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gqf3y"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_ae0id"), "Moving", "StopMoving", SubResource("AnimationNodeStateMachineTransition_ynwm0"), "StopMoving", "Idle", SubResource("AnimationNodeStateMachineTransition_b1mfc"), "Idle", "Grabbing", SubResource("AnimationNodeStateMachineTransition_cwjta"), "Moving", "Grabbing", SubResource("AnimationNodeStateMachineTransition_4aspf"), "Grabbing", "DraggingBegin", SubResource("AnimationNodeStateMachineTransition_01bwg"), "Dragging", "DraggingStop", SubResource("AnimationNodeStateMachineTransition_qrl1g"), "DraggingStop", "Idle", SubResource("AnimationNodeStateMachineTransition_dmgsr"), "Dragging", "DraggingBegin 2", SubResource("AnimationNodeStateMachineTransition_3ndno"), "DraggingBegin 2", "Grabbing", SubResource("AnimationNodeStateMachineTransition_idk84"), "DraggingBegin", "DraggingStop", SubResource("AnimationNodeStateMachineTransition_2jf0f"), "DraggingBegin", "Dragging", SubResource("AnimationNodeStateMachineTransition_o8fma"), "Grabbing", "Grabbing 2", SubResource("AnimationNodeStateMachineTransition_riy0i"), "Grabbing 2", "Idle", SubResource("AnimationNodeStateMachineTransition_jhc7x")]
-graph_offset = Vector2(-56, -114)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gqf3y"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_ae0id"), "Moving", "StopMoving", SubResource("AnimationNodeStateMachineTransition_ynwm0"), "StopMoving", "Idle", SubResource("AnimationNodeStateMachineTransition_b1mfc"), "Idle", "Grabbing", SubResource("AnimationNodeStateMachineTransition_cwjta"), "Moving", "Grabbing", SubResource("AnimationNodeStateMachineTransition_4aspf"), "Grabbing", "DraggingBegin", SubResource("AnimationNodeStateMachineTransition_01bwg"), "Dragging", "DraggingStop", SubResource("AnimationNodeStateMachineTransition_qrl1g"), "DraggingStop", "Idle", SubResource("AnimationNodeStateMachineTransition_dmgsr"), "Dragging", "DraggingBegin 2", SubResource("AnimationNodeStateMachineTransition_3ndno"), "DraggingBegin 2", "Grabbing", SubResource("AnimationNodeStateMachineTransition_idk84"), "DraggingBegin", "DraggingStop", SubResource("AnimationNodeStateMachineTransition_2jf0f"), "DraggingBegin", "Dragging", SubResource("AnimationNodeStateMachineTransition_o8fma"), "Grabbing", "Grabbing 2", SubResource("AnimationNodeStateMachineTransition_riy0i"), "Grabbing 2", "Idle", SubResource("AnimationNodeStateMachineTransition_jhc7x"), "Idle", "Possessing", SubResource("AnimationNodeStateMachineTransition_ofnag"), "Possessing", "Idle", SubResource("AnimationNodeStateMachineTransition_nlcng")]
+graph_offset = Vector2(-53, -113)
 
 [sub_resource type="Animation" id="Animation_qac6j"]
 resource_name = "Dragging"
