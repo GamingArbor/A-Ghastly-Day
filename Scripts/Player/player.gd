@@ -126,6 +126,8 @@ func unpossess():
 	$Hitbox.disabled = false
 	Global.Character = self
 	InteractedComponentParent.being_possessed = false
+	reset_interaction_variables()
+	set_state(States.IDLE)
 
 func idle():
 	## Idle movement (Basic Evil)
@@ -214,8 +216,6 @@ func possess():
 	# Stop possessing
 	if Input.is_action_just_pressed("Interact"):
 		unpossess()
-		reset_interaction_variables()
-		set_state(States.IDLE)
 func air():
 	pass
 

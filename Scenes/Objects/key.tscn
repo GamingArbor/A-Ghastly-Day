@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="2_m1xqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noabi"]
-size = Vector2(14, 8)
+size = Vector2(11, 6)
 
 [sub_resource type="Animation" id="Animation_q1tmb"]
 resource_name = "Idle"
