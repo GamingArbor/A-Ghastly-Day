@@ -187,7 +187,7 @@ func floating():
 	direction = 0
 	# Handle Floating Up and Down
 	if float_direction == 1:
-		if abs(self.position.y - StartingY) <= 72:
+		if abs(self.position.y - StartingY) <= 64:
 			if Input.is_action_pressed("Up"):
 				velocity.y = -SPEED
 			elif Input.is_action_pressed("Down"):
