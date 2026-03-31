@@ -86,4 +86,4 @@ func ExitToTitle() -> void:
 
 func _on_end_game_detection_body_entered(body: Node2D) -> void:
 	if body == %Player:
-		
+		pass
