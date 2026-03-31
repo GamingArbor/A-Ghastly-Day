@@ -13,8 +13,8 @@ size = Vector2(14, 32)
 
 [node name="Door" type="StaticBody2D"]
 z_index = -1
-collision_layer = 4
-collision_mask = 4
+collision_layer = 32
+collision_mask = 35
 script = ExtResource("1_kg6r3")
 
 [node name="ResettableComponent" parent="." instance=ExtResource("2_moeba")]
