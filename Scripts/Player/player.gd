@@ -164,7 +164,7 @@ func idle():
 			elif InteractedComponentParent is PossessableComponent: # Transition to POSSESS state
 				
 				## Start to possess
-				$AnimationPlayer.play("Possessing")
+				set_state(States.POSSESS)
 				
 
 func StartPossessing() -> void:
@@ -174,7 +174,6 @@ func StartPossessing() -> void:
 	Global.Character = InteractedObject
 	InteractedComponentParent.being_possessed = true # Initiate possession officially
 	
-	set_state(States.POSSESS)
 
 func floating():
 	# Transition to Float Ended state
