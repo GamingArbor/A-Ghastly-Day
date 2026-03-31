@@ -10,3 +10,4 @@ func OverlapsCrate(area: Area2D) -> bool:
 func move_object(object: Node2D) -> void:
 	if ObjectPos != null:
 		object.position = ObjectPos.position
+	object.visible = true

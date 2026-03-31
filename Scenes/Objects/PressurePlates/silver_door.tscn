@@ -30,6 +30,7 @@ position = Vector2(0, -2)
 polygon = PackedVector2Array(-5, 1, 5, 1, 3, -1, -3, -1)
 
 [node name="SilverDoor" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="DoorSP" type="Sprite2D" parent="SilverDoor"]
 position = Vector2(42, -16)

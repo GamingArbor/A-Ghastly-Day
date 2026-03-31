@@ -1202,11 +1202,11 @@ tile_set = SubResource("TileSet_qi3bx")
 
 [node name="Deadbody" parent="." instance=ExtResource("3_1pg3o")]
 unique_name_in_owner = true
-position = Vector2(9290, 223)
+position = Vector2(353, 374)
 
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
 unique_name_in_owner = true
-position = Vector2(9343, 203)
+position = Vector2(100, 427)
 collision_layer = 11
 collision_mask = 11
 

@@ -11,7 +11,7 @@ height = 24.0
 
 [node name="Deadbody" type="RigidBody2D"]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 36
 can_sleep = false
 script = ExtResource("1_s0dl4")
 
