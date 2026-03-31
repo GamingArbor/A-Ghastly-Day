@@ -74,13 +74,8 @@ script = ExtResource("1_4b26g")
 possessable_component = NodePath("PossessableComponent")
 
 [node name="ResettableComponent" parent="." instance=ExtResource("1_knn3b")]
+visible = false
 script = ExtResource("2_jy65d")
-
-[node name="PossessableComponent" parent="." instance=ExtResource("1_2xmke")]
-PossessType = 2
-ObjectType = "Key"
-
-[node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("2_m1xqf")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_8adwp")
@@ -88,7 +83,16 @@ hframes = 5
 frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_noabi")
+
+[node name="PossessableComponent" parent="." instance=ExtResource("1_2xmke")]
+position = Vector2(-0.5, 0)
+PossessType = 2
+ObjectType = "Key"
+
+[node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("2_m1xqf")]
+visible = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

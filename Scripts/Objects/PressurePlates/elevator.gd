@@ -5,6 +5,7 @@ var tween: Tween
 var goingdown = true # trust me, bro
 func _ready() -> void:
 	StartPoint = $ElevatorPlatform.position
+	move_object($ElevatorPlatform)
 
 func get_percentage_up() -> float:
 	return $ElevatorPlatform.position.distance_to(StartPoint)/(EndPoint.distance_to(StartPoint))

@@ -39,6 +39,7 @@ possessable_component = NodePath("PossessableComponent")
 script = ExtResource("2_e864h")
 
 [node name="PossessableComponent" parent="." instance=ExtResource("1_f0nrg")]
+position = Vector2(6, 7)
 PossessType = 1
 ObjectType = "Crate"
 

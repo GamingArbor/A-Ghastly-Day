@@ -30,6 +30,7 @@ _data = {
 
 [node name="Crate-1x1-Slope" type="CharacterBody2D" node_paths=PackedStringArray("possessable_component")]
 z_index = -1
+position = Vector2(1, 0)
 collision_layer = 55
 collision_mask = 48
 script = ExtResource("1_mj57a")
@@ -39,6 +40,7 @@ possessable_component = NodePath("PossessableComponent")
 script = ExtResource("2_eyruu")
 
 [node name="PossessableComponent" parent="." instance=ExtResource("3_lh64a")]
+position = Vector2(3, 4)
 PossessType = 1
 ObjectType = "Crate"
 
@@ -53,5 +55,5 @@ libraries = {
 texture = ExtResource("5_ctsbk")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-8, 8, 8, 8, 8, -8)
+polygon = PackedVector2Array(-7.5, 8, 8, 8, 8, -8, -0.0508308, 0.0508318, -7, 7)
 one_way_collision = true

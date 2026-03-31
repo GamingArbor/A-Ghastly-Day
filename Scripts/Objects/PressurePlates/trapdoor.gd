@@ -1,4 +1,7 @@
 extends DoorPressurePlate
 
+func _ready() -> void:
+	move_object($Trapdoor)
+
 func _process(delta: float) -> void:
 	HandlePressurePlate($Trapdoor/DoorHB,$Trapdoor/DoorSP,$Area2D)

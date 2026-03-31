@@ -6,3 +6,8 @@ extends Component
 @export var ObjectType: String
 
 var being_possessed: bool = false
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	$Eyes.visible = being_possessed
