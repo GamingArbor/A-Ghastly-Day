@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://cpuoix83gss4l"]
+[gd_scene load_steps=45 format=3 uid="uid://cpuoix83gss4l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_sjaus"]
 [ext_resource type="Texture2D" uid="uid://buhb13ci8l3i3" path="res://Graphics/Player/Player-Ghost.png" id="2_5cpct"]
@@ -121,6 +121,7 @@ states/Moving/position = Vector2(200, 196)
 states/StopMoving/node = SubResource("AnimationNodeAnimation_c5p3d")
 states/StopMoving/position = Vector2(358, 100)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_gqf3y"), "Idle", "Moving", SubResource("AnimationNodeStateMachineTransition_ae0id"), "Moving", "StopMoving", SubResource("AnimationNodeStateMachineTransition_ynwm0"), "StopMoving", "Idle", SubResource("AnimationNodeStateMachineTransition_b1mfc"), "Idle", "Grabbing", SubResource("AnimationNodeStateMachineTransition_cwjta"), "Moving", "Grabbing", SubResource("AnimationNodeStateMachineTransition_4aspf"), "Grabbing", "DraggingBegin", SubResource("AnimationNodeStateMachineTransition_01bwg"), "Dragging", "DraggingStop", SubResource("AnimationNodeStateMachineTransition_qrl1g"), "DraggingStop", "Idle", SubResource("AnimationNodeStateMachineTransition_dmgsr"), "Dragging", "DraggingBegin 2", SubResource("AnimationNodeStateMachineTransition_3ndno"), "DraggingBegin 2", "Grabbing", SubResource("AnimationNodeStateMachineTransition_idk84"), "DraggingBegin", "DraggingStop", SubResource("AnimationNodeStateMachineTransition_2jf0f"), "DraggingBegin", "Dragging", SubResource("AnimationNodeStateMachineTransition_o8fma"), "Grabbing", "Grabbing 2", SubResource("AnimationNodeStateMachineTransition_riy0i"), "Grabbing 2", "Idle", SubResource("AnimationNodeStateMachineTransition_jhc7x")]
+graph_offset = Vector2(-56, -114)
 
 [sub_resource type="Animation" id="Animation_qac6j"]
 resource_name = "Dragging"
@@ -291,6 +292,37 @@ tracks/0/keys = {
 "values": [12, 11, 10, 0]
 }
 
+[sub_resource type="Animation" id="Animation_airkt"]
+resource_name = "Possessing"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"StartPossessing"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ga4bh"]
 _data = {
 "Dragging": SubResource("Animation_qac6j"),
@@ -300,6 +332,7 @@ _data = {
 "Grabbing": SubResource("Animation_ut2yh"),
 "Idle": SubResource("Animation_sr7o6"),
 "Moving": SubResource("Animation_vpesk"),
+"Possessing": SubResource("Animation_airkt"),
 "RESET": SubResource("Animation_us4t4"),
 "Spawning": SubResource("Animation_3a45e"),
 "StopMoving": SubResource("Animation_5sb3j")
