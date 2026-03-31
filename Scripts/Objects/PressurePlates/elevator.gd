@@ -12,6 +12,7 @@ func get_percentage_up() -> float:
 
 func HandlePressurePlate(elevator: AnimatableBody2D, area: Area2D):
 	var has_crate = OverlapsCrate(area)
+	$Plate/Sprite2D.frame = has_crate
 	if has_crate and goingdown:
 		goingdown = false
 		if tween != null: tween.kill()
