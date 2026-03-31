@@ -18,7 +18,7 @@ func has_player(room: Room):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	%Camera.position.y = 336
+	#%Camera.position.y = 336
 	# Handles movement in the menu
 	if Input.is_action_just_pressed("Up") and PauseMenuPosition > 0:
 		PauseMenuPosition -= 1
