@@ -7,8 +7,8 @@ func _ready() -> void:
 	move_object($ElevatorPlatform)
 	StartPoint = $ElevatorPlatform.position
 
-func get_percentage_up() -> float:
-	return $ElevatorPlatform.position.distance_to(StartPoint)/(EndPoint.distance_to(StartPoint))
+func get_move_time(target: Vector2) -> float:
+	return $ElevatorPlatform.position.distance_to(target) / Global.ElevatorSpeed
 
 func HandlePressurePlate(elevator: AnimatableBody2D, area: Area2D):
 	var has_crate = OverlapsCrate(area)
@@ -18,7 +18,7 @@ func HandlePressurePlate(elevator: AnimatableBody2D, area: Area2D):
 		if tween != null: tween.kill()
 		tween = get_tree().create_tween()
 		tween.set_trans(Tween.TRANS_SINE)
-		var rise_time = 1 - get_percentage_up()
+		var rise_time = get_move_time(EndPoint)
 		tween.tween_property(elevator, "position", EndPoint, rise_time).from_current()
 		print("going up from: " + str(elevator.position.y) + " to: " + str(EndPoint.y) + " in: " + str(rise_time) + "s")
 	if !has_crate and !goingdown:
@@ -26,7 +26,7 @@ func HandlePressurePlate(elevator: AnimatableBody2D, area: Area2D):
 		tween.kill()
 		tween = get_tree().create_tween()
 		tween.set_trans(Tween.TRANS_SINE)
-		var fall_time = get_percentage_up()
+		var fall_time = get_move_time(StartPoint)
 		tween.tween_property(elevator, "position", StartPoint, fall_time).from_current()
 		print("going down from: " + str(elevator.position.y) + " to: " + str(StartPoint.y) + " in: " + str(fall_time) + "s")
 		

@@ -7,6 +7,7 @@ enum States {IDLE, FLOAT, POSSESS, AIR, DEAD, FLOATOVER, DRAG}
 enum PossessTypes {STATIC, SLIDE, HOPPING}
 var PossessSpeed = 100
 var HopSpeed = 240
+var ElevatorSpeed = 50 # Pixels per second
 # 1 - Intro 2 - Ending
 var Cutscene: int = 0
 
