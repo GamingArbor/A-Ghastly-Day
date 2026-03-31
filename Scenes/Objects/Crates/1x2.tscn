@@ -1,0 +1,60 @@
+[gd_scene load_steps=12 format=3 uid="uid://dl11ej1yywboi"]
+
+[ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_uibsy"]
+[ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="2_if74x"]
+[ext_resource type="Script" path="res://Scripts/Objects/Components/basic_reset.gd" id="3_o6foa"]
+[ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="4_6fhhb"]
+[ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="5_4wps4"]
+[ext_resource type="Texture2D" uid="uid://bxyr0mu3bwvlj" path="res://Graphics/Objects/Crate-1x2.png" id="6_trfwp"]
+
+[sub_resource type="Animation" id="Animation_q1tmb"]
+resource_name = "Idle"
+length = 0.05
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_hk3tq"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_lsr16"]
+resource_name = "Shake"
+length = 0.35
+loop_mode = 1
+step = 0.05
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8wsof"]
+_data = {
+"Idle": SubResource("Animation_q1tmb"),
+"RESET": SubResource("Animation_hk3tq"),
+"Shake": SubResource("Animation_lsr16")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qgfgp"]
+size = Vector2(16, 32)
+
+[node name="Crate-1x2" type="CharacterBody2D" node_paths=PackedStringArray("possessable_component")]
+z_index = -1
+collision_layer = 39
+collision_mask = 32
+script = ExtResource("1_uibsy")
+possessable_component = NodePath("PossessableComponent")
+
+[node name="ResettableComponent" parent="." instance=ExtResource("2_if74x")]
+script = ExtResource("3_o6foa")
+
+[node name="PossessableComponent" parent="." instance=ExtResource("4_6fhhb")]
+PossessType = 1
+ObjectType = "Crate"
+
+[node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("5_4wps4")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8wsof")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("6_trfwp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qgfgp")
+one_way_collision = true

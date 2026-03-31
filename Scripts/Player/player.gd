@@ -164,14 +164,17 @@ func idle():
 			elif InteractedComponentParent is PossessableComponent: # Transition to POSSESS state
 				
 				## Start to possess
-				$Sprite.visible = false # Hide player sprite
-				$Hitbox.disabled = true # Disable player hitbox
-				Global.Character = InteractedObject
-				InteractedComponentParent.being_possessed = true # Initiate possession officially
-				
 				set_state(States.POSSESS)
+				
 
-		
+func StartPossessing() -> void:
+	# This used to be under the ## Start to possess section above
+	$Sprite.visible = false # Hide player sprite
+	$Hitbox.disabled = true # Disable player hitbox
+	Global.Character = InteractedObject
+	InteractedComponentParent.being_possessed = true # Initiate possession officially
+	
+
 func floating():
 	# Transition to Float Ended state
 	if Input.is_action_just_released("Float"):
