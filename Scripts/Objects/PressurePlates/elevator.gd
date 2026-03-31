@@ -19,8 +19,7 @@ func HandlePressurePlate(elevator: AnimatableBody2D, area: Area2D):
 		tween = get_tree().create_tween()
 		tween.set_trans(Tween.TRANS_SINE)
 		var rise_time = get_move_time(EndPoint)
-		tween.tween_property(elevator, "position", EndPoint, rise_time).from_current()
-		print("going up from: " + str(elevator.position.y) + " to: " + str(EndPoint.y) + " in: " + str(rise_time) + "s")
+		tween.tween_property(elevator, "position", StartPoint + EndPoint, rise_time).from_current()
 	if !has_crate and !goingdown:
 		goingdown = true
 		tween.kill()
@@ -28,7 +27,6 @@ func HandlePressurePlate(elevator: AnimatableBody2D, area: Area2D):
 		tween.set_trans(Tween.TRANS_SINE)
 		var fall_time = get_move_time(StartPoint)
 		tween.tween_property(elevator, "position", StartPoint, fall_time).from_current()
-		print("going down from: " + str(elevator.position.y) + " to: " + str(StartPoint.y) + " in: " + str(fall_time) + "s")
 		
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
