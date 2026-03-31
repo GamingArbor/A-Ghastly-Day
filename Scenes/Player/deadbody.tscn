@@ -37,5 +37,3 @@ direction = 1
 
 [node name="InteractableComponent" parent="DraggableComponentFeet" instance=ExtResource("3_1jho3")]
 priority = -1
-
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
