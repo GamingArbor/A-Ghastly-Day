@@ -53,5 +53,5 @@ libraries = {
 texture = ExtResource("3_14166")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-16, 16, 16, 16, 16, -15, 15, -15)
+polygon = PackedVector2Array(-16, 16, 16, 16, 16, -16)
 one_way_collision = true
