@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://0cmemik02wi3"]
 
 [ext_resource type="Texture2D" uid="uid://lv570og7mg2b" path="res://Graphics/Objects/PressurePlate.png" id="1_2rjux"]
-[ext_resource type="Script" path="res://Scripts/Objects/pressure_plate.gd" id="1_kyjnx"]
+[ext_resource type="Script" path="res://Scripts/Objects/PressurePlates/silver_door.gd" id="1_kyjnx"]
 [ext_resource type="Texture2D" uid="uid://c7ffa33lksu0p" path="res://Graphics/Objects/Door-Silver.png" id="3_ijh0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g30i"]
 size = Vector2(6, 32)
 
-[node name="PressurePlate" type="StaticBody2D"]
+[node name="PressurePlate_SilverDoor" type="StaticBody2D"]
+z_index = -1
 collision_mask = 0
 script = ExtResource("1_kyjnx")
 
@@ -30,7 +31,7 @@ polygon = PackedVector2Array(-5, 1, 5, 1, 3, -1, -3, -1)
 
 [node name="SilverDoor" type="StaticBody2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="SilverDoor"]
+[node name="DoorSP" type="Sprite2D" parent="SilverDoor"]
 position = Vector2(42, -16)
 texture = ExtResource("3_ijh0o")
 hframes = 3

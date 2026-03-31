@@ -3,10 +3,6 @@ extends StaticBody2D
 @export var flip_direction: bool = false
 var open = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	$DoorSP.frame = 0
-
 func OverlappingKeys() -> Array[Node2D]:
 	return Global.get_bodies_of_type($DoorArea,"Key")
 
@@ -14,8 +10,8 @@ func PlayerIsKey() -> bool:
 	if %Player.state != Global.States.POSSESS: 
 		return false
 	return %Player.InteractedComponentParent.ObjectType == "Key"
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
+
 func _process(delta: float) -> void:
 	if !open:
 		var Keys = OverlappingKeys()

@@ -25,9 +25,9 @@
 [ext_resource type="Texture2D" uid="uid://clno8qu50oy5e" path="res://Graphics/UI/PauseMenu-Button-Exit-Pressed.png" id="9_5uviy"]
 [ext_resource type="Texture2D" uid="uid://7234wxltgp4u" path="res://Graphics/UI/PauseMenu-Button-Exit-Select.png" id="10_82xek"]
 [ext_resource type="Texture2D" uid="uid://c1mu4sn14pfej" path="res://Graphics/Tiles/Tileset-Village.png" id="11_3v4bd"]
-[ext_resource type="PackedScene" uid="uid://0cmemik02wi3" path="res://Scenes/Objects/pressure_plate.tscn" id="21_81pd2"]
-[ext_resource type="PackedScene" uid="uid://b4y70n4m2y3ev" path="res://Scenes/Objects/pressure_plate_elevator.tscn" id="28_h7pbs"]
-[ext_resource type="PackedScene" uid="uid://bw2nil7ru8lt6" path="res://Scenes/Objects/pressure_plate_trapdoor.tscn" id="29_4roy7"]
+[ext_resource type="PackedScene" uid="uid://0cmemik02wi3" path="res://Scenes/Objects/PressurePlates/silver_door.tscn" id="21_81pd2"]
+[ext_resource type="PackedScene" uid="uid://b4y70n4m2y3ev" path="res://Scenes/Objects/PressurePlates/elevator.tscn" id="28_h7pbs"]
+[ext_resource type="PackedScene" uid="uid://bw2nil7ru8lt6" path="res://Scenes/Objects/PressurePlates/trapdoor.tscn" id="29_4roy7"]
 [ext_resource type="PackedScene" uid="uid://d18ep6ga4bjs0" path="res://Scenes/Objects/Crates/2x2.tscn" id="29_efihf"]
 [ext_resource type="PackedScene" uid="uid://wg68hd02j0h4" path="res://Scenes/Objects/Crates/1x1.tscn" id="30_jxhpl"]
 [ext_resource type="PackedScene" uid="uid://b6qy4bgx3as3d" path="res://Scenes/Objects/Crates/2x2-Slope.tscn" id="31_uknj6"]
@@ -1232,6 +1232,7 @@ position = Vector2(802, 608)
 
 [node name="Elevator" parent="." instance=ExtResource("28_h7pbs")]
 position = Vector2(356, 608)
+EndPoint = Vector2(0, -50)
 
 [node name="PressurePlateTrapdoor" parent="." instance=ExtResource("29_4roy7")]
 position = Vector2(137, 480)
