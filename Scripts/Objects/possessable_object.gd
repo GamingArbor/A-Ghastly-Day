@@ -11,7 +11,7 @@ func slide_movement() -> void:
 		velocity.x = direction * Global.PossessSpeed
 	else:
 		velocity.x = move_toward(velocity.x, 0, Global.PossessSpeed)
-	
+
 
 func hopping_movement(delta: float) -> void:
 	if is_on_floor():
@@ -28,6 +28,12 @@ func hopping_movement(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, Global.PossessSpeed)
 	shake_animation()
+
+func teleport() -> void:
+	%Player.global_position = global_position
+	if possessable_component.PossessType == Global.PossessTypes.HOPPING:
+		if $RayCast2D.is_colliding():
+			%Player.position.y -= (15 - $RayCast2D.global_position.distance_to($RayCast2D.get_collision_point()))
 
 func shake_animation() -> void:
 	if is_on_floor():

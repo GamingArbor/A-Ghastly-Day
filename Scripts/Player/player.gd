@@ -122,9 +122,10 @@ func grab_drag_point(drag_point: DraggableComponent):
 	drag_point.being_grabbed = true
 
 func unpossess():
+	Global.Character = self
+	InteractedObject.teleport()
 	$Sprite.visible = true
 	$Hitbox.disabled = false
-	Global.Character = self
 	InteractedComponentParent.being_possessed = false
 	reset_interaction_variables()
 	set_state(States.IDLE)
