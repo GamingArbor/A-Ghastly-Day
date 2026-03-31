@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 func slide_movement() -> void:
 	var direction: int
-	if possessable_component.being_possessed:
+	if possessable_component.being_possessed and is_on_floor():
 		direction = roundi(Input.get_axis("Left", "Right"))
 	else:
 		direction = 0
@@ -11,6 +11,7 @@ func slide_movement() -> void:
 		velocity.x = direction * Global.PossessSpeed
 	else:
 		velocity.x = move_toward(velocity.x, 0, Global.PossessSpeed)
+	
 
 func hopping_movement() -> void:
 	var direction: int

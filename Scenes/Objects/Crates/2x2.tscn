@@ -42,7 +42,7 @@ possessable_component = NodePath("PossessableComponent")
 script = ExtResource("2_nkf2u")
 
 [node name="PossessableComponent" parent="." instance=ExtResource("3_8b07b")]
-PossessType = 2
+PossessType = 1
 ObjectType = "Crate"
 
 [node name="InteractableComponent" parent="PossessableComponent" instance=ExtResource("4_wqem5")]
