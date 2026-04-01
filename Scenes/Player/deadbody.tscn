@@ -34,11 +34,9 @@ position = Vector2(1, 5)
 direction = -1
 
 [node name="InteractableComponent" parent="DraggableComponentHead" instance=ExtResource("3_1jho3")]
-priority = -1
 
 [node name="DraggableComponentFeet" parent="." instance=ExtResource("3_28k5k")]
 position = Vector2(23, 2)
 direction = 1
 
 [node name="InteractableComponent" parent="DraggableComponentFeet" instance=ExtResource("3_1jho3")]
-priority = -1
