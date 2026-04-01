@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4y70n4m2y3ev"]
+[gd_scene load_steps=8 format=3 uid="uid://b4y70n4m2y3ev"]
 
 [ext_resource type="Script" path="res://Scripts/Objects/PressurePlates/elevator.gd" id="1_u6vr3"]
+[ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="2_q33f6"]
 [ext_resource type="Texture2D" uid="uid://lv570og7mg2b" path="res://Graphics/Objects/PressurePlate.png" id="2_tetxb"]
 [ext_resource type="Texture2D" uid="uid://bxoa1uxaxjw3m" path="res://Graphics/Objects/Elevator.png" id="3_6bsh5"]
+[ext_resource type="Script" path="res://Scripts/Objects/Reset/elevator_reset.gd" id="3_pqgww"]
 [ext_resource type="AudioStream" uid="uid://baxr8cp0vua5s" path="res://Audio/SFX/RefinedElevator.mp3" id="4_qauk1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3e3gw"]
@@ -11,6 +13,9 @@ size = Vector2(48, 8)
 [node name="PressurePlate_Elevator" type="Node2D"]
 z_index = -1
 script = ExtResource("1_u6vr3")
+
+[node name="ResettableComponent" parent="." instance=ExtResource("2_q33f6")]
+script = ExtResource("3_pqgww")
 
 [node name="Plate" type="StaticBody2D" parent="."]
 
@@ -30,6 +35,8 @@ collision_mask = 60
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="Plate/Area2D"]
 position = Vector2(0, -2)
 polygon = PackedVector2Array(-5, 1, 5, 1, 3, -1, -3, -1)
+
+[node name="ResettableComponent2" parent="." instance=ExtResource("2_q33f6")]
 
 [node name="ElevatorPlatform" type="AnimatableBody2D" parent="."]
 z_index = 1
