@@ -31,6 +31,7 @@ func _process(delta: float) -> void:
 		$Camera/PauseMenu/PauseMenuAnimations.play("PauseMenuEntered")
 		InPauseMenu = true
 		DenyInputInMenu = true
+		get_tree().paused = true
 	
 	if InPauseMenu == true and DenyInputInMenu == false:
 		# Handles hovering over buttons
@@ -75,13 +76,16 @@ func AllowInput() -> void:
 func LeaveMenu() -> void:
 	DenyInputInMenu = false
 	InPauseMenu = false
+	get_tree().paused = false
 
 func ResumeGame() -> void:
 	DenyInputInMenu = false
 	InPauseMenu = false
+	get_tree().paused = false
 
 func ExitToTitle() -> void:
 	DenyInputInMenu = false
+	get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/UI/title_screen.tscn")
 
 
