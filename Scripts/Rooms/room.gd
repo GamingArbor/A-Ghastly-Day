@@ -4,18 +4,16 @@ var PreviousRoomNumber: int
 var PreviousCameraPosition: Vector2
 ## This room's index. Should be unique.
 @export var RoomNumber: int
-@export var PlayerResetPos: Node2D
-@export var DeadbodyResetPos: Node2D
 
 func player_reset_pos() -> Vector2:
 	if PlayerResetPos != null:
-		return PlayerResetPos.global_position
+		return $PlayerResetPos.global_position
 	else:
 		return %Player.global_position
 
 func deadbody_reset_pos() -> Vector2:
 	if DeadbodyResetPos != null:
-		return DeadbodyResetPos.global_position
+		return $DeadbodyResetPos.global_position
 	else:
 		return %Deadbody.global_position
 

@@ -1241,38 +1241,16 @@ position = Vector2(231, 224)
 [node name="Rooms" type="Node" parent="."]
 unique_name_in_owner = true
 
-[node name="Test" type="Node2D" parent="Rooms"]
-visible = false
-
-[node name="Starting Room" parent="Rooms/Test" node_paths=PackedStringArray("PlayerResetPos", "DeadbodyResetPos") instance=ExtResource("6_g3e87")]
-position = Vector2(0, 336)
-RoomNumber = -1
-PlayerResetPos = NodePath("PlayerResetPos")
-DeadbodyResetPos = NodePath("DeadbodyResetPos")
-
-[node name="PlayerResetPos" type="Node2D" parent="Rooms/Test/Starting Room"]
-position = Vector2(559, 121)
-
-[node name="DeadbodyResetPos" type="Node2D" parent="Rooms/Test/Starting Room"]
-position = Vector2(532, 133)
-
-[node name="Second Room" parent="Rooms/Test" node_paths=PackedStringArray("PlayerResetPos", "DeadbodyResetPos") instance=ExtResource("6_g3e87")]
-position = Vector2(512, 336)
-RoomNumber = -2
-PlayerResetPos = NodePath("PlayerResetPos")
-DeadbodyResetPos = NodePath("DeadbodyResetPos")
-
-[node name="PlayerResetPos" type="Node2D" parent="Rooms/Test/Second Room"]
-position = Vector2(397, 99)
-
-[node name="DeadbodyResetPos" type="Node2D" parent="Rooms/Test/Second Room"]
-position = Vector2(330, 123)
-
 [node name="Outskirts" type="Node2D" parent="Rooms"]
-visible = false
 
 [node name="Room1" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 RoomNumber = 1
+
+[node name="PlayerResetPos" type="Node2D" parent="Rooms/Outskirts/Room1"]
+position = Vector2(231, 224)
+
+[node name="DeadbodyResetPos" type="Node2D" parent="Rooms/Outskirts/Room1"]
+position = Vector2(220, 231)
 
 [node name="Room2" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 position = Vector2(512, 0)
