@@ -18,6 +18,22 @@ signal restart
 func _ready() -> void:
 	add_user_signal("restart")
 
+func get_rooms() -> Array[Node]:
+	return get_node("/root/BigRoom/Rooms").find_children("*", "Room")
+	
+func get_room_from_body(body) -> Node:
+	var rooms = get_rooms()
+	for room in rooms:
+		if room.overlaps_body(body): 
+			return room
+	return null
+
+func get_room_from_id(id: int) -> Node:
+	var rooms = get_rooms()
+	var correct_rooms = rooms.filter(func(room): return room.RoomNumber == id)
+	if correct_rooms.is_empty(): return null
+	else: return correct_rooms[0]
+
 func is_possessable_object_of_type(body: Node2D, type: String) -> bool:
 	var PossComponent = body.find_child("PossessableComponent")
 	if PossComponent == null:

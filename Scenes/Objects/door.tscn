@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scripts/Objects/door.gd" id="1_kg6r3"]
 [ext_resource type="Texture2D" uid="uid://dpre2ekoqqwk3" path="res://Graphics/Objects/Door.png" id="2_al4jx"]
 [ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="2_moeba"]
-[ext_resource type="Script" path="res://Scripts/Objects/door_reset.gd" id="3_wnoqx"]
+[ext_resource type="Script" path="res://Scripts/Objects/Reset/door_reset.gd" id="3_wnoqx"]
 [ext_resource type="AudioStream" uid="uid://e7uo2yalxnq3" path="res://Audio/SFX/RefinedWoodDoor.mp3" id="5_eoqxs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5wrom"]

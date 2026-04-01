@@ -15,6 +15,7 @@ var state = States.IDLE
 ## Should be set to the room the player starts in.
 @export var room_number: int
 var room_transition_completed: bool = true
+var possession_room_transition: bool = false
 
 # Direction Variables (for different states)
 var direction: int # Direction the player is facing
@@ -49,6 +50,7 @@ func _ready() -> void:
 	Global.Character = %Player
 
 func _physics_process(delta: float) -> void:
+	possession_room_transition = true
 	# Run functions associated with states
 	match state:
 		States.IDLE:
@@ -122,6 +124,7 @@ func grab_drag_point(drag_point: DraggableComponent):
 	drag_point.being_grabbed = true
 
 func unpossess():
+	possession_room_transition = false
 	Global.Character = self
 	InteractedObject.teleport()
 	$Sprite.visible = true

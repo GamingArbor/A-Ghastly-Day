@@ -1,8 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://b01kc7rc5bdbo"]
+[gd_scene load_steps=8 format=3 uid="uid://b01kc7rc5bdbo"]
 
 [ext_resource type="Texture2D" uid="uid://bd6ylw1x5ac7m" path="res://Graphics/Player/Player-Body.png" id="1_quoqs"]
 [ext_resource type="Script" path="res://Scripts/Player/deadbody.gd" id="1_s0dl4"]
+[ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="2_hdfr5"]
 [ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="3_1jho3"]
+[ext_resource type="Script" path="res://Scripts/Objects/Reset/deadbody_reset.gd" id="3_23swv"]
 [ext_resource type="PackedScene" uid="uid://di6xkisjtscgl" path="res://Scenes/Objects/Components/draggable_component.tscn" id="3_28k5k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_6jph3"]
@@ -14,6 +16,9 @@ collision_layer = 4
 collision_mask = 36
 can_sleep = false
 script = ExtResource("1_s0dl4")
+
+[node name="ResettableComponent" parent="." instance=ExtResource("2_hdfr5")]
+script = ExtResource("3_23swv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_quoqs")
