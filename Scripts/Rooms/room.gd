@@ -6,13 +6,13 @@ var PreviousCameraPosition: Vector2
 @export var RoomNumber: int
 
 func player_reset_pos() -> Vector2:
-	if PlayerResetPos != null:
+	if $PlayerResetPos != null:
 		return $PlayerResetPos.global_position
 	else:
 		return %Player.global_position
 
 func deadbody_reset_pos() -> Vector2:
-	if DeadbodyResetPos != null:
+	if $DeadbodyResetPos != null:
 		return $DeadbodyResetPos.global_position
 	else:
 		return %Deadbody.global_position
