@@ -765,7 +765,7 @@ tracks/0/path = NodePath("Camera2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 1.005),
+"times": PackedFloat32Array(0, 1, 1.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(0, 0), Vector2(576, 0)]
@@ -870,7 +870,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/10/type = "method"
 tracks/10/imported = false
@@ -888,6 +888,18 @@ tracks/10/keys = {
 "args": [],
 "method": &"StopStartingMusic"
 }]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Background:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 1, 1.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(576, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_q610o"]
@@ -974,7 +986,19 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Background:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1urwl"]
@@ -1754,63 +1778,39 @@ script = ExtResource("1_2a8q1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
-position_smoothing_enabled = true
 
 [node name="Background" type="Node2D" parent="."]
 z_index = -4
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Background"]
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_mirroring = Vector2(512, 0)
-
-[node name="Sky" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer"]
+[node name="Sky" type="Sprite2D" parent="Background"]
+z_index = -10
+position = Vector2(256, 144)
 texture = ExtResource("1_5xhvw")
-centered = false
 
-[node name="ParallaxLayer2" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_scale = Vector2(0.95, 1)
-motion_mirroring = Vector2(512, 0)
-
-[node name="Clouds3" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer2"]
-texture = ExtResource("2_6unh3")
-centered = false
-
-[node name="ParallaxLayer3" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_scale = Vector2(0.9, 1)
-motion_mirroring = Vector2(512, 0)
-
-[node name="Clouds2" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer3"]
-position = Vector2(0, 48)
-texture = ExtResource("3_cik4b")
-centered = false
-
-[node name="ParallaxLayer4" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_scale = Vector2(0.8, 1)
-motion_mirroring = Vector2(512, 0)
-
-[node name="Clouds1" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer4"]
-position = Vector2(0, 80)
-texture = ExtResource("4_0kdpg")
-centered = false
-
-[node name="ParallaxLayer5" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_scale = Vector2(0.8, 1)
-motion_mirroring = Vector2(512, 0)
-
-[node name="Hills2" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer5"]
-position = Vector2(0, 192)
+[node name="Hills" type="Sprite2D" parent="Background"]
+z_index = -10
+position = Vector2(256, 224)
 texture = ExtResource("5_hxgvf")
-centered = false
 
-[node name="ParallaxLayer6" type="ParallaxLayer" parent="Background/ParallaxBackground"]
-motion_scale = Vector2(0.75, 1)
-motion_mirroring = Vector2(512, 0)
-
-[node name="Hills1" type="Sprite2D" parent="Background/ParallaxBackground/ParallaxLayer6"]
-position = Vector2(0, 208)
+[node name="Hills4" type="Sprite2D" parent="Background"]
+z_index = -10
+position = Vector2(256, 232)
 texture = ExtResource("6_aly5l")
-centered = false
+
+[node name="Clouds" type="Sprite2D" parent="Background"]
+z_index = -10
+position = Vector2(256, 96)
+texture = ExtResource("4_0kdpg")
+
+[node name="Clouds4" type="Sprite2D" parent="Background"]
+z_index = -10
+position = Vector2(256, 64)
+texture = ExtResource("3_cik4b")
+
+[node name="Clouds5" type="Sprite2D" parent="Background"]
+z_index = -10
+position = Vector2(256, 24)
+texture = ExtResource("2_6unh3")
 
 [node name="TileMap" type="Node2D" parent="."]
 
