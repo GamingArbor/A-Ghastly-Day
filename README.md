@@ -58,7 +58,7 @@ Wii-Bowler - AnImpossibility
 
 ###### Play Testers
 
-Snicklefritz - PandaArbor
+PandaArbor
 
 
 
