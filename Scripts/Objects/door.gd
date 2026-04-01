@@ -37,5 +37,6 @@ func deal_with(Keys: Array[Node2D]) -> void:
 	var PossComponent = Key.find_child("PossessableComponent") # Cannot be null (see global.gd)
 	if PossComponent.being_possessed:
 		%Player.unpossess()
-	Key.queue_free()
+	Key.find_child("CollisionShape2D").disabled = true
+	Key.find_child("Sprite2D").visible = false
 	

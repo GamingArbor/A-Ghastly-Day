@@ -4,8 +4,8 @@
 [ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_4b26g"]
 [ext_resource type="Texture2D" uid="uid://b1h73qng2i1so" path="res://Graphics/Objects/Key.png" id="1_8adwp"]
 [ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="1_knn3b"]
-[ext_resource type="Script" path="res://Scripts/Objects/Reset/basic_reset.gd" id="2_jy65d"]
 [ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="2_m1xqf"]
+[ext_resource type="Script" path="res://Scripts/Objects/Reset/key_reset.gd" id="3_8h8l7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_noabi"]
 size = Vector2(14, 6)
@@ -75,7 +75,7 @@ possessable_component = NodePath("PossessableComponent")
 
 [node name="ResettableComponent" parent="." instance=ExtResource("1_knn3b")]
 visible = false
-script = ExtResource("2_jy65d")
+script = ExtResource("3_8h8l7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_8adwp")
