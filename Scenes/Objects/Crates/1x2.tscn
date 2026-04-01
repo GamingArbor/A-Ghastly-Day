@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/Objects/possessable_object.gd" id="1_uibsy"]
 [ext_resource type="PackedScene" uid="uid://du8f5v4omym2k" path="res://Scenes/Objects/Components/resettable_component.tscn" id="2_if74x"]
-[ext_resource type="Script" path="res://Scripts/Objects/Components/basic_reset.gd" id="3_o6foa"]
+[ext_resource type="Script" path="res://Scripts/Objects/Reset/basic_reset.gd" id="3_o6foa"]
 [ext_resource type="PackedScene" uid="uid://br4fc0kgt7xxa" path="res://Scenes/Objects/Components/possessable_component.tscn" id="4_6fhhb"]
 [ext_resource type="PackedScene" uid="uid://chtifpb67hm02" path="res://Scenes/Objects/Components/interactable_component.tscn" id="5_4wps4"]
 [ext_resource type="Texture2D" uid="uid://bxyr0mu3bwvlj" path="res://Graphics/Objects/Crate-1x2.png" id="6_trfwp"]
