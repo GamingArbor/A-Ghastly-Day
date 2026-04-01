@@ -11,6 +11,10 @@ func PlayerIsKey() -> bool:
 		return false
 	return %Player.InteractedComponentParent.ObjectType == "Key"
 
+func close():
+	open = false
+	$DoorSP.frame = 0
+	$DoorHB.disabled = false
 
 func _process(delta: float) -> void:
 	if !open:

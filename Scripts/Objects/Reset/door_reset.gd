@@ -5,4 +5,4 @@ func _ready() -> void:
 	Global.restart.connect(reset)
 
 func reset():
-	get_parent_object().open = false
+	get_parent_object().close()

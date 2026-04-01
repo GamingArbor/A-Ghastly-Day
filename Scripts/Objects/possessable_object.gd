@@ -1,6 +1,11 @@
 extends CharacterBody2D
 @export var possessable_component: PossessableComponent
 var direction: int
+
+func _ready() -> void:
+	if possessable_component.ObjectType == "Key":
+		add_collision_exception_with(%Player) # Hail mary
+
 func slide_movement() -> void:
 	var direction: int
 	if possessable_component.being_possessed and is_on_floor():
