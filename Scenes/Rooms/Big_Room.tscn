@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=4 uid="uid://cnualho3uxo3q"]
+[gd_scene load_steps=56 format=4 uid="uid://cnualho3uxo3q"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_7sk8b"]
 [ext_resource type="Script" path="res://Scripts/Rooms/big_room.gd" id="1_exy3w"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://co1tnrdouyyvg" path="res://Scenes/Objects/Crates/1x1-Slope.tscn" id="32_1pgyt"]
 [ext_resource type="PackedScene" uid="uid://8v5rf4d78ka3" path="res://Scenes/Objects/Crates/2x1.tscn" id="33_0qcne"]
 [ext_resource type="PackedScene" uid="uid://dl11ej1yywboi" path="res://Scenes/Objects/Crates/1x2.tscn" id="38_38vev"]
+[ext_resource type="Script" path="res://Scripts/Misc/music_player.gd" id="40_1bap2"]
 
 [sub_resource type="Animation" id="Animation_g4w7w"]
 resource_name = "Exit"
@@ -1231,11 +1232,11 @@ tile_set = SubResource("TileSet_qi3bx")
 
 [node name="Deadbody" parent="." instance=ExtResource("3_1pg3o")]
 unique_name_in_owner = true
-position = Vector2(220, 231)
+position = Vector2(257, 553)
 
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
 unique_name_in_owner = true
-position = Vector2(231, 224)
+position = Vector2(278, 534)
 
 [node name="Rooms" type="Node" parent="."]
 unique_name_in_owner = true
@@ -1390,7 +1391,7 @@ position = Vector2(226, 544)
 position = Vector2(361, 409)
 
 [node name="Crate-1x1" parent="." instance=ExtResource("30_jxhpl")]
-position = Vector2(223, 480)
+position = Vector2(65, 469)
 
 [node name="SilverDoors" type="Node2D" parent="."]
 
@@ -1790,5 +1791,9 @@ ObjectPos = NodePath("Node2D")
 
 [node name="Node2D" type="Node2D" parent="Elevators/PressurePlate_Elevator9"]
 position = Vector2(46, 8)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -10.0
+script = ExtResource("40_1bap2")
 
 [connection signal="body_entered" from="EndGameDetection" to="." method="_on_end_game_detection_body_entered"]

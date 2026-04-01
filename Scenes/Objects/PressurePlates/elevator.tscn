@@ -48,3 +48,4 @@ one_way_collision = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_qauk1")
+volume_db = -10.0

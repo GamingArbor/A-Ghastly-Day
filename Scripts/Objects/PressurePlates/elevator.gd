@@ -27,9 +27,13 @@ func HandlePressurePlate(elevator: AnimatableBody2D, area: Area2D):
 		tween.set_trans(Tween.TRANS_SINE)
 		var fall_time = get_move_time(StartPoint)
 		tween.tween_property(elevator, "position", StartPoint, fall_time).from_current()
-	if tween != null:
-		print(tween.is_running())
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	HandlePressurePlate($ElevatorPlatform,$Plate/Area2D)
+	var TweenActive = tween != null and tween.is_running()
+	if $AudioStreamPlayer.playing == false and TweenActive == true:
+		$AudioStreamPlayer.play()
+	elif $AudioStreamPlayer.playing == true and TweenActive == false:
+		$AudioStreamPlayer.stop()
