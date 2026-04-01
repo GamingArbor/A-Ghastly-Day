@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgbkmemdueif0"
+path="res://.godot/imported/Ooh Spooky Song.mp3-1cc2e88f05e51b61a7fa9944f1feeb6e.mp3str"
+
+[deps]
+
+source_file="res://Audio/Music/Ooh Spooky Song.mp3"
+dest_files=["res://.godot/imported/Ooh Spooky Song.mp3-1cc2e88f05e51b61a7fa9944f1feeb6e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

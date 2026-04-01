@@ -27,7 +27,8 @@ func HandlePressurePlate(elevator: AnimatableBody2D, area: Area2D):
 		tween.set_trans(Tween.TRANS_SINE)
 		var fall_time = get_move_time(StartPoint)
 		tween.tween_property(elevator, "position", StartPoint, fall_time).from_current()
-		
+	if tween != null:
+		print(tween.is_running())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

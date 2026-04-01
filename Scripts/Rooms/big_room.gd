@@ -1,3 +1,4 @@
+class_name BigRoom
 extends Node2D
 var Camera
 # Tracks if the player is in the pause menu or not

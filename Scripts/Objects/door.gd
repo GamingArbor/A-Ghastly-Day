@@ -22,6 +22,7 @@ func _process(delta: float) -> void:
 				$DoorSP.frame = 2
 			else:
 				$DoorSP.frame = 1
+			$AudioStreamPlayer.play()
 			deal_with(Keys)
 	if !open:
 		if %Player.state_is(Global.States.IDLE) or PlayerIsKey():

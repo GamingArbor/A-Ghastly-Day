@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=4 uid="uid://2ia1xfw27bi3"]
+[gd_scene load_steps=70 format=4 uid="uid://2ia1xfw27bi3"]
 
 [ext_resource type="Script" path="res://Scripts/Misc/cutscene_handler.gd" id="1_2a8q1"]
 [ext_resource type="Texture2D" uid="uid://cflpckxt1iuu3" path="res://Graphics/Misc/Background-Sky.png" id="1_5xhvw"]
@@ -19,6 +19,8 @@
 [ext_resource type="Texture2D" uid="uid://cyk1ojombwmpk" path="res://Graphics/NPCs/Priests.png" id="17_ug6pp"]
 [ext_resource type="Texture2D" uid="uid://cpixep24a50md" path="res://Graphics/NPCs/BlueShirtGuy2.png" id="18_b01yd"]
 [ext_resource type="Texture2D" uid="uid://i8c63yyvi502" path="res://Graphics/Misc/LightShine.png" id="19_bcok5"]
+[ext_resource type="AudioStream" uid="uid://cqpaos0rvy84" path="res://Audio/Music/Title + Intro Cutscene.mp3" id="20_8lxks"]
+[ext_resource type="Script" path="res://Scripts/Misc/music_player.gd" id="21_yn3f4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_efiiy"]
 resource_name = "CollisionTiles"
@@ -869,6 +871,23 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("MusicPlayer")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 7.35),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"ContinueStartingMusic"
+}, {
+"args": [],
+"method": &"StopStartingMusic"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_q610o"]
@@ -1921,3 +1940,8 @@ offset_left = 1104.0
 offset_right = 1616.0
 offset_bottom = 288.0
 color = Color(1, 1, 1, 0)
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_8lxks")
+volume_db = -10.0
+script = ExtResource("21_yn3f4")

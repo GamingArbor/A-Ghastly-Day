@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=4 uid="uid://d3mbpy50mfe20"]
+[gd_scene load_steps=40 format=4 uid="uid://d3mbpy50mfe20"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_nd78d"]
 [ext_resource type="Script" path="res://Scripts/UI/title_screen.gd" id="1_q6y5e"]
@@ -25,6 +25,8 @@
 [ext_resource type="Texture2D" uid="uid://csauyd7m8yexn" path="res://Graphics/UI/Controls-Text.png" id="21_fa4rw"]
 [ext_resource type="Texture2D" uid="uid://xbmm01r5ej6i" path="res://Graphics/Misc/Logos-GameJam.png" id="21_ujdv1"]
 [ext_resource type="Texture2D" uid="uid://hakkbovvaxdq" path="res://Graphics/Misc/Title.png" id="21_ut2fk"]
+[ext_resource type="AudioStream" uid="uid://cqpaos0rvy84" path="res://Audio/Music/Title + Intro Cutscene.mp3" id="26_xxxpu"]
+[ext_resource type="Script" path="res://Scripts/Misc/music_player.gd" id="27_mvefa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_eqdxw"]
 resource_name = "CollisionTiles"
@@ -947,6 +949,20 @@ tracks/3/keys = {
 "method": &"AllowInput"
 }]
 }
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MusicPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"PlayStartingMusic"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ibk6"]
 _data = {
@@ -1083,5 +1099,10 @@ libraries = {
 "": SubResource("AnimationLibrary_6ibk6")
 }
 autoplay = "TitleSequence"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("26_xxxpu")
+volume_db = -10.0
+script = ExtResource("27_mvefa")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

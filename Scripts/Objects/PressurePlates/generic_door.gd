@@ -7,6 +7,7 @@ func HandlePressurePlate(hitbox: CollisionShape2D, plate_sprite: Sprite2D, objec
 		hitbox.disabled = true
 		object_sprite.frame = 1
 		plate_sprite.frame = 1
+		$AudioStreamPlayer.play()
 	else:
 		hitbox.disabled = false
 		object_sprite.frame = 0

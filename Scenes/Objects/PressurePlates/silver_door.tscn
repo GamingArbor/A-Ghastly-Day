@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://0cmemik02wi3"]
+[gd_scene load_steps=6 format=3 uid="uid://0cmemik02wi3"]
 
 [ext_resource type="Texture2D" uid="uid://lv570og7mg2b" path="res://Graphics/Objects/PressurePlate.png" id="1_2rjux"]
 [ext_resource type="Script" path="res://Scripts/Objects/PressurePlates/silver_door.gd" id="1_kyjnx"]
 [ext_resource type="Texture2D" uid="uid://c7ffa33lksu0p" path="res://Graphics/Objects/Door-Silver.png" id="3_ijh0o"]
+[ext_resource type="AudioStream" uid="uid://c0ota8xq4vidt" path="res://Audio/SFX/RefinedMetalDoor.mp3" id="4_p600r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7g30i"]
 size = Vector2(6, 32)
@@ -42,3 +43,7 @@ hframes = 3
 [node name="DoorHB" type="CollisionShape2D" parent="SilverDoor"]
 position = Vector2(42, -16)
 shape = SubResource("RectangleShape2D_7g30i")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_p600r")
+volume_db = -10.0
