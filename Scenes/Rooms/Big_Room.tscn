@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=4 uid="uid://cnualho3uxo3q"]
+[gd_scene load_steps=59 format=4 uid="uid://cnualho3uxo3q"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_7sk8b"]
 [ext_resource type="Script" path="res://Scripts/Rooms/big_room.gd" id="1_exy3w"]
@@ -7,23 +7,22 @@
 [ext_resource type="Texture2D" uid="uid://cflpckxt1iuu3" path="res://Graphics/Misc/Background-Sky.png" id="2_kwjrs"]
 [ext_resource type="Texture2D" uid="uid://lyf5nyqsnky0" path="res://Graphics/Tiles/Tileset-Castle.png" id="2_oooce"]
 [ext_resource type="PackedScene" uid="uid://b01kc7rc5bdbo" path="res://Scenes/Player/deadbody.tscn" id="3_1pg3o"]
-[ext_resource type="Texture2D" uid="uid://c1c0imx06mymv" path="res://Graphics/UI/PauseMenu-Button-Resume-Pressed.png" id="3_egowq"]
 [ext_resource type="Texture2D" uid="uid://bsa2l5quhvika" path="res://Graphics/Misc/Background-Clouds3.png" id="3_fi2pr"]
-[ext_resource type="Texture2D" uid="uid://dsiut15a4mx5n" path="res://Graphics/UI/PauseMenu-Button-Resume-Select.png" id="4_45ppt"]
 [ext_resource type="Texture2D" uid="uid://c85jklxnr8q0d" path="res://Graphics/Misc/Background-Clouds2.png" id="4_a1h0y"]
 [ext_resource type="Texture2D" uid="uid://cop5xiam8owxt" path="res://Graphics/Tiles/Tileset-Outside.png" id="4_p1ono"]
+[ext_resource type="Texture2D" uid="uid://ctljuakueu2u1" path="res://Graphics/UI/PauseMenu-Arrows.png" id="5_4k45r"]
 [ext_resource type="Texture2D" uid="uid://bsghen8bifkcl" path="res://Graphics/Misc/Background-Clouds1.png" id="5_c52qg"]
 [ext_resource type="Texture2D" uid="uid://bix1mxbiyhtbj" path="res://Graphics/UI/PauseMenu-Button-Restart.png" id="5_hgspe"]
-[ext_resource type="Texture2D" uid="uid://bhanl505og2ga" path="res://Graphics/UI/PauseMenu-Button-Restart-Pressed.png" id="6_ctemm"]
 [ext_resource type="PackedScene" uid="uid://dkb4p6pit5l6x" path="res://Scenes/Rooms/room.tscn" id="6_g3e87"]
 [ext_resource type="Texture2D" uid="uid://cnpgwbocd0bbt" path="res://Graphics/Misc/Background-Hills2.png" id="6_j2ytj"]
+[ext_resource type="Texture2D" uid="uid://colmca8o1wkx0" path="res://Graphics/UI/ExitConfirm-Label-BG.png" id="6_lknrv"]
 [ext_resource type="Texture2D" uid="uid://nf5jdk7sxicr" path="res://Graphics/Misc/Background-Hills1.png" id="7_3cw5n"]
+[ext_resource type="Texture2D" uid="uid://doxahpfvjyclf" path="res://Graphics/UI/ExitConfirm-Label-Text.png" id="7_eh2di"]
 [ext_resource type="PackedScene" uid="uid://cj7futhiicybd" path="res://Scenes/Objects/door.tscn" id="7_ekvh7"]
-[ext_resource type="Texture2D" uid="uid://8n4ct0axbp6o" path="res://Graphics/UI/PauseMenu-Button-Restart-Select.png" id="7_w677j"]
+[ext_resource type="Texture2D" uid="uid://corkr5qjyy4xr" path="res://Graphics/UI/ExitConfirm-Button-Yes.png" id="8_1dulu"]
 [ext_resource type="Texture2D" uid="uid://c4cncm74yt2at" path="res://Graphics/UI/PauseMenu-Button-Exit.png" id="8_ay6tq"]
 [ext_resource type="PackedScene" uid="uid://b0vhfo0q00ktt" path="res://Scenes/Objects/key.tscn" id="8_m5y52"]
-[ext_resource type="Texture2D" uid="uid://clno8qu50oy5e" path="res://Graphics/UI/PauseMenu-Button-Exit-Pressed.png" id="9_5uviy"]
-[ext_resource type="Texture2D" uid="uid://7234wxltgp4u" path="res://Graphics/UI/PauseMenu-Button-Exit-Select.png" id="10_82xek"]
+[ext_resource type="Texture2D" uid="uid://bh28yttu1ytd" path="res://Graphics/UI/ExitConfirm-Button-No.png" id="9_804hm"]
 [ext_resource type="Texture2D" uid="uid://c1mu4sn14pfej" path="res://Graphics/Tiles/Tileset-Village.png" id="11_3v4bd"]
 [ext_resource type="Texture2D" uid="uid://cyk1ojombwmpk" path="res://Graphics/NPCs/Priests.png" id="11_an48p"]
 [ext_resource type="Texture2D" uid="uid://b1e5kylrx5lqm" path="res://Graphics/Misc/ButtonPrompt-Drag.png" id="12_a2pvc"]
@@ -140,6 +139,30 @@ tracks/4/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Arrows:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 288)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Arrows:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="Animation" id="Animation_3ccr2"]
 length = 0.001
@@ -198,6 +221,78 @@ tracks/4/path = NodePath(".:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Arrows:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Arrows:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("ExitConfirmWindow:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-70, 408)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("ExitConfirmWindow:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("ExitConfirmWindow/Arrows/NoArrow:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("ExitConfirmWindow/Arrows/YesArrow:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -272,6 +367,30 @@ tracks/4/keys = {
 "method": &"LeaveMenu"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Arrows:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 288), Vector2(0, 288), Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Arrows:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, true, true, false]
+}
 
 [sub_resource type="Animation" id="Animation_0xw0k"]
 resource_name = "Resume"
@@ -334,19 +453,179 @@ tracks/4/path = NodePath(".:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(1.6),
+"times": PackedFloat32Array(0, 1.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Arrows:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 288), Vector2(0, 293), Vector2(0, 293), Vector2(0, 0)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Arrows:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1.4, 1.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, false]
+}
+
+[sub_resource type="Animation" id="Animation_s18kn"]
+resource_name = "ExitConfirm"
+length = 0.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExitConfirmWindow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-70, 408), Vector2(260, 408), Vector2(260, 408), Vector2(255, 408)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExitConfirmWindow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExitConfirmWindow/Arrows/NoArrow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExitConfirmWindow/Arrows/YesArrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Camera/..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"GoToExitConfirmWindow"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_57dha"]
+resource_name = "ReturnFromExitConfirm"
+length = 0.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExitConfirmWindow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(255, 408), Vector2(260, 408), Vector2(260, 408), Vector2(-70, 408)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExitConfirmWindow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExitConfirmWindow/Arrows/NoArrow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ExitConfirmWindow/Arrows/YesArrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("%Camera/..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ReturnToPauseMenu"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hgc3u"]
 _data = {
 "Exit": SubResource("Animation_g4w7w"),
+"ExitConfirm": SubResource("Animation_s18kn"),
 "PauseMenuEntered": SubResource("Animation_tf13s"),
 "RESET": SubResource("Animation_3ccr2"),
 "Restart": SubResource("Animation_c8ssw"),
-"Resume": SubResource("Animation_0xw0k")
+"Resume": SubResource("Animation_0xw0k"),
+"ReturnFromExitConfirm": SubResource("Animation_57dha")
 }
 
 [sub_resource type="Animation" id="Animation_uple7"]
@@ -1070,32 +1349,71 @@ visible = false
 z_index = 5
 position = Vector2(0, -288)
 
-[node name="ResumeButton" type="TextureButton" parent="Camera/PauseMenu"]
-offset_left = 203.0
-offset_top = 79.0
-offset_right = 309.0
-offset_bottom = 113.0
-texture_normal = ExtResource("2_hcm7d")
-texture_pressed = ExtResource("3_egowq")
-texture_hover = ExtResource("4_45ppt")
+[node name="ResumeButton" type="Sprite2D" parent="Camera/PauseMenu"]
+position = Vector2(203, 79)
+texture = ExtResource("2_hcm7d")
+offset = Vector2(52, 17)
 
-[node name="RestartButton" type="TextureButton" parent="Camera/PauseMenu"]
-offset_left = 196.0
-offset_top = 127.0
-offset_right = 316.0
-offset_bottom = 161.0
-texture_normal = ExtResource("5_hgspe")
-texture_pressed = ExtResource("6_ctemm")
-texture_hover = ExtResource("7_w677j")
+[node name="RestartButton" type="Sprite2D" parent="Camera/PauseMenu"]
+position = Vector2(196, 127)
+texture = ExtResource("5_hgspe")
+offset = Vector2(59, 17)
 
-[node name="ExitButton" type="TextureButton" parent="Camera/PauseMenu"]
-offset_left = 226.0
-offset_top = 175.0
-offset_right = 286.0
-offset_bottom = 209.0
-texture_normal = ExtResource("8_ay6tq")
-texture_pressed = ExtResource("9_5uviy")
-texture_hover = ExtResource("10_82xek")
+[node name="ExitButton" type="Sprite2D" parent="Camera/PauseMenu"]
+position = Vector2(226, 175)
+texture = ExtResource("8_ay6tq")
+offset = Vector2(29, 17)
+
+[node name="Arrows" type="Node2D" parent="Camera/PauseMenu"]
+visible = false
+
+[node name="LeftArrow" type="Sprite2D" parent="Camera/PauseMenu/Arrows"]
+position = Vector2(190, 96)
+texture = ExtResource("5_4k45r")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="RightArrow" type="Sprite2D" parent="Camera/PauseMenu/Arrows"]
+position = Vector2(320, 96)
+texture = ExtResource("5_4k45r")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
+
+[node name="ExitConfirmWindow" type="Node2D" parent="Camera/PauseMenu"]
+visible = false
+position = Vector2(-70, 408)
+
+[node name="WindowBackground" type="Sprite2D" parent="Camera/PauseMenu/ExitConfirmWindow"]
+texture = ExtResource("6_lknrv")
+
+[node name="Really?" type="Sprite2D" parent="Camera/PauseMenu/ExitConfirmWindow"]
+position = Vector2(0, -24)
+texture = ExtResource("7_eh2di")
+
+[node name="YesButton" type="Sprite2D" parent="Camera/PauseMenu/ExitConfirmWindow"]
+position = Vector2(28, 24)
+texture = ExtResource("8_1dulu")
+offset = Vector2(0.5, 0)
+
+[node name="NoButton" type="Sprite2D" parent="Camera/PauseMenu/ExitConfirmWindow"]
+position = Vector2(-34, 24)
+texture = ExtResource("9_804hm")
+
+[node name="Arrows" type="Node2D" parent="Camera/PauseMenu/ExitConfirmWindow"]
+
+[node name="NoArrow" type="Sprite2D" parent="Camera/PauseMenu/ExitConfirmWindow/Arrows"]
+visible = false
+position = Vector2(-67, 24)
+texture = ExtResource("5_4k45r")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="YesArrow" type="Sprite2D" parent="Camera/PauseMenu/ExitConfirmWindow/Arrows"]
+visible = false
+position = Vector2(67, 24)
+texture = ExtResource("5_4k45r")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
 
 [node name="PauseMenuAnimations" type="AnimationPlayer" parent="Camera/PauseMenu"]
 libraries = {
