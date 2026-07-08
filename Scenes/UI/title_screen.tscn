@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=4 uid="uid://d3mbpy50mfe20"]
+[gd_scene load_steps=41 format=4 uid="uid://d3mbpy50mfe20"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_nd78d"]
 [ext_resource type="Script" path="res://Scripts/UI/title_screen.gd" id="1_q6y5e"]
@@ -8,23 +8,22 @@
 [ext_resource type="Texture2D" uid="uid://bsa2l5quhvika" path="res://Graphics/Misc/Background-Clouds3.png" id="3_prn8y"]
 [ext_resource type="Texture2D" uid="uid://cybtvxgob0mcj" path="res://Graphics/UI/TitleMenu-Button-StartGame.png" id="4_5kgkq"]
 [ext_resource type="Texture2D" uid="uid://c85jklxnr8q0d" path="res://Graphics/Misc/Background-Clouds2.png" id="4_gqq5c"]
-[ext_resource type="Texture2D" uid="uid://4rdligq5luk2" path="res://Graphics/UI/TitleMenu-Button-StartGame-Pressed.png" id="5_s70dv"]
 [ext_resource type="Texture2D" uid="uid://bsghen8bifkcl" path="res://Graphics/Misc/Background-Clouds1.png" id="5_v4qgu"]
 [ext_resource type="Texture2D" uid="uid://cnpgwbocd0bbt" path="res://Graphics/Misc/Background-Hills2.png" id="6_gfbcv"]
-[ext_resource type="Texture2D" uid="uid://bjvll8kgto6ga" path="res://Graphics/UI/TitleMenu-Button-StartGame-Select.png" id="6_nmlg3"]
 [ext_resource type="Texture2D" uid="uid://nf5jdk7sxicr" path="res://Graphics/Misc/Background-Hills1.png" id="7_2wfqk"]
 [ext_resource type="Texture2D" uid="uid://3v1v81a0usk" path="res://Graphics/UI/TitleMenu-Button-Exit.png" id="10_h6xvv"]
-[ext_resource type="Texture2D" uid="uid://bdv6ac8wm2gva" path="res://Graphics/UI/TitleMenu-Button-Exit-Pressed.png" id="11_l5f75"]
 [ext_resource type="Texture2D" uid="uid://c1mu4sn14pfej" path="res://Graphics/Tiles/Tileset-Village.png" id="11_p3y70"]
-[ext_resource type="Texture2D" uid="uid://gvkhif4n2ivn" path="res://Graphics/UI/TitleMenu-Button-Exit-Select.png" id="12_ukis3"]
-[ext_resource type="Texture2D" uid="uid://c5ip2d8vmp74a" path="res://Graphics/UI/TitleMenu-Button-Info.png" id="14_fo2uj"]
-[ext_resource type="Texture2D" uid="uid://c7ugt1187b0ou" path="res://Graphics/UI/TitleMenu-Button-Info-Pressed.png" id="15_kiju0"]
-[ext_resource type="Texture2D" uid="uid://xqaqcgqq3jnh" path="res://Graphics/UI/TitleMenu-Button-Info-Select.png" id="16_yme3t"]
-[ext_resource type="Texture2D" uid="uid://bfxt12u30e8l" path="res://Graphics/UI/Controls-Visuals.png" id="20_a2ac2"]
+[ext_resource type="Texture2D" uid="uid://dl0g0ahvwbdlf" path="res://Graphics/UI/TitleMenu-Button-Options.png" id="13_2nuke"]
+[ext_resource type="Texture2D" uid="uid://ctljuakueu2u1" path="res://Graphics/UI/PauseMenu-Arrows.png" id="15_4mqa2"]
+[ext_resource type="Texture2D" uid="uid://colmca8o1wkx0" path="res://Graphics/UI/ExitConfirm-Label-BG.png" id="19_aho5t"]
+[ext_resource type="Texture2D" uid="uid://doxahpfvjyclf" path="res://Graphics/UI/ExitConfirm-Label-Text.png" id="20_gnlih"]
 [ext_resource type="Texture2D" uid="uid://2nb4dxp5dhv7" path="res://Graphics/Misc/Logos-ArborGames.png" id="20_ip4dq"]
-[ext_resource type="Texture2D" uid="uid://csauyd7m8yexn" path="res://Graphics/UI/Controls-Text.png" id="21_fa4rw"]
+[ext_resource type="Texture2D" uid="uid://corkr5qjyy4xr" path="res://Graphics/UI/ExitConfirm-Button-Yes.png" id="21_nsjdh"]
 [ext_resource type="Texture2D" uid="uid://xbmm01r5ej6i" path="res://Graphics/Misc/Logos-GameJam.png" id="21_ujdv1"]
 [ext_resource type="Texture2D" uid="uid://hakkbovvaxdq" path="res://Graphics/Misc/Title.png" id="21_ut2fk"]
+[ext_resource type="Texture2D" uid="uid://bh28yttu1ytd" path="res://Graphics/UI/ExitConfirm-Button-No.png" id="22_48fdh"]
+[ext_resource type="Texture2D" uid="uid://n1w62uffpnby" path="res://Graphics/UI/Controls.png" id="22_lgds7"]
+[ext_resource type="Texture2D" uid="uid://d7xcw0m4flkt" path="res://Graphics/UI/Options-Text.png" id="23_0vd6w"]
 [ext_resource type="AudioStream" uid="uid://cqpaos0rvy84" path="res://Audio/Music/Title + Intro Cutscene.mp3" id="26_xxxpu"]
 [ext_resource type="Script" path="res://Scripts/Misc/music_player.gd" id="27_mvefa"]
 
@@ -541,6 +540,116 @@ sources/1 = SubResource("TileSetAtlasSource_dg7xq")
 sources/2 = SubResource("TileSetAtlasSource_npq0e")
 sources/3 = SubResource("TileSetAtlasSource_igimh")
 
+[sub_resource type="Animation" id="Animation_lr43i"]
+resource_name = "ConfirmWindow"
+length = 0.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExitConfirmWindow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(258, 378), Vector2(258, 170), Vector2(258, 170), Vector2(258, 175)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExitConfirmWindow/Arrows/YesArrow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExitConfirmWindow/Arrows/NoArrow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ExitConfirmWindowEnter"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_eiso3"]
+resource_name = "ConfirmWindowReturn"
+length = 0.8
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExitConfirmWindow:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(258, 175), Vector2(258, 170), Vector2(258, 170), Vector2(258, 378)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExitConfirmWindow/Arrows/NoArrow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExitConfirmWindow/Arrows/YesArrow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ExitConfirmWindowExit"
+}]
+}
+
 [sub_resource type="Animation" id="Animation_m6vfi"]
 resource_name = "ExitGame"
 step = 0.5
@@ -827,6 +936,54 @@ tracks/9/keys = {
 "update": 0,
 "values": [Vector2(48, 16)]
 }
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Buttons/Arrow:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("ExitConfirmWindow:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(258, 378)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("ExitConfirmWindow/Arrows/NoArrow:visible")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("ExitConfirmWindow/Arrows/YesArrow:visible")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_aware"]
 resource_name = "StartGame"
@@ -963,9 +1120,23 @@ tracks/4/keys = {
 "method": &"PlayStartingMusic"
 }]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Buttons/Arrow:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6ibk6"]
 _data = {
+"ConfirmWindow": SubResource("Animation_lr43i"),
+"ConfirmWindowReturn": SubResource("Animation_eiso3"),
 "ExitGame": SubResource("Animation_m6vfi"),
 "InfoMenuEnter": SubResource("Animation_xmtbt"),
 "InfoMenuExit": SubResource("Animation_otqp4"),
@@ -1027,32 +1198,27 @@ tile_set = SubResource("TileSet_vqhtx")
 
 [node name="Buttons" type="Node2D" parent="."]
 
-[node name="StartGameButton" type="TextureButton" parent="Buttons"]
-offset_left = 48.0
-offset_top = 80.0
-offset_right = 212.0
-offset_bottom = 114.0
-texture_normal = ExtResource("4_5kgkq")
-texture_pressed = ExtResource("5_s70dv")
-texture_hover = ExtResource("6_nmlg3")
+[node name="StartGameButton" type="Sprite2D" parent="Buttons"]
+position = Vector2(48, 80)
+texture = ExtResource("4_5kgkq")
+offset = Vector2(86, 17)
 
-[node name="OptionsButton" type="TextureButton" parent="Buttons"]
-offset_left = 48.0
-offset_top = 128.0
-offset_right = 120.0
-offset_bottom = 162.0
-texture_normal = ExtResource("14_fo2uj")
-texture_pressed = ExtResource("15_kiju0")
-texture_hover = ExtResource("16_yme3t")
+[node name="OptionsButton" type="Sprite2D" parent="Buttons"]
+position = Vector2(48, 128)
+texture = ExtResource("13_2nuke")
+offset = Vector2(61, 17)
 
-[node name="ExitButton" type="TextureButton" parent="Buttons"]
-offset_left = 48.0
-offset_top = 176.0
-offset_right = 108.0
-offset_bottom = 210.0
-texture_normal = ExtResource("10_h6xvv")
-texture_pressed = ExtResource("11_l5f75")
-texture_hover = ExtResource("12_ukis3")
+[node name="ExitButton" type="Sprite2D" parent="Buttons"]
+position = Vector2(48, 176)
+texture = ExtResource("10_h6xvv")
+offset = Vector2(34, 17)
+
+[node name="Arrow" type="Sprite2D" parent="Buttons"]
+visible = false
+position = Vector2(40, 97)
+texture = ExtResource("15_4mqa2")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
 
 [node name="Title" type="Sprite2D" parent="."]
 position = Vector2(48, 16)
@@ -1063,14 +1229,49 @@ centered = false
 
 [node name="Devices" type="Sprite2D" parent="InfoMenu"]
 position = Vector2(-512, 0)
-texture = ExtResource("20_a2ac2")
+texture = ExtResource("22_lgds7")
 centered = false
 offset = Vector2(32, 32)
 
 [node name="Labels" type="Sprite2D" parent="InfoMenu"]
 position = Vector2(0, -240)
-texture = ExtResource("21_fa4rw")
+texture = ExtResource("23_0vd6w")
 centered = false
+
+[node name="ExitConfirmWindow" type="Node2D" parent="."]
+position = Vector2(258, 378)
+
+[node name="WindowBackground" type="Sprite2D" parent="ExitConfirmWindow"]
+texture = ExtResource("19_aho5t")
+
+[node name="Really?" type="Sprite2D" parent="ExitConfirmWindow"]
+position = Vector2(0, -24)
+texture = ExtResource("20_gnlih")
+
+[node name="YesButton" type="Sprite2D" parent="ExitConfirmWindow"]
+position = Vector2(28, 24)
+texture = ExtResource("21_nsjdh")
+offset = Vector2(0.5, 0)
+
+[node name="NoButton" type="Sprite2D" parent="ExitConfirmWindow"]
+position = Vector2(-34, 24)
+texture = ExtResource("22_48fdh")
+
+[node name="Arrows" type="Node2D" parent="ExitConfirmWindow"]
+
+[node name="NoArrow" type="Sprite2D" parent="ExitConfirmWindow/Arrows"]
+visible = false
+position = Vector2(-67, 24)
+texture = ExtResource("15_4mqa2")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="YesArrow" type="Sprite2D" parent="ExitConfirmWindow/Arrows"]
+visible = false
+position = Vector2(67, 24)
+texture = ExtResource("15_4mqa2")
+region_enabled = true
+region_rect = Rect2(16, 0, 16, 16)
 
 [node name="BlockMenu" type="ColorRect" parent="."]
 offset_right = 512.0
