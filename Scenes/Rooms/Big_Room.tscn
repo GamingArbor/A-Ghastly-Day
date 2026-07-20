@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=4 uid="uid://cnualho3uxo3q"]
+[gd_scene load_steps=60 format=4 uid="uid://cnualho3uxo3q"]
 
 [ext_resource type="Texture2D" uid="uid://d10kvx1ujfve7" path="res://Graphics/Tiles/Tileset-Collision.png" id="1_7sk8b"]
 [ext_resource type="Script" path="res://Scripts/Rooms/big_room.gd" id="1_exy3w"]
@@ -40,6 +40,7 @@
 [ext_resource type="PackedScene" uid="uid://co1tnrdouyyvg" path="res://Scenes/Objects/Crates/1x1-Slope.tscn" id="32_1pgyt"]
 [ext_resource type="PackedScene" uid="uid://8v5rf4d78ka3" path="res://Scenes/Objects/Crates/2x1.tscn" id="33_0qcne"]
 [ext_resource type="PackedScene" uid="uid://dl11ej1yywboi" path="res://Scenes/Objects/Crates/1x2.tscn" id="38_38vev"]
+[ext_resource type="PackedScene" uid="uid://d1eenhyi3xn75" path="res://Scenes/Objects/Crates/3x2.tscn" id="39_5wird"]
 [ext_resource type="Script" path="res://Scripts/Misc/music_player.gd" id="40_1bap2"]
 
 [sub_resource type="Animation" id="Animation_g4w7w"]
@@ -2084,13 +2085,16 @@ position = Vector2(7680, 216)
 [node name="(2x2) Crates" type="Node2D" parent="Crates"]
 
 [node name="Crate-(2x2)" parent="Crates/(2x2) Crates" instance=ExtResource("29_efihf")]
-position = Vector2(3296, 240)
+position = Vector2(3302, 334)
 
 [node name="Crate-(2x2)2" parent="Crates/(2x2) Crates" instance=ExtResource("29_efihf")]
 position = Vector2(5704, 175)
 
 [node name="Crate-(2x2)3" parent="Crates/(2x2) Crates" instance=ExtResource("29_efihf")]
 position = Vector2(7760, 512)
+
+[node name="Crate-2x2" parent="Crates/(2x2) Crates" instance=ExtResource("39_5wird")]
+position = Vector2(3304, 240)
 
 [node name="(2x2-Slope) Crates" type="Node2D" parent="Crates"]
 
