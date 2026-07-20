@@ -13,7 +13,10 @@ func slide_movement() -> void:
 	else:
 		direction = 0
 	if direction:
-		velocity.x = direction * Global.PossessSpeed
+		if Input.is_action_pressed("Float"):
+			velocity.x = direction * Global.PossessSpeed
+		else:
+			velocity.x = (direction * Global.PossessSpeed) / 4
 	else:
 		velocity.x = move_toward(velocity.x, 0, Global.PossessSpeed)
 
