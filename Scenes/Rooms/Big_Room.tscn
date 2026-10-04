@@ -1738,7 +1738,6 @@ position = Vector2(231, 224)
 unique_name_in_owner = true
 
 [node name="Outskirts" type="Node2D" parent="Rooms"]
-visible = false
 
 [node name="Room1" parent="Rooms/Outskirts" instance=ExtResource("6_g3e87")]
 RoomNumber = 1
@@ -2237,9 +2236,6 @@ position = Vector2(5704, 175)
 [node name="Crate-(2x2)3" parent="Crates/(2x2) Crates" instance=ExtResource("29_efihf")]
 position = Vector2(7760, 512)
 
-[node name="Crate-2x2" parent="Crates/(2x2) Crates" instance=ExtResource("39_5wird")]
-position = Vector2(3304, 240)
-
 [node name="(2x2-Slope) Crates" type="Node2D" parent="Crates"]
 
 [node name="Crate-(2x2)-Slope" parent="Crates/(2x2-Slope) Crates" instance=ExtResource("31_uknj6")]
@@ -2261,6 +2257,9 @@ position = Vector2(6808, 448)
 
 [node name="Crate-(1x2)2" parent="Crates/(1x2) Crates" instance=ExtResource("38_38vev")]
 position = Vector2(7224, 144)
+
+[node name="Crate-3x2" parent="Crates" instance=ExtResource("39_5wird")]
+position = Vector2(3304, 240)
 
 [node name="Keys" type="Node2D" parent="."]
 process_mode = 1
