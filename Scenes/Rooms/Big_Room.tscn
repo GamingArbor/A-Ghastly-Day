@@ -1732,7 +1732,7 @@ position = Vector2(220, 231)
 [node name="Player" parent="." instance=ExtResource("1_kvefk")]
 unique_name_in_owner = true
 process_mode = 1
-position = Vector2(1662, 199)
+position = Vector2(231, 224)
 
 [node name="Rooms" type="Node" parent="."]
 unique_name_in_owner = true
