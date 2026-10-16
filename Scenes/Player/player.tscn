@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://cpuoix83gss4l"]
+[gd_scene load_steps=53 format=3 uid="uid://cpuoix83gss4l"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_sjaus"]
 [ext_resource type="Texture2D" uid="uid://buhb13ci8l3i3" path="res://Graphics/Player/Player-Ghost.png" id="2_5cpct"]
@@ -381,6 +381,12 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_j0voa"]
 radius = 20.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nmpih"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hbgan"]
+bg_color = Color(0.941176, 0.941176, 0.941176, 1)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 8
 collision_mask = 11
@@ -424,3 +430,13 @@ monitorable = false
 [node name="InteractionRadius" type="CollisionShape2D" parent="InteractionZone"]
 position = Vector2(0, 8)
 shape = SubResource("CircleShape2D_j0voa")
+
+[node name="StaminaBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -20.0
+offset_top = -21.0
+offset_right = 20.0
+offset_bottom = -17.0
+theme_override_styles/background = SubResource("StyleBoxFlat_nmpih")
+theme_override_styles/fill = SubResource("StyleBoxFlat_hbgan")
+show_percentage = false

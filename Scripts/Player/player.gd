@@ -6,6 +6,10 @@ const SPEED = 150.0
 const DRAG_SPEED = SPEED * 0.75
 const JUMP_VELOCITY = -400.0
 
+# Constants which dictate how far the player can float in a given direction (measured in pixels)
+const FLOAT_LIMIT_X = 192.0   #192 is 12 tiles
+const FLOAT_LIMIT_Y = 64.0    #64 is 4 tiles
+
 # State Machine
 # Sets state to IDLE upon entering game
 var States = Global.States
@@ -148,6 +152,8 @@ func idle():
 		float_direction = 0
 		StartingX = self.position.x
 		StartingY = self.position.y
+		$StaminaBar.value = 100.0
+		$StaminaBar.visible = true
 		set_state(States.FLOAT)
 	# Interaction with Objects
 	if Input.is_action_just_pressed("Interact"):
@@ -182,7 +188,8 @@ func StartPossessing() -> void:
 func floating():
 	# Transition to Float Ended state
 	if Input.is_action_just_released("Float"):
-		set_state(States.FLOATOVER)
+		$StaminaBar.visible = false
+		set_state(States.IDLE)    #Used to be States.FLOATOVER
 	
 	## Floating mechanic
 	# Locks Direction into vertical or horizontal; 1 = vertical, 2 = horizontal
@@ -194,26 +201,32 @@ func floating():
 	direction = 0
 	# Handle Floating Up and Down
 	if float_direction == 1:
-		if abs(self.position.y - StartingY) <= 64:
+		if abs(self.position.y - StartingY) <= FLOAT_LIMIT_Y:
 			if Input.is_action_pressed("Up"):
 				velocity.y = -SPEED
 			elif Input.is_action_pressed("Down"):
 				velocity.y = SPEED
 			elif Input.is_action_just_released("Up") or Input.is_action_just_released("Down"):
 				velocity.y = 0
+			#Update stamina bar
+			$StaminaBar.value = (100 / FLOAT_LIMIT_Y) * (FLOAT_LIMIT_Y - abs(self.position.y - StartingY))
 		else:
-			set_state(States.FLOATOVER)
+			$StaminaBar.visible = false
+			set_state(States.IDLE)    #Used to be States.FLOATOVER
 	# Handle Floating Left and Right
 	elif float_direction == 2:
-		if abs(self.position.x - StartingX) <= 192:
+		if abs(self.position.x - StartingX) <= FLOAT_LIMIT_X:
 			if Input.is_action_pressed("Left"):
 				direction = -1
 			elif Input.is_action_pressed("Right"):
 				direction = 1
 			elif Input.is_action_just_released("Left") or Input.is_action_just_released("Right"):
 				direction = 0
+			#Update stamina bar
+			$StaminaBar.value = (100 / FLOAT_LIMIT_X) * (FLOAT_LIMIT_X - abs(self.position.x - StartingX))
 		else:
-			set_state(States.FLOATOVER)
+			$StaminaBar.visible = false
+			set_state(States.IDLE)    #Used to be States.FLOATOVER
 	if direction:
 		velocity.x = direction * SPEED
 	else:
@@ -232,6 +245,7 @@ func dead():
 func floatover():
 	if is_on_floor():
 		set_state(States.IDLE)
+	
 
 func drag():
 	## Dragging movement (More Evil)
