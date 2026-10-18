@@ -189,7 +189,7 @@ func floating():
 	# Transition to Float Ended state
 	if Input.is_action_just_released("Float"):
 		$StaminaBar.visible = false
-		set_state(States.IDLE)    #Used to be States.FLOATOVER
+		set_state(States.FLOATOVER)    #Used to be States.FLOATOVER
 	
 	## Floating mechanic
 	# Locks Direction into vertical or horizontal; 1 = vertical, 2 = horizontal
@@ -212,7 +212,7 @@ func floating():
 			$StaminaBar.value = (100 / FLOAT_LIMIT_Y) * (FLOAT_LIMIT_Y - abs(self.position.y - StartingY))
 		else:
 			$StaminaBar.visible = false
-			set_state(States.IDLE)    #Used to be States.FLOATOVER
+			set_state(States.FLOATOVER)    #Used to be States.FLOATOVER
 	# Handle Floating Left and Right
 	elif float_direction == 2:
 		if abs(self.position.x - StartingX) <= FLOAT_LIMIT_X:
@@ -226,7 +226,7 @@ func floating():
 			$StaminaBar.value = (100 / FLOAT_LIMIT_X) * (FLOAT_LIMIT_X - abs(self.position.x - StartingX))
 		else:
 			$StaminaBar.visible = false
-			set_state(States.IDLE)    #Used to be States.FLOATOVER
+			set_state(States.FLOATOVER)    #Used to be States.FLOATOVER
 	if direction:
 		velocity.x = direction * SPEED
 	else:

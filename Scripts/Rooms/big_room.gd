@@ -171,6 +171,20 @@ func ExitToTitle() -> void:
 	get_tree().change_scene_to_file("res://Scenes/UI/title_screen.tscn")
 
 
+# These are the fuctions responsible for changing the BG when travelling between the Outskirts and Village
+func _on_bg_switch_left_body_entered(body: Node2D) -> void:
+	if body == %Player:
+		$Background/ParallaxBackground/ParallaxLayer7.visible = false
+		$Background/ParallaxBackground/ParallaxLayer8.visible = false
+		$Background/ParallaxBackground/ParallaxLayer9.visible = false
+
+func _on_bg_switch_right_body_entered(body: Node2D) -> void:
+	if body == %Player:
+		$Background/ParallaxBackground/ParallaxLayer7.visible = true
+		$Background/ParallaxBackground/ParallaxLayer8.visible = true
+		$Background/ParallaxBackground/ParallaxLayer9.visible = true
+
+
 func _on_end_game_detection_body_entered(body: Node2D) -> void:
 	if body == %Player:
 		if %Player.state == Global.States.DRAG:
